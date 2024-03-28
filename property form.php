@@ -23,7 +23,8 @@ $pincode = $_POST['pincode'];
 $state = $_POST['state'];
 $location = $_POST['location'];
 $seller_id = 2; // Assuming user is logged in and user_id is stored in session
-$image = $_POST['image'];
+$image = file_get_contents($_FILES['image']['tmp_name']);
+$image = $conn->real_escape_string($image);
 
 // Insert data into the database
 $sql = "INSERT INTO property (price, bed, bath, size, description, street_name, pincode, state, location_url, seller_id, image) VALUES ('$price', '$bedrooms', '$bathrooms', '$size', '$description', '$street', '$pincode', '$state', '$location', '$seller_id', '$image')";
@@ -31,10 +32,15 @@ $sql = "INSERT INTO property (price, bed, bath, size, description, street_name, 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
     $last_id = mysqli_insert_id($conn);
-    echo "<br><br>".$last_id;
+    echo "<br><br>" . $last_id;
+    session_start();
+
+    $_SESSION['last_id'] = $last_id;
+    header("Location: property image upload.html");
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+
 
 $conn->close();
 ?>

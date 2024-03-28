@@ -1,5 +1,8 @@
 <?php
-$unique_id = 3;
+session_start();
+
+// Store the ID in a session variable
+$property_id  = $_SESSION['last_id'];
 
 $upload_dir = 'uploads/';
 if (!file_exists($upload_dir)) {
@@ -9,13 +12,12 @@ if (!file_exists($upload_dir)) {
 $count = 1;
 foreach ($_FILES as $image) {
     $file_extension = pathinfo($image['name'], PATHINFO_EXTENSION);
-    $image_name = $unique_id . '_' . $count . "." . $file_extension;
+    $image_name = $property_id . '_' . $count . "." . $file_extension;
     move_uploaded_file($image['tmp_name'], $upload_dir . $image_name);
     $count++;
 }
 echo 'Images uploaded successfully!';
-
-$property_id = 3; // Example property_id
+ // Example property_id
 $image_folder = "uploads/";
 
 $servername = "localhost";
