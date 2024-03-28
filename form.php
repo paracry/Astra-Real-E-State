@@ -31,7 +31,7 @@ $sql = "INSERT INTO property (price, bed, bath, size, description, street_name, 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
     $last_id = mysqli_insert_id($conn);
-    echo "<br>".$last_id;
+    echo "<br><br>".$last_id;
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
