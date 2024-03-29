@@ -1,46 +1,44 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "real_estate";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die ("Connection failed: " . $conn->connect_error);
-}
+session_start();
 
 // Get form data using POST method
-$price = $_POST['price'];
-$bedrooms = $_POST['bedrooms'];
-$bathrooms = $_POST['bathrooms'];
-$size = $_POST['size'];
-$description = $_POST['description'];
-$street = $_POST['street'];
-$pincode = $_POST['pincode'];
-$state = $_POST['state'];
-$location = $_POST['location'];
+$_SESSION['price'] = $_POST['price'];
+$_SESSION['bedrooms'] = $_POST['bedrooms'];
+$_SESSION['bathrooms'] = $_POST['bathrooms'];
+$_SESSION['size'] = $_POST['size'];
+$_SESSION['description'] = $_POST['description'];
+$_SESSION['street'] = $_POST['street'];
+$_SESSION['pincode'] = $_POST['pincode'];
+$_SESSION['state'] = $_POST['state'];
+$_SESSION['location'] = $_POST['location'];
+$_SESSION['last_id'] = 2; // Assuming user is logged in and user_id is stored in session
+$_SESSION['image'] = file_get_contents($_FILES['image']['tmp_name']);
+//$_SESSION['image'] = $conn->real_escape_string($_SESSION['image']);
+
+$price = $_SESSION['price'];
+$bedrooms = $_SESSION['bedrooms'];
+$bathrooms = $_SESSION['bathrooms'];
+$size = $_SESSION['size'];
+$description = $_SESSION['description'];
+$street = $_SESSION['street'];
+$pincode = $_SESSION['pincode'];
+$state = $_SESSION['state'];
+$location = $_SESSION['location'];
 $seller_id = 2; // Assuming user is logged in and user_id is stored in session
-$image = file_get_contents($_FILES['image']['tmp_name']);
-$image = $conn->real_escape_string($image);
+$image=$_SESSION['image'];
+//
+//echo $price;
+//echo $bedrooms;
+//echo $bathrooms;
+//echo $size;
+//echo $description;
+//echo $street;
+//echo $pincode;
+//echo $state;
+//echo $location;
+//echo $seller_id;
+//echo '<img src="data:image/jpeg;base64,' . base64_encode($_SESSION['image']) . '"/>';
+//
 
-// Insert data into the database
-$sql = "INSERT INTO property (price, bed, bath, size, description, street_name, pincode, state, location_url, seller_id, image) VALUES ('$price', '$bedrooms', '$bathrooms', '$size', '$description', '$street', '$pincode', '$state', '$location', '$seller_id', '$image')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-    $last_id = mysqli_insert_id($conn);
-    echo "<br><br>" . $last_id;
-    session_start();
-
-    $_SESSION['last_id'] = $last_id;
-    header("Location: property image upload.html");
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-
-$conn->close();
+header("location:property image upload.html");
 ?>
