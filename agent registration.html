@@ -1,88 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
 
-        <style>
-            form {
-                max-width: 400px;
-                margin: 0 auto;
-                padding: 5vh;
-                border: 1px solid #ccc;
-                border-radius: 5vh;
-                background-color: #f9f9f9;
-                font-size: 1em;
-            }
-            input[type="text"],
-            input[type="email"],
-            textarea {
-                width: 100%;
-                padding: 8px;
-                margin: 5px 0;
-                box-sizing: border-box;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-            }
-            input[type="submit"] {
-                background-color: #4caf50;
-                color: white;
-                padding: 10px 15px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                display: flex;
-                margin: 0.5vh auto;
-            }
-            input[type="submit"]:hover {
-                background-color: #45a049;
-            }
-        </style>
-    </head>
-    <body>
-        <form action="/submit_agent" method="post">
-            <label for="fullname">Full Name:</label>
-            <input
-                type="text"
-                id="fullname"
-                name="fullname"
-                required
-            /><br /><br />
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required /><br /><br />
+    <style>
+        form {
+            width: 30%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required /><br /><br />
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
 
-            <label for="company">Company Name:</label>
-            <input
-                type="text"
-                id="company"
-                name="company"
-                required
-            /><br /><br />
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 
-            <label for="address">Address:</label>
-            <textarea id="address" name="address" required></textarea
-            ><br /><br />
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-            <label for="website">Website:</label>
-            <input type="url" id="website" name="website" /><br /><br />
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
 
-            <label for="experience">Years of Experience:</label>
-            <input
-                type="number"
-                id="experience"
-                name="experience"
-                required
-            /><br /><br />
+<body>
+    <form action="agent registration.php" method="post" enctype="multipart/form-data">
+        <label for="full_name">Full Name:</label>
+        <input type="text" id="full_name" name="full_name" required /><br /><br />
 
-            <label for="image">Passport size photo:</label>
-            <input type="file" id="image" name="image" required /><br /><br />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required /><br /><br />
 
-            <input type="submit" value="Submit" />
-        </form>
-    </body>
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" id="phone_number" name="phone_number" required /><br /><br />
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required /><br /><br />
+
+        <label for="website">Website:</label>
+        <input type="url" id="website" name="website" required /><br /><br />
+
+        <label for="experience">Experience:</label>
+        <input type="text" id="experience" name="experience" required /><br /><br />
+
+        <label for="photo">Photo:</label>
+        <input type="file" id="image" name="image" accept="image/*" required /><br /><br />
+
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+
 </html>

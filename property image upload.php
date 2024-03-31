@@ -27,6 +27,17 @@ $sql = "INSERT INTO property (price, bed, bath, size, description, street_name, 
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully form 1";
+    unset($_SESSION['price']);
+    unset($_SESSION['bedrooms']);
+    unset($_SESSION['bathrooms']);
+    unset($_SESSION['size']);
+    unset($_SESSION['description']);
+    unset($_SESSION['street']);
+    unset($_SESSION['pincode']);
+    unset($_SESSION['state']);
+    unset($_SESSION['location']);
+    unset($_SESSION['seller_id']);
+    unset($_SESSION['image']);
 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -35,7 +46,7 @@ if ($conn->query($sql) === TRUE) {
 
 // Store the ID in a session variable
 $property_id = mysqli_insert_id($conn);
-echo "<br><br>" . $property_id."<br><br>";
+echo "<br><br>" . $property_id . "<br><br>";
 
 $upload_dir = 'uploads/';
 if (!file_exists($upload_dir)) {
@@ -75,7 +86,7 @@ if ($conn->query($sql) === TRUE) {
     $conn->rollback();
     echo "<br>rolling back<br>";
     echo "Error: " . $sql . "<br>" . $conn->error;
-    
+
 
 }
 
