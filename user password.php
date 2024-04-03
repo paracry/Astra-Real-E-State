@@ -23,6 +23,8 @@ if ($password !== $confirm_password) {
     $sql = "INSERT INTO `user` (`username`, `email`, `phone`, `password`) VALUES ('$name', '$email', '$phone', '$password')";
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully form2";
+        header ("Location : home.html");
+        header("Location: user password.html");
 
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

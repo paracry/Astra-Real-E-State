@@ -25,10 +25,8 @@ if ($result->num_rows > 0) {
     $user = mysqli_fetch_assoc($result);
     $_SESSION['username'] = $user['username'];
     $_SESSION['user_id'] = $user['user_id'];
-    //$_SESSION['username'] = $result->fetch_assoc()['username'];
-    //$_SESSION['user_id'] = $result->fetch_assoc()['user_id'];
     echo $_SESSION['user_id'] . $_SESSION['username'];
-    header("Location : propert form.html");
+    header("Location:  home.php");
 } else {
     echo "User not found. Please check your credentials.";
 }
