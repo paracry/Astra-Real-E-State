@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Images</title>
+    <style>
+        .circle {
+            width: 64.2vh;
+            height: 64.2vh;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            margin: 20px;
+            display: inline-block;
+        }
+
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: filter 0.3s;
+        }
+
+        .circle p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-size: 6vh;
+            font-weight: bold;
+        }
+
+        .circle:hover p {
+            opacity: 1;
+        }
+
+        .circle:hover img {
+            filter: brightness(70%);
+        }
+    </style>
+</head>
+
+<body>
+    <center><h1>Registor as</h1></center>
+    <a href="user registration.html" class="circle">
+        <img src="images/user.png" alt="Image 1">
+        <p>User</p>
+    </a>
+    <a href="seller registration.html" class="circle">
+        <img src="images/seller.png" alt="Image 2">
+        <p>Seller</p>
+    </a>
+    <a href="agent registration.html" class="circle">
+        <img src="images/agent.jpg" alt="Image 3">
+        <p>Agent</p>
+    </a>
+</body>
+
+</html>

@@ -78,7 +78,7 @@
     ?>
 
     <div class="user-info">
-        <?php if ($loggedIn): ?>
+    <?php if ($loggedIn): ?>
             <div class="login-status">
                 <div class="dropdown">
                     <button class="dropbtn">
