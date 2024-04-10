@@ -20,7 +20,7 @@
             justify-content: space-between;
         }
 
-        header {
+        .header {
 
             padding: 3vh 2vw;
             display: flex;
@@ -58,7 +58,8 @@
         }
 
         footer {
-            background-color: rgba(255, 255, 255, 0.8);
+            color: white;
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
             text-align: center;
         }
@@ -121,7 +122,7 @@
             color: white;
             outline: none;
             font-size: 3vh;
-            
+
             margin-right: 1vw;
             background-color: #ffffff00;
             border: none;
@@ -130,7 +131,7 @@
         }
 
         .login {
-            margin-left:55svw;
+            margin-left: 55svw;
             margin-right: 2vw;
 
         }
@@ -164,12 +165,12 @@
             text-decoration: underline;
 
         }
-        
-        
-        .logged:hover{
+
+
+        .logged:hover {
             background-color: #00000000;
 
-            
+
         }
     </style>
 </head>
@@ -185,7 +186,7 @@
         $loggedIn = false;
     }
     ?>
-    <header>
+    <section class="header">
         <nav>
             <a href="#">Home</a>
             <a href="#">Properties</a>
@@ -194,7 +195,7 @@
             <?php if ($loggedIn): ?>
             <a class="logged" style="margin-left: 45vw; margin-right: 0%;">logged in: </a>
             <div class="dropdown">
-                
+
                 <button class="username">
                     <?php echo $_SESSION['username']; ?>
                 </button>
@@ -205,11 +206,13 @@
                 <a class="login" href="user login.html">Login</a>
                 <?php endif; ?>
         </nav>
-    </header>
+    </section>
     <main>
         <h1 class="welcome">Welcome to<br>Astra Real Estate</h1>
-        <input type="text" placeholder="Search for properties..." />
-        <button class="search">🔍Search🔍</button>
+        <form action="search result.php" method="post">
+            <input type="text" placeholder="Search for properties..." name="place" />
+            <button class="search" value="search">🔍Search🔍</button>
+        </form>
     </main>
     <footer>
         <p>

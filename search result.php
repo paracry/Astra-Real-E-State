@@ -63,8 +63,8 @@
         if ($conn->connect_error) {
             die ("Connection failed: " . $conn->connect_error);
         }
-
-        $sql = "SELECT * FROM property";
+        $place=$_POST['place'];
+        $sql = "SELECT * FROM property WHERE state = '$place'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
