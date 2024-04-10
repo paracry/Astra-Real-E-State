@@ -14,11 +14,11 @@
             /* Adjust as needed */
             margin-left: 5.5vw;
             margin-bottom: 8vh;
-            
+
             border-radius: 10vh;
-            box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.1);
+            box-shadow: 2vh 2vh 2vh rgba(0, 0, 0, 0.662);
             overflow: hidden;
-            
+
         }
 
         img {
@@ -28,10 +28,10 @@
             align-items: center;
             margin: auto;
             object-fit: cover;
-    
+
         }
 
-        .product h2{
+        .product h2 {
             display: inline-block;
             margin: 2vh;
             padding-bottom: 1vh;
@@ -39,11 +39,10 @@
             color: black;
         }
 
-        .price{
+        .price {
             font-size: 5vh;
 
         }
-        
     </style>
 </head>
 
@@ -61,7 +60,7 @@
 
         // Check connection
         if ($conn->connect_error) {
-            die ("Connection failed: " . $conn->connect_error);
+            die("Connection failed: " . $conn->connect_error);
         }
 
         $sql = "SELECT * FROM property";

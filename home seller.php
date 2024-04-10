@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Astra Real Estate</title>
-    
+
     <?php
     session_start();
-    if (isset($_SESSION['user_id'])) {
+    if (isset($_SESSION['seller_id'])) {
         // User is logged in
         $loggedIn = true;
     } else {
@@ -17,7 +17,7 @@
         $loggedIn = false;
     }
     ?>
-    
+
     <style>
         body {
             margin: 0;
@@ -145,7 +145,7 @@
         }
 
         .login {
-            margin-left: 55svw;
+            margin-left: 45vw;
             margin-right: 2vw;
 
         }
@@ -191,32 +191,33 @@
 </head>
 
 <body>
-    
+
     <section class="header">
         <nav>
             <a href="#">Home</a>
             <a href="listing.php">Properties</a>
             <a href="#">About Us</a>
             <a href="#">Contact</a>
+            <a href="property form.html">Add Property</a>
             <?php if ($loggedIn): ?>
-            <a class="logged" style="margin-left: 45vw; margin-right: 0%;">logged in: </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 35vw; margin-right: 0%;">logged in: </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo $_SESSION['username']; ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                </div>
+                    <button class="username">
+                        <?php echo $_SESSION['username']; ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                    </div>
                 <?php else: ?>
-                <a class="login" href="user login.html">Login</a>
+                    <a class="login" href="user login.html">Login</a>
                 <?php endif; ?>
         </nav>
     </section>
     <main>
         <h1 class="welcome">Welcome to<br>Astra Real Estate</h1>
         <form action="search result.php" method="post">
-            <input type="text" placeholder="Search properties by states..." name="place" />
+            <input type="text" placeholder="Search properties by states...." name="place" />
             <button class="search" value="search">🔍Search🔍</button>
         </form>
     </main>

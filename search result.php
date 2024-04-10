@@ -16,7 +16,7 @@
             margin-bottom: 8vh;
             
             border-radius: 10vh;
-            box-shadow: 1vh 1vh 1vh rgba(0, 0, 0, 0.1);
+            box-shadow: 2vh 2vh 2vh rgba(0, 0, 0, 0.662);
             overflow: hidden;
             
         }
