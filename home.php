@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Astra Real Estate</title>
-    
+
     <?php
     session_start();
     if (isset($_SESSION['user_id'])) {
@@ -17,7 +17,7 @@
         $loggedIn = false;
     }
     ?>
-    
+
     <style>
         body {
             margin: 0;
@@ -61,6 +61,68 @@
         nav button:hover {
             color: white;
             background-color: #8000ff;
+        }
+
+
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding: 0%;
+        }
+
+        .username {
+            color: rgb(0, 0, 0);
+            outline: none;
+            font-size: 3vh;
+
+            margin-right: 1vw;
+            background-color: #ffffff00;
+            border: none;
+            padding: 2vh;
+            border-radius: 50vh;
+        }
+
+        .login {
+            margin-left: 55svw;
+            margin-right: 2vw;
+
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #000000;
+            padding: 1vh;
+            text-align: center;
+            align-items: center;
+            margin-top: 1vh;
+            min-width: 1vw;
+            height: 4vh;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            z-index: none;
+            border-radius: 20vh;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        .logout {
+            color: #ff0099;
+        }
+
+        .logout:hover {
+            background-color: #00000000;
+            text-decoration: underline;
+
+        }
+
+
+        .logged:hover {
+            background-color: #00000000;
+            color: black;
         }
 
         main {
@@ -125,73 +187,11 @@
             margin-top: 0%;
 
         }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            padding: 0%;
-        }
-
-        .username {
-            color: rgb(0, 0, 0);
-            outline: none;
-            font-size: 3vh;
-
-            margin-right: 1vw;
-            background-color: #ffffff00;
-            border: none;
-            padding: 2vh;
-            border-radius: 50vh;
-        }
-
-        .login {
-            margin-left: 55svw;
-            margin-right: 2vw;
-
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #000000;
-            padding: 1vh;
-            text-align: center;
-            align-items: center;
-            margin-top: 1vh;
-            min-width: 1vw;
-            height: 4vh;
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-            z-index: none;
-            border-radius: 20vh;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-
-        .logout {
-            color: #ff0099;
-        }
-
-        .logout:hover {
-            background-color: #00000000;
-            text-decoration: underline;
-
-        }
-
-
-        .logged:hover {
-            background-color: #00000000;
-            color: black;
-
-
-        }
     </style>
 </head>
 
 <body>
-    
+
     <section class="header">
         <nav>
             <a href="#">Home</a>
