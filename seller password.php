@@ -24,6 +24,7 @@ if ($password !== $confirm_password) {
     $sql = "INSERT INTO `seller` (`username`, `email`, `password`, `phone_no`, `address`) VALUES ('$name', '$email', '$password', '$phone', '$address')";
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully form2";
+        header("Location:  seller login.html");
 
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

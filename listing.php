@@ -12,7 +12,7 @@
         $userloggedIn = true;
         $sellerloggedIn = false;
         $agentloggedIn = false;
-        
+
     } elseif (isset($_SESSION['seller_id'])) {
         // User is logged in
         $sellerloggedIn = true;
@@ -99,7 +99,7 @@
         }
 
         .login {
-            margin-left: 55svw;
+            margin-left: 48vw;
             margin-right: 2vw;
 
         }
@@ -107,13 +107,18 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #ffc3c3;
-            padding: 1vh;
+            background-color: #000000;
+            padding: 1%;
             text-align: left;
             align-items: center;
             margin-top: 1vh;
-            min-width: 1vw;
-            height: 8vh;
+            min-width: 11vw;
+            <?php if ($sellerloggedIn): ?>
+                height: 11vh;
+            <?php else: ?>
+                height: 8vh;
+            <?php endif; ?>
+
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
@@ -129,7 +134,7 @@
         }
 
         .logout:hover {
-            color: black;
+            color: white;
             background-color: #00000000;
             text-decoration: underline;
 
@@ -209,10 +214,11 @@
         <nav>
             <a href="#">Home</a>
             <a href="listing.php">Properties</a>
+            <a href="agent listing.php">Agents</a>
             <a href="#">About Us</a>
             <a href="#">Contact</a>
             <?php if ($userloggedIn): ?>
-                <a class="logged" style="margin-left: 42vw; margin-right: 0%;">Welcome User : </a>
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
                 <div class="dropdown">
 
                     <button class="username">
@@ -220,11 +226,11 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="products.php">Wishlist</a>
                     </div>
                 </div>
             <?php elseif ($sellerloggedIn): ?>
-                <a href="property form.html">Add Property</a>
-                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Seller : </a>
                 <div class="dropdown">
 
                     <button class="username">
@@ -232,12 +238,13 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout"href="products.php">Postings</a>
+                        <a class="logout" href="products.php">Postings</a><br>
+                        <a class="logout" href="property form.html">Add Property</a>
                     </div>
                 </div>
             <?php elseif ($agentloggedIn): ?>
 
-                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Agent : </a>
                 <div class="dropdown">
 
                     <button class="username">
@@ -245,6 +252,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="products.php">Profile</a>
                     </div>
                 </div>
             <?php else: ?>

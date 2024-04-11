@@ -27,7 +27,7 @@ if ($password !== $confirm_password) {
         session_start();
         $_SESSION['user_id'] = mysqli_insert_id($conn);
         $_SESSION['username'] = $name;
-        header ("Location: home.php");
+        header ("Location: user login.html");
 
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

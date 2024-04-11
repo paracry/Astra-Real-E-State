@@ -108,12 +108,17 @@
             display: none;
             position: absolute;
             background-color: #000000;
-            padding: 1vh;
+            padding: 1%;
             text-align: left;
             align-items: center;
             margin-top: 1vh;
-            min-width: 1vw;
-            height: 8vh;
+            min-width: 11vw;
+            <?php if ($sellerloggedIn): ?>
+                height: 11vh;
+            <?php else: ?>
+                height: 8vh;
+            <?php endif; ?>
+
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
@@ -227,8 +232,7 @@
                     </div>
                 </div>
             <?php elseif ($sellerloggedIn): ?>
-                <a href="property form.html">Add Property</a>
-                <a class="logged" style="margin-left: 25vw; margin-right: 0%;">Welcome Seller : </a>
+                <a class="logged" style="margin-left: 33vw; margin-right: 0%;">Welcome Seller : </a>
                 <div class="dropdown">
 
                     <button class="username">
@@ -236,12 +240,13 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="products.php">Postings</a>
+                        <a class="logout" href="products.php">Postings</a><br>
+                        <a class="logout" href="property form.html">Add Property</a>
                     </div>
                 </div>
             <?php elseif ($agentloggedIn): ?>
 
-                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+                <a class="logged" style="margin-left: 33vw; margin-right: 0%;">Welcome Agent : </a>
                 <div class="dropdown">
 
                     <button class="username">
@@ -249,7 +254,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="products.php">Postings</a>
+                        <a class="logout" href="products.php">Profile</a>
                     </div>
                 </div>
             <?php else: ?>

@@ -29,10 +29,11 @@ if ($password !== $confirm_password) {
 
 
 
-    $sql = "INSERT INTO `agent` (`username`, `phone`, `email`, `password`, `website`, `address`, `experience`) VALUES ('$full_name', '$phone_number', '$email', '$password', '$website', '$address', '$experience')";
+    $sql = "INSERT INTO `agent` (`username`, `phone`, `email`, `password`, `website`, `address`, `experience`, `image`) VALUES ('$full_name', '$phone_number', '$email', '$password', '$website', '$address', '$experience', '$image')";
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully form2";
+        header("Location:  agent login.html");
 
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
