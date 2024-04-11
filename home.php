@@ -11,10 +11,25 @@
     session_start();
     if (isset($_SESSION['user_id'])) {
         // User is logged in
-        $loggedIn = true;
+        $userloggedIn = true;
+        $sellerloggedIn = false;
+        $agentloggedIn = false;
+
+    } elseif (isset($_SESSION['seller_id'])) {
+        // User is logged in
+        $sellerloggedIn = true;
+        $userloggedIn = false;
+        $agentloggedIn = false;
+    } elseif (isset($_SESSION['agent_id'])) {
+        // User is logged in
+        $agentloggedIn = true;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
     } else {
         // User is not logged in
-        $loggedIn = false;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+        $agentloggedIn = false;
     }
     ?>
 
@@ -84,7 +99,7 @@
         }
 
         .login {
-            margin-left: 55svw;
+            margin-left: 48vw;
             margin-right: 2vw;
 
         }
@@ -94,11 +109,11 @@
             position: absolute;
             background-color: #000000;
             padding: 1vh;
-            text-align: center;
+            text-align: left;
             align-items: center;
             margin-top: 1vh;
             min-width: 1vw;
-            height: 4vh;
+            height: 8vh;
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
@@ -196,21 +211,50 @@
         <nav>
             <a href="#">Home</a>
             <a href="listing.php">Properties</a>
+            <a href="agent listing.php">Agents</a>
             <a href="#">About Us</a>
             <a href="#">Contact</a>
-            <?php if ($loggedIn): ?>
-            <a class="logged" style="margin-left: 45vw; margin-right: 0%;">logged in: </a>
-            <div class="dropdown">
+            <?php if ($userloggedIn): ?>
+                <a class="logged" style="margin-left: 35vw; margin-right: 0%;">Welcome User : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo $_SESSION['username']; ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
+                    <button class="username">
+                        <?php echo $_SESSION['username']; ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="products.php">Wishlist</a>
+                    </div>
                 </div>
-                <?php else: ?>
+            <?php elseif ($sellerloggedIn): ?>
+                <a href="property form.html">Add Property</a>
+                <a class="logged" style="margin-left: 25vw; margin-right: 0%;">Welcome Seller : </a>
+                <div class="dropdown">
+
+                    <button class="username">
+                        <?php echo $_SESSION['username']; ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="products.php">Postings</a>
+                    </div>
+                </div>
+            <?php elseif ($agentloggedIn): ?>
+
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+                <div class="dropdown">
+
+                    <button class="username">
+                        <?php echo $_SESSION['username']; ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="products.php">Postings</a>
+                    </div>
+                </div>
+            <?php else: ?>
                 <a class="login" href="user login.html">Login</a>
-                <?php endif; ?>
+            <?php endif; ?>
         </nav>
     </section>
     <main>

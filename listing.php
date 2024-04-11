@@ -9,10 +9,25 @@
     session_start();
     if (isset($_SESSION['user_id'])) {
         // User is logged in
-        $loggedIn = true;
+        $userloggedIn = true;
+        $sellerloggedIn = false;
+        $agentloggedIn = false;
+        
+    } elseif (isset($_SESSION['seller_id'])) {
+        // User is logged in
+        $sellerloggedIn = true;
+        $userloggedIn = false;
+        $agentloggedIn = false;
+    } elseif (isset($_SESSION['agent_id'])) {
+        // User is logged in
+        $agentloggedIn = true;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
     } else {
         // User is not logged in
-        $loggedIn = false;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+        $agentloggedIn = false;
     }
     ?>
 
@@ -20,7 +35,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+
 
             background-size: cover;
             background-position: center;
@@ -31,10 +46,10 @@
         }
 
         .header {
-            background-image: url(images/home.jpeg);
-            background-size: cover;
+            font-family: Arial, sans-serif;
+            box-shadow: 0vh 2vh 4vh black;
             margin-bottom: 2vh;
-            padding: 0vh 2vw;
+            padding: 1vh 2vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -92,13 +107,13 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #000000;
+            background-color: #ffc3c3;
             padding: 1vh;
-            text-align: center;
+            text-align: left;
             align-items: center;
             margin-top: 1vh;
             min-width: 1vw;
-            height: 4vh;
+            height: 8vh;
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
@@ -110,10 +125,11 @@
 
 
         .logout {
-            color: #ff0099;
+            color: #ff0000;
         }
 
         .logout:hover {
+            color: black;
             background-color: #00000000;
             text-decoration: underline;
 
@@ -125,13 +141,36 @@
             color: black;
         }
 
+        .welcome {
+            display: inline-block;
+
+            padding: 5vh;
+            font-size: 9vh;
+            border-radius: 20vh;
+            background-color: #8000ff;
+            color: rgb(235, 199, 255);
+            text-align: center;
+
+            margin: auto;
+            margin-top: 3vh;
+            margin-bottom: 3vh;
+            width: 25vw;
+
+        }
+
+        .available,
+        .total {
+            margin-left: 6vw;
+
+        }
+
         .product {
             display: block;
             place-items: center;
             float: left;
             width: 25vw;
             /* Adjust as needed */
-            margin-left: 5.5vw;
+            margin-left: 6vw;
             margin-bottom: 8vh;
 
             border-radius: 10vh;
@@ -172,21 +211,51 @@
             <a href="listing.php">Properties</a>
             <a href="#">About Us</a>
             <a href="#">Contact</a>
-            <?php if ($loggedIn): ?>
-            <a class="logged" style="margin-left: 45vw; margin-right: 0%;">logged in: </a>
-            <div class="dropdown">
+            <?php if ($userloggedIn): ?>
+                <a class="logged" style="margin-left: 42vw; margin-right: 0%;">Welcome User : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo $_SESSION['username']; ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
+                    <button class="username">
+                        <?php echo $_SESSION['username']; ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                    </div>
                 </div>
-                <?php else: ?>
+            <?php elseif ($sellerloggedIn): ?>
+                <a href="property form.html">Add Property</a>
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
+                <div class="dropdown">
+
+                    <button class="username">
+                        <?php echo $_SESSION['username']; ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout"href="products.php">Postings</a>
+                    </div>
+                </div>
+            <?php elseif ($agentloggedIn): ?>
+
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+                <div class="dropdown">
+
+                    <button class="username">
+                        <?php echo $_SESSION['username']; ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                    </div>
+                </div>
+            <?php else: ?>
                 <a class="login" href="user login.html">Login</a>
-                <?php endif; ?>
+            <?php endif; ?>
         </nav>
     </section>
+
+    <h1 class="welcome">Astra Real Estate</h1>
+    <h2 class="available">Properties available to buy in India</h2>
+
     <div class="row">
         <?php
         $servername = "localhost";
@@ -202,6 +271,15 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
+
+        $sql = "SELECT COUNT(*) as total FROM property";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $total_entries = $row['total'];
+
+        echo '<h3 class="total">Properties available : ' . $total_entries . '</h3>';
+
+
         $sql = "SELECT * FROM property";
         $result = $conn->query($sql);
 
@@ -211,16 +289,17 @@
                 echo '<div class="product">';
                 echo '<img src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '"/><br>';
                 echo "<h2 class='price'>Price: ₹" . $row['price'] . "/-</h2><br>";
-                echo "<h2 class='bed'>" . $row["bed"] . " Bed</h2>";
+                echo "<h2 class='bed'>" . $row["bed"]
+                    . " Bed</h2>";
                 echo "<h2 class='bath'>" . $row["bath"] . " Bath</h2>";
-                echo "<h2 class='size'>" . $row["size"] . " sqft</h2>";
+                echo "<h2 class='size'>" .
+                    $row["size"] . " sqft</h2>";
                 echo '</div>';
                 echo "</a>";
             }
         } else {
             echo "0 results";
         }
-
         $conn->close();
 
         ?>
