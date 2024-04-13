@@ -47,8 +47,8 @@
 
         .header {
             font-family: Arial, sans-serif;
-            box-shadow: 0vh 2vh 4vh black;
-            margin-bottom: 2vh;
+            box-shadow: 0vh 2vh 3vh rgb(90, 0, 169);
+            margin-bottom: 4vh;
             padding: 1vh 2vw;
             display: flex;
             justify-content: space-between;
@@ -162,6 +162,8 @@
             width: 25vw;
 
         }
+
+        /*top bar ends here*/
 
         .available,
         .total {

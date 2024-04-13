@@ -11,7 +11,7 @@ $_SESSION['street'] = $_POST['street'];
 $_SESSION['pincode'] = $_POST['pincode'];
 $_SESSION['state'] = $_POST['state'];
 $_SESSION['location'] = $_POST['location'];
-$_SESSION['seller_id'] = 2; // Assuming user is logged in and user_id is stored in session
+//$_SESSION['seller_id'] = 2; // Assuming user is logged in and user_id is stored in session
 $_SESSION['image'] = file_get_contents($_FILES['image']['tmp_name']);
 //$_SESSION['image'] = $conn->real_escape_string($_SESSION['image']);
 

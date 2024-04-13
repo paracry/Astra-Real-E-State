@@ -18,7 +18,7 @@ $street = $_SESSION['street'];
 $pincode = $_SESSION['pincode'];
 $state = $_SESSION['state'];
 $location = $_SESSION['location'];
-$seller_id = 2; // Assuming user is logged in and user_id is stored in session
+$seller_id = $_SESSION['seller_id']; // Assuming user is logged in and user_id is stored in session
 $image = $_SESSION['image'];
 $image = $conn->real_escape_string($image);
 
@@ -36,7 +36,7 @@ if ($conn->query($sql) === TRUE) {
     unset($_SESSION['pincode']);
     unset($_SESSION['state']);
     unset($_SESSION['location']);
-    unset($_SESSION['seller_id']);
+    //unset($_SESSION['seller_id']);
     unset($_SESSION['image']);
 
 } else {
