@@ -5,11 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+
 
     <script>
         function changeImage(newImage)
         {
             document.getElementById('mainImage').src = newImage;
+        }
+
+        function formatIndianCurrency(price)
+        {
+            return '₹' + new Intl.NumberFormat('en-IN').format(price) + '/-';
         }
     </script>
 
@@ -44,7 +51,7 @@
         body {
             margin: 0;
             padding: 0;
-
+            font-family: 'Amaranth', sans-serif;
 
             background-size: cover;
             background-position: center;
@@ -122,10 +129,13 @@
             align-items: center;
             margin-top: 1vh;
             min-width: 11vw;
-            <?php if ($sellerloggedIn): ?> height: 11vh;
-            <?php else: ?> height: 8vh;
+            <?php if ($sellerloggedIn): ?>
+                height: 11vh;
+            <?php else: ?>
+                height: 8vh;
             <?php endif;
-            ?>box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            ?>
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
         }
@@ -173,11 +183,6 @@
         }
 
         /* CSS code to style the image gallery layout */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
-
         .container {
             margin: 1vh auto;
             width: 97vw;
@@ -248,45 +253,45 @@
             <a href="#">About Us</a>
             <a href="#">Contact</a>
             <?php if ($userloggedIn): ?>
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo $_SESSION['username']; ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="products.php">Wishlist</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="products.php">Wishlist</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($sellerloggedIn): ?>
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Seller : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Seller : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo $_SESSION['username']; ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="products.php">Postings</a><br>
-                    <a class="logout" href="property form.html">Add Property</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="products.php">Postings</a><br>
+                        <a class="logout" href="property form.html">Add Property</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($agentloggedIn): ?>
 
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Agent : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Agent : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo $_SESSION['username']; ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="products.php">Profile</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="products.php">Profile</a>
+                    </div>
                 </div>
-            </div>
             <?php else: ?>
-            <a class="login" href="user login.html">Login</a>
+                <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
         </nav>
     </section>
@@ -318,7 +323,7 @@
         $sellername = "No seller found for the given property_id";
     }
 
-    echo "<h2 class='number'>Posted by : " . $sellername . "</h2>";
+    echo "<h2 class='number'>Posted by : " . ucwords($sellername) . "</h2>";
 
     // Retrieve images from the database
     $sql = "SELECT * FROM property_images where property_id=$property_id";
@@ -346,15 +351,20 @@
 
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
+
+            $price_in_inr = number_format($row['price'], 2); // Format price with 2 decimal places
+            $price_in_inr = '₹' . $price_in_inr;
+
             echo '<div class="product">';
-            echo "<h2 class='price'>Price: ₹" . $row['price'] . "/-</h2><br>";
+            echo "<h2 class='price'>Price: <span id='formattedPrice'></span></h2><br>";
+            echo "<script>document.getElementById('formattedPrice').innerText = formatIndianCurrency(" . $row['price'] . ");</script>";
             echo "<h3 class='bed'><img class='logo' src='images/bed.png'/> " . $row["bed"]
                 . " Bed</h3>";
             echo "<h3 class='bath'><img  class='logo' src='images/bath.png'/> " . $row["bath"] . " Bath</h3>";
             echo "<h3 class='size'><img  class='logo' src='images/area.png'/> " .
                 $row["size"] . " sqft</h3>";
-            echo "<a href='".$row["location_url"]."'><h3 class='size'><img  class='logo' src='images/maps.png'/> " 
-            .$row["pincode"].", ".$row["street_name"] .", ". $row["state"]. "</h3>";
+            echo "<a href='" . $row["location_url"] . "'><h3 class='size'><img  class='logo' src='images/maps.png'/> "
+                . $row["pincode"] . ", " . ucwords(strtolower($row["street_name"])) . ", " . ucwords(strtolower($row["state"])) . "</h3>";
             echo '</div>';
         }
     } else {

@@ -224,7 +224,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -236,11 +236,11 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="products.php">Postings</a><br>
+                        <a class="logout" href="seller listing.php">Postings</a><br>
                         <a class="logout" href="property form.html">Add Property</a>
                     </div>
                 </div>
@@ -250,7 +250,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>

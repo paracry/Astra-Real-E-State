@@ -5,6 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Listing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+
+    <script>
+        function formatIndianCurrency(price)
+        {
+            return '₹' + new Intl.NumberFormat('en-IN').format(price) + '/-';
+        }
+    </script>
+
     <?php
     session_start();
     if (isset($_SESSION['user_id'])) {
@@ -35,7 +44,7 @@
         body {
             margin: 0;
             padding: 0;
-
+            font-family: 'Amaranth', sans-serif;
 
             background-size: cover;
             background-position: center;
@@ -117,8 +126,8 @@
                 height: 11vh;
             <?php else: ?>
                 height: 8vh;
-            <?php endif; ?>
-
+            <?php endif;
+            ?>
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
@@ -224,7 +233,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -236,11 +245,11 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="products.php">Postings</a><br>
+                        <a class="logout" href="seller listing.php">Postings</a><br>
                         <a class="logout" href="property form.html">Add Property</a>
                     </div>
                 </div>
@@ -250,7 +259,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -298,7 +307,8 @@
                 echo '<a href="property.php?property_id=' . $row["property_id"] . '">';
                 echo '<div class="product">';
                 echo '<img src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '"/><br>';
-                echo "<h2 class='price'>Price: ₹" . $row['price'] . "/-</h2><br>";
+                echo "<h2 class='price'>Price: <span id='formattedPrice_" . $row["property_id"] . "'></span></h2><br>";
+                echo "<script>document.getElementById('formattedPrice_" . $row["property_id"] . "').innerText = formatIndianCurrency(" . $row['price'] . ");</script>";
                 echo "<h2 class='bed'>" . $row["bed"]
                     . " Bed</h2>";
                 echo "<h2 class='bath'>" . $row["bath"] . " Bath</h2>";

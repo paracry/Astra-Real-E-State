@@ -9,17 +9,19 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 $conn->begin_transaction();
 
-$price = $_SESSION['price'];
-$bedrooms = $_SESSION['bedrooms'];
-$bathrooms = $_SESSION['bathrooms'];
-$size = $_SESSION['size'];
-$description = $_SESSION['description'];
-$street = $_SESSION['street'];
-$pincode = $_SESSION['pincode'];
-$state = $_SESSION['state'];
-$location = $_SESSION['location'];
+$seller_id = $_SESSION['seller_id'];
+
+$price = $_SESSION[$seller_id . 'price'];
+$bedrooms = $_SESSION[$seller_id . 'bedrooms'];
+$bathrooms = $_SESSION[$seller_id . 'bathrooms'];
+$size = $_SESSION[$seller_id . 'size'];
+$description = $_SESSION[$seller_id . 'description'];
+$street = $_SESSION[$seller_id . 'street'];
+$pincode = $_SESSION[$seller_id . 'pincode'];
+$state = $_SESSION[$seller_id . 'state'];
+$location = $_SESSION[$seller_id . 'location'];
 $seller_id = $_SESSION['seller_id']; // Assuming user is logged in and user_id is stored in session
-$image = $_SESSION['image'];
+$image = $_SESSION[$seller_id . 'image'];
 $image = $conn->real_escape_string($image);
 
 
@@ -27,17 +29,17 @@ $sql = "INSERT INTO property (price, bed, bath, size, description, street_name, 
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully form 1";
-    unset($_SESSION['price']);
-    unset($_SESSION['bedrooms']);
-    unset($_SESSION['bathrooms']);
-    unset($_SESSION['size']);
-    unset($_SESSION['description']);
-    unset($_SESSION['street']);
-    unset($_SESSION['pincode']);
-    unset($_SESSION['state']);
-    unset($_SESSION['location']);
+    unset($_SESSION[$seller_id . 'price']);
+    unset($_SESSION[$seller_id . 'bedrooms']);
+    unset($_SESSION[$seller_id . 'bathrooms']);
+    unset($_SESSION[$seller_id . 'size']);
+    unset($_SESSION[$seller_id . 'description']);
+    unset($_SESSION[$seller_id . 'street']);
+    unset($_SESSION[$seller_id . 'pincode']);
+    unset($_SESSION[$seller_id . 'state']);
+    unset($_SESSION[$seller_id . 'location']);
     //unset($_SESSION['seller_id']);
-    unset($_SESSION['image']);
+    unset($_SESSION[$seller_id.'image']);
 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
@@ -75,6 +77,7 @@ if ($conn->query($sql) === TRUE) {
     echo "New record created successfully form2";
     $conn->commit();
     echo "transaction committed";
+    header("Location: property.php?property_id=$property_id");
 } else {
     $conn->rollback();
     echo "<br>rolling back<br>";

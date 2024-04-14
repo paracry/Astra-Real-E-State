@@ -5,6 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Listing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+
+    <script>
+        function formatIndianCurrency(price)
+        {
+            return '₹' + new Intl.NumberFormat('en-IN').format(price) + '/-';
+        }
+    </script>
+
     <?php
     session_start();
     if (isset($_SESSION['user_id'])) {
@@ -35,7 +44,7 @@
         body {
             margin: 0;
             padding: 0;
-
+            font-family: 'Amaranth', sans-serif;
 
             background-size: cover;
             background-position: center;
@@ -47,8 +56,8 @@
 
         .header {
             font-family: Arial, sans-serif;
-            box-shadow: 0vh 2vh 4vh black;
-            margin-bottom: 2vh;
+            box-shadow: 0vh 2vh 3vh rgb(90, 0, 169);
+            margin-bottom: 4vh;
             padding: 1vh 2vw;
             display: flex;
             justify-content: space-between;
@@ -117,8 +126,8 @@
                 height: 11vh;
             <?php else: ?>
                 height: 8vh;
-            <?php endif; ?>
-
+            <?php endif;
+            ?>
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
@@ -162,6 +171,8 @@
             width: 25vw;
 
         }
+
+        /*top bar ends here*/
 
         .available,
         .total {
@@ -222,7 +233,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -234,7 +245,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -248,7 +259,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -262,7 +273,7 @@
     </section>
 
     <h1 class="welcome">Astra Real Estate</h1>
-    <h2 class="available">Agents available to hire in India</h2>
+    <h2 class="available">Properties available to buy in India</h2>
 
     <div class="row">
         <?php
@@ -279,26 +290,30 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-
-        $sql = "SELECT COUNT(*) as total FROM agent";
+        $seller_id=$_SESSION['seller_id'];
+        $sql = "SELECT COUNT(*) as total FROM property where seller_id=$seller_id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $total_entries = $row['total'];
 
-        echo '<h3 class="total">Agents available : ' . $total_entries . '</h3>';
+        echo '<h3 class="total">Properties available : ' . $total_entries . '</h3>';
 
 
-        $sql = "SELECT * FROM agent";
+        $sql = "SELECT * FROM property where seller_id=$seller_id";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '<a href="property.php?agent_id=' . $row["agent_id"] . '">';
+                echo '<a href="property.php?property_id=' . $row["property_id"] . '">';
                 echo '<div class="product">';
                 echo '<img src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '"/><br>';
-                echo "<h2 class='price'>Name : " . $row['username'] . "</h2><br>";
-                echo "<h2 class='bed'>Experience : " . $row["experience"] . " years</h2>";
-                echo "<h2 class='bath'>Address: " . $row["address"] . "</h2>";
+                echo "<h2 class='price'>Price: <span id='formattedPrice_" . $row["property_id"] . "'></span></h2><br>";
+                echo "<script>document.getElementById('formattedPrice_" . $row["property_id"] . "').innerText = formatIndianCurrency(" . $row['price'] . ");</script>";
+                echo "<h2 class='bed'>" . $row["bed"]
+                    . " Bed</h2>";
+                echo "<h2 class='bath'>" . $row["bath"] . " Bath</h2>";
+                echo "<h2 class='size'>" .
+                    $row["size"] . " sqft</h2>";
                 echo '</div>';
                 echo "</a>";
             }
