@@ -187,38 +187,67 @@
             display: block;
             place-items: center;
             float: left;
-            width: 25vw;
+            width: 30vw;
+            height: 68vh;
             /* Adjust as needed */
-            margin-left: 6vw;
+            margin-left: 2vw;
             margin-bottom: 8vh;
 
             border-radius: 10vh;
             box-shadow: 2vh 2vh 2vh #5000a1a9;
             overflow: hidden;
+            transition: 500ms;
 
         }
+
+
 
         img {
             display: block;
             height: 40vh;
-            width: 25vw;
+            width: 30vw;
             align-items: center;
             margin: auto;
             object-fit: cover;
+            transition: 500ms;
+            margin-bottom: 0%;
 
         }
 
+
         .product h2 {
             display: inline-block;
-            margin: 2vh;
-            padding-bottom: 1vh;
+            margin: 1vh;
             padding-left: 2vh;
             color: black;
+            transition: 500ms;
+        }
+
+
+
+        .details {
+            padding-top: 0%;
+            padding-bottom: 20vh;
+            font-size: 2.2vh;
+            margin-left: 2vh;
         }
 
         .price {
             font-size: 5vh;
+        }
 
+        img:hover {
+            height: 60vh;
+            object-fit: cover;
+            transition: 500ms;
+            margin-bottom: 0%;
+        }
+
+        .product:hover {
+            filter: brightness(95%);
+            background-color: #a200ff19;
+            font-size: 0vh;
+            transition: 500ms;
         }
 
         /*footer*/
@@ -351,14 +380,17 @@
                 echo '<a href="property.php?property_id=' . $row["property_id"] . '">';
                     echo '<div class="product">';
                     echo '<img src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '"/><br>';
+                    echo '<div class="details">';
                     echo "<h2 class='price'>Price: <span id='formattedPrice_" . $row["property_id"] . "'></span></h2><br>";
                     echo "<script>document.getElementById('formattedPrice_" . $row["property_id"] . "').innerText = formatIndianCurrency(" . $row['price'] . ");</script>";
                     echo "<h2 class='bed'>" . $row["bed"]
                         . " Bed</h2>";
                     echo "<h2 class='bath'>" . $row["bath"] . " Bath</h2>";
                     echo "<h2 class='size'>" .
-                        number_format($row["size"], 0, '.', ',') . " sqft</h2>";
-                    echo '</div>';
+                        number_format($row["size"], 0, '.', ',') . " sqft</h2><br>";
+                        echo "<h2 class='bath'>" . ucwords(strtolower($row["street_name"])) . "<br> " . ucwords(strtolower($row["state"])) . "</h2>";
+                        echo '</div>';
+                        echo '</div>';
                     echo "</a>";
             }
         } else {

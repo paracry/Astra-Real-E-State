@@ -18,6 +18,12 @@
         {
             return '₹' + new Intl.NumberFormat('en-IN').format(price) + '/-';
         }
+
+        function openEmailClient()
+        {
+            window.location.href = "mailto:recipient@example.com";
+        }
+
     </script>
 
 
@@ -381,6 +387,24 @@
     $conn->close();
     ?>
 
+    <button onclick="openEmailClient()">Open Email Client</button>
+
+    <button id="openGmail">Compose Email</button>
+
+    <script>
+        document.getElementById('openGmail').onclick = function ()
+        {
+            var email = 'ashishray640@gmail.com'; // Specify the email address here
+            var subject = 'Subject of the Email'; // Specify the email subject here
+            var body = 'Email body content goes here'; // Specify the email body here
+            var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+
+            window.open(mailtoLink);
+        };
+
+    </script>
+
+
     <footer id="footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -404,7 +428,7 @@
                 </ul>
             </div>
         </div>
-        
+
     </footer>
 
 

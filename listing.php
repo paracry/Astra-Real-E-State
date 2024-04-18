@@ -394,7 +394,7 @@
                 echo "<h2 class='bath'>" . $row["bath"] . " Bath</h2>";
                 echo "<h2 class='size'>" .
                     number_format($row["size"], 0, '.', ',') . " sqft</h2>";
-                    echo "<h2 class='bath'>" . ucwords($row["street_name"]) ."<br> ".ucwords($row["state"]) . "</h2>";
+                    echo "<h2 class='bath'>" . ucwords(strtolower($row["street_name"])) ."<br> ".ucwords(strtolower($row["state"])) . "</h2>";
                     echo '</div>';
                 echo '</div>';
                 echo "</a>";
