@@ -380,6 +380,7 @@
             echo "<h3 class='bath'>Works in : " . ucwords($row["area"]) .", ". ucwords($row["state"]). "</h3>";
             echo "<h3 class='bath'> website :  <a href='" . $row["website"] . "'>click here</a> </h3><br>";
             echo '</div>';
+            $email=$row["email"];
         }
     } else {
         echo "0 results";
@@ -394,9 +395,9 @@
     <script>
         document.getElementById('openGmail').onclick = function ()
         {
-            var email = 'ashishray640@gmail.com'; // Specify the email address here
-            var subject = 'Subject of the Email'; // Specify the email subject here
-            var body = 'Email body content goes here'; // Specify the email body here
+            var email = '<?php echo $email; ?>'; // Specify the email address here
+            var subject = 'I want an Agent'; // Specify the email subject here
+            var body = 'I want to buy a house where you work, and i was wondering if you would be available to help me with this search'; // Specify the email body here
             var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
 
             window.open(mailtoLink);
