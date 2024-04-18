@@ -221,18 +221,41 @@
 
         .price {
             font-size: 8vh;
-            margin-left: 3vw;
+            margin-left: 3.5vw;
         }
 
         .bath,
         .bed,
-        .size {
+        .size{
             font-size: 4vh;
             display: inline-block;
+            width: 22vw;
             margin-left: 3.5vw;
             margin-top: 0%;
         }
 
+        .address{
+            font-size: 4vh;
+            margin-top: 2vh;
+            display: inline-block;
+            margin-left: 1vw;
+            transition: 500ms;
+        }
+
+        .addressimage{
+            height: 18vh;
+            float: left;
+            margin-left: 3vw;
+            margin-top: 1vh;
+        }
+        
+        .address:hover{
+            font-size: 5vh;
+            margin-top: 0vh;
+            transition: 500ms;
+
+        }
+        
         .logo {
             height: 5vh;
             width: auto;
@@ -358,13 +381,19 @@
             echo '<div class="product">';
             echo "<h2 class='price'>Price: <span id='formattedPrice'></span></h2><br>";
             echo "<script>document.getElementById('formattedPrice').innerText = formatIndianCurrency(" . $row['price'] . ");</script>";
-            echo "<h3 class='bed'><img class='logo' src='images/bed.png'/> " . $row["bed"]
-                . " Bed</h3>";
-            echo "<h3 class='bath'><img  class='logo' src='images/bath.png'/> " . $row["bath"] . " Bath</h3>";
-            echo "<h3 class='size'><img  class='logo' src='images/area.png'/> " .
-                $row["size"] . " sqft</h3>";
-            echo "<a href='" . $row["location_url"] . "'><h3 class='size'><img  class='logo' src='images/maps.png'/> "
-                . $row["pincode"] . ", " . ucwords(strtolower($row["street_name"])) . ", " . ucwords(strtolower($row["state"])) . "</h3>";
+
+            echo "<h3 class='bath'><img  class='logo' src='images/year_built.png'/> Year built : " . $row["year_built"] . " </h3>";
+            echo "<h3 class='bath'><img  class='logo' src='images/property_type.png'/> Property type : " . $row["property_type"] . " </h3>";
+            echo "<h3 class='bath'><img  class='logo' src='images/garage.png'/> Garages :  " . $row["garages"] . " </h3><br>";
+
+            echo "<h3 class='bed'><img class='logo' src='images/bed.png'/> Bed : " . $row["bed"]
+                . " </h3>";
+            echo "<h3 class='bath'><img  class='logo' src='images/bath.png'/> Bath : " . $row["bath"] . " </h3>";
+
+            echo "<h3 class='size'><img  class='logo' src='images/area.png'/> Size : " .
+                $row["size"] . " sqft</h3><br>";
+            echo "<a href='" . $row["location_url"] . "'><img  class='addressimage' src='images/maps.png'/><h3 class='address'> "
+                . $row["pincode"] . "<br>" . ucwords(strtolower($row["street_name"])) . "<br> " . ucwords(strtolower($row["state"])) . "</h3></a>";
             echo '</div>';
         }
     } else {

@@ -51,9 +51,22 @@
     
         <label for="size">Size of the Property:</label>
         <input type="text" id="size" name="size" required><br><br>
-    
-        <label for="description">Property Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="year_built">Year Built:</label>
+        <input type="text" id="year_built" name="year_built" required><br><br>
+
+        <label for="property_type">Property Type:</label>
+        <select id="property_type" name="property_type" required>
+            <option value="single">Single</option>
+            <option value="double">Double</option>
+            <option value="multiple">Multiple</option>
+            <option value="single_family">Single Family</option>
+            <option value="double_family">Double Family</option>
+            <option value="multiple_family">Multiple Family</option>
+        </select><br><br>
+
+        <label for="no_of_garages">Number of Garages:</label>
+        <input type="number" id="no_of_garages" name="no_of_garages"><br><br>
     
         <label for="street">Street Name:</label>
         <input type="text" id="street" name="street" required><br><br>

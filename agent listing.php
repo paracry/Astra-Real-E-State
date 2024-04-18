@@ -293,12 +293,12 @@
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '<a href="property.php?agent_id=' . $row["agent_id"] . '">';
+                echo '<a href="agent profile.php?agent_id=' . $row["agent_id"] . '">';
                 echo '<div class="product">';
                 echo '<img src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '"/><br>';
                 echo "<h2 class='price'>Name : " . $row['username'] . "</h2><br>";
                 echo "<h2 class='bed'>Experience : " . $row["experience"] . " years</h2>";
-                echo "<h2 class='bath'>Address: " . $row["address"] . "</h2>";
+                echo "<h2 class='bath'>Address: ".$row["area"] ." ". $row["state"] . "</h2>";
                 echo '</div>';
                 echo "</a>";
             }

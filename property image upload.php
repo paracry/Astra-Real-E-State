@@ -15,7 +15,9 @@ $price = $_SESSION[$seller_id . 'price'];
 $bedrooms = $_SESSION[$seller_id . 'bedrooms'];
 $bathrooms = $_SESSION[$seller_id . 'bathrooms'];
 $size = $_SESSION[$seller_id . 'size'];
-$description = $_SESSION[$seller_id . 'description'];
+$year_built = $_SESSION[$seller_id . 'year_built'];
+$property_type = $_SESSION[$seller_id . 'property_type'];
+$garages = $_SESSION[$seller_id . 'garages'];
 $street = $_SESSION[$seller_id . 'street'];
 $pincode = $_SESSION[$seller_id . 'pincode'];
 $state = $_SESSION[$seller_id . 'state'];
@@ -25,7 +27,7 @@ $image = $_SESSION[$seller_id . 'image'];
 $image = $conn->real_escape_string($image);
 
 
-$sql = "INSERT INTO property (price, bed, bath, size, description, street_name, pincode, state, location_url, seller_id, image) VALUES ('$price', '$bedrooms', '$bathrooms', '$size', '$description', '$street', '$pincode', '$state', '$location', '$seller_id', '$image')";
+$sql = "INSERT INTO property (price, bed, bath, size, year_built, property_type, garages, street_name, pincode, state, location_url, seller_id, image) VALUES ('$price', '$bedrooms', '$bathrooms', '$size', '$year_built', '$property_type' ,'$garages', '$street', '$pincode', '$state', '$location', '$seller_id', '$image')";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully form 1";
@@ -33,13 +35,15 @@ if ($conn->query($sql) === TRUE) {
     unset($_SESSION[$seller_id . 'bedrooms']);
     unset($_SESSION[$seller_id . 'bathrooms']);
     unset($_SESSION[$seller_id . 'size']);
-    unset($_SESSION[$seller_id . 'description']);
+    unset($_SESSION[$seller_id . 'year_built']);
+    unset($_SESSION[$seller_id . 'property_type']);
+    unset($_SESSION[$seller_id . 'garages']);
     unset($_SESSION[$seller_id . 'street']);
     unset($_SESSION[$seller_id . 'pincode']);
     unset($_SESSION[$seller_id . 'state']);
     unset($_SESSION[$seller_id . 'location']);
     //unset($_SESSION['seller_id']);
-    unset($_SESSION[$seller_id.'image']);
+    unset($_SESSION[$seller_id . 'image']);
 
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
