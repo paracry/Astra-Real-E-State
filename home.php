@@ -41,7 +41,6 @@
             background-image: url(images/home.jpeg);
             background-size: cover;
             background-position: center;
-            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -153,12 +152,6 @@
             justify-content: center;
         }
 
-        footer {
-            color: white;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            text-align: center;
-        }
 
         input[type="text"] {
             padding: 2vh;
@@ -191,6 +184,7 @@
             border: none;
             border-radius: 20vh;
             cursor: pointer;
+            margin-bottom: 25vh;
         }
 
         .search:hover {
@@ -204,8 +198,55 @@
             background-color: #27004f70;
             color: rgb(235, 199, 255);
             text-align: center;
-            margin-top: 0%;
+            margin-top: 15vh;
 
+        }
+
+        /*footer*/
+
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            font-size: 2.5vh;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            color: #ffffff;
+            background-color: #000000;
+        }
+
+        .footer-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            color: #c387ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 3vh;
+        }
+
+        .footer-section a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 500ms;
+            margin-bottom: 2vh;
+        }
+
+        .footer-section a:hover {
+            color: #b554ff;
+            font-size: 4vh;
+            transition: 500ms;
         }
     </style>
 </head>
@@ -214,13 +255,13 @@
 
     <section class="header">
         <nav>
-            <a href="#">Home</a>
+            <a href="home.php">Home</a>
             <a href="listing.php">Properties</a>
             <a href="agent listing.php">Agents</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
+            <a href="about.html">About Us</a>
+            <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-                <a class="logged" style="margin-left: 35vw; margin-right: 0%;">Welcome User : </a>
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
                 <div class="dropdown">
 
                     <button class="username">
@@ -232,7 +273,7 @@
                     </div>
                 </div>
             <?php elseif ($sellerloggedIn): ?>
-                <a class="logged" style="margin-left: 33vw; margin-right: 0%;">Welcome Seller : </a>
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Seller : </a>
                 <div class="dropdown">
 
                     <button class="username">
@@ -246,7 +287,7 @@
                 </div>
             <?php elseif ($agentloggedIn): ?>
 
-                <a class="logged" style="margin-left: 33vw; margin-right: 0%;">Welcome Agent : </a>
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Agent : </a>
                 <div class="dropdown">
 
                     <button class="username">
@@ -269,11 +310,30 @@
             <button class="search" value="search">🔍Search🔍</button>
         </form>
     </main>
-    <footer>
-        <p>
-            Email: info@astra.com | Address: 123 Main St, City | Phone:
-            123-456-7890
-        </p>
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Our mission is to provide top-notch real<br> estate services tailored to your needs.</p>
+                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>793001, Jowai road, Astra Building<br>Email: info@astrarealestate.com<br>Phone: 940-256-0551</p>
+                <p>Feel free to reach out to us<br>for any inquiries or assistance.</p><br><br>
+                <p>&copy; 2024 Astra Real Estate. All rights reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="listing.php">Properties</a></li>
+                    <li><a href="agent listing.php">Agents</a></li>
+                </ul>
+            </div>
+        </div>
+
     </footer>
 </body>
 

@@ -129,13 +129,10 @@
             align-items: center;
             margin-top: 1vh;
             min-width: 11vw;
-            <?php if ($sellerloggedIn): ?>
-                height: 11vh;
-            <?php else: ?>
-                height: 8vh;
+            <?php if ($sellerloggedIn): ?> height: 11vh;
+            <?php else: ?> height: 8vh;
             <?php endif;
-            ?>
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            ?>box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
         }
@@ -164,17 +161,25 @@
 
         .welcome {
             display: inline-block;
-
-            padding: 5vh;
             font-size: 9vh;
             color: #8000ff;
             text-align: center;
 
             margin: auto;
-            margin-top: 3vh;
+            margin-top: 4vh;
+            margin-bottom: 4vh;
+            width: 25vw;
+        }
+
+        .welcomeagent {
+            display: inline-block;
+            font-size: 5vh;
+            color: #8000ff;
+            text-align: center;
+
+            margin: auto;
             margin-bottom: 3vh;
             width: 25vw;
-
         }
 
         .number {
@@ -226,7 +231,7 @@
 
         .bath,
         .bed,
-        .size{
+        .size {
             font-size: 4vh;
             display: inline-block;
             width: 22vw;
@@ -234,7 +239,7 @@
             margin-top: 0%;
         }
 
-        .address{
+        .address {
             font-size: 4vh;
             margin-top: 2vh;
             display: inline-block;
@@ -242,23 +247,71 @@
             transition: 500ms;
         }
 
-        .addressimage{
+        .addressimage {
             height: 18vh;
             float: left;
             margin-left: 3vw;
             margin-top: 1vh;
         }
-        
-        .address:hover{
+
+        .address:hover {
             font-size: 5vh;
             margin-top: 0vh;
+            color: rgb(0, 198, 0);
             transition: 500ms;
 
         }
-        
+
         .logo {
             height: 5vh;
             width: auto;
+        }
+
+        /*footer*/
+
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            font-size: 2.5vh;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            color: #ffffff;
+            background-color: #000000;
+        }
+
+        .footer-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            color: #c387ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 3vh;
+        }
+
+        .footer-section a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 500ms;
+            margin-bottom: 2vh;
+        }
+
+        .footer-section a:hover {
+            color: #b554ff;
+            font-size: 4vh;
+            transition: 500ms;
         }
     </style>
 
@@ -270,11 +323,11 @@
 
     <section class="header">
         <nav>
-            <a href="#">Home</a>
+        <a href="home.php">Home</a>
             <a href="listing.php">Properties</a>
             <a href="agent listing.php">Agents</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
+            <a href="about.html">About Us</a>
+            <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
                 <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
                 <div class="dropdown">
@@ -296,7 +349,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="products.php">Postings</a><br>
+                        <a class="logout" href="seller listing.php">Postings</a><br>
                         <a class="logout" href="property form.html">Add Property</a>
                     </div>
                 </div>
@@ -320,6 +373,7 @@
     </section>
 
     <h1 class="welcome">Astra Real Estate</h1>
+    <h1 class="welcomeagent">Property details</h1>
     <?php
     // Establish connection to MySQL database
     $servername = "localhost";
@@ -391,7 +445,7 @@
             echo "<h3 class='bath'><img  class='logo' src='images/bath.png'/> Bath : " . $row["bath"] . " </h3>";
 
             echo "<h3 class='size'><img  class='logo' src='images/area.png'/> Size : " .
-                $row["size"] . " sqft</h3><br>";
+                number_format($row["size"], 0, '.', ',') . " sqft</h3><br>";
             echo "<a href='" . $row["location_url"] . "'><img  class='addressimage' src='images/maps.png'/><h3 class='address'> "
                 . $row["pincode"] . "<br>" . ucwords(strtolower($row["street_name"])) . "<br> " . ucwords(strtolower($row["state"])) . "</h3></a>";
             echo '</div>';
@@ -401,6 +455,32 @@
     }
     $conn->close();
     ?>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Our mission is to provide top-notch real<br> estate services tailored to your needs.</p>
+                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>793001, Jowai road, Astra Building<br>Email: info@astrarealestate.com<br>Phone: 940-256-0551</p>
+                <p>Feel free to reach out to us<br>for any inquiries or assistance.</p><br><br>
+                <p>&copy; 2024 Astra Real Estate. All rights reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="listing.php">Properties</a></li>
+                    <li><a href="agent listing.php">Agents</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </footer>
 
 
 

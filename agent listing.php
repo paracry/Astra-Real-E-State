@@ -5,6 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Listing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+
+    <script>
+        function formatIndianCurrency(price)
+        {
+            return '₹' + new Intl.NumberFormat('en-IN').format(price) + '/-';
+        }
+    </script>
+
     <?php
     session_start();
     if (isset($_SESSION['user_id'])) {
@@ -35,7 +44,7 @@
         body {
             margin: 0;
             padding: 0;
-
+            font-family: 'Amaranth', sans-serif;
 
             background-size: cover;
             background-position: center;
@@ -47,8 +56,8 @@
 
         .header {
             font-family: Arial, sans-serif;
-            box-shadow: 0vh 2vh 4vh black;
-            margin-bottom: 2vh;
+            box-shadow: 0vh 2vh 3vh rgb(90, 0, 169);
+            margin-bottom: 4vh;
             padding: 1vh 2vw;
             display: flex;
             justify-content: space-between;
@@ -117,8 +126,8 @@
                 height: 11vh;
             <?php else: ?>
                 height: 8vh;
-            <?php endif; ?>
-
+            <?php endif;
+            ?>
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
@@ -148,20 +157,28 @@
 
         .welcome {
             display: inline-block;
-
-            padding: 5vh;
             font-size: 9vh;
-            border-radius: 20vh;
-            background-color: #8000ff;
-            color: rgb(235, 199, 255);
+            color: #8000ff;
             text-align: center;
 
             margin: auto;
-            margin-top: 3vh;
+            margin-top: 4vh;
+            margin-bottom: 4vh;
+            width: 25vw;
+        }
+
+        .welcomeagent {
+            display: inline-block;
+            font-size: 5vh;
+            color: #8000ff;
+            text-align: center;
+
+            margin: auto;
             margin-bottom: 3vh;
             width: 25vw;
-
         }
+
+        /*top bar ends here*/
 
         .available,
         .total {
@@ -206,23 +223,70 @@
             font-size: 5vh;
 
         }
+
+        /*footer*/
+
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            font-size: 2.5vh;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            color: #ffffff;
+            background-color: #000000;
+        }
+
+        .footer-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            color: #c387ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 3vh;
+        }
+
+        .footer-section a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 500ms;
+            margin-bottom: 2vh;
+        }
+
+        .footer-section a:hover {
+            color: #b554ff;
+            font-size: 4vh;
+            transition: 500ms;
+        }
     </style>
 </head>
 
 <body>
-    <section class="header">
+<section class="header">
         <nav>
-            <a href="#">Home</a>
+        <a href="home.php">Home</a>
             <a href="listing.php">Properties</a>
             <a href="agent listing.php">Agents</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
+            <a href="about.html">About Us</a>
+            <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
                 <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -234,7 +298,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -248,7 +312,7 @@
                 <div class="dropdown">
 
                     <button class="username">
-                        <?php echo $_SESSION['username']; ?>
+                        <?php echo ucwords($_SESSION['username']); ?>
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
@@ -262,7 +326,8 @@
     </section>
 
     <h1 class="welcome">Astra Real Estate</h1>
-    <h2 class="available">Agents available to hire in India</h2>
+    <h1 class="welcomeagent">Agent listing</h1>
+
 
     <div class="row">
         <?php
@@ -285,9 +350,7 @@
         $row = $result->fetch_assoc();
         $total_entries = $row['total'];
 
-        echo '<h3 class="total">Agents available : ' . $total_entries . '</h3>';
-
-
+        echo '<h2 class="available">' . $total_entries . ' Agents available to hire in India</h2><br>';
         $sql = "SELECT * FROM agent";
         $result = $conn->query($sql);
 
@@ -296,9 +359,9 @@
                 echo '<a href="agent profile.php?agent_id=' . $row["agent_id"] . '">';
                 echo '<div class="product">';
                 echo '<img src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '"/><br>';
-                echo "<h2 class='price'>Name : " . $row['username'] . "</h2><br>";
+                echo "<h2 class='price'>Name : " . ucwords($row['username']) . "</h2><br>";
                 echo "<h2 class='bed'>Experience : " . $row["experience"] . " years</h2>";
-                echo "<h2 class='bath'>Address: ".$row["area"] ." ". $row["state"] . "</h2>";
+                echo "<h2 class='bath'>Address: " . ucwords($row["area"]) . ", " . ucwords($row["state"]) . "</h2>";
                 echo '</div>';
                 echo "</a>";
             }
@@ -310,6 +373,31 @@
         ?>
 
     </div>
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Our mission is to provide top-notch real<br> estate services tailored to your needs.</p>
+                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>793001, Jowai road, Astra Building<br>Email: info@astrarealestate.com<br>Phone: 940-256-0551</p>
+                <p>Feel free to reach out to us<br>for any inquiries or assistance.</p><br><br>
+                <p>&copy; 2024 Astra Real Estate. All rights reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="listing.php">Properties</a></li>
+                    <li><a href="agent listing.php">Agents</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </footer>
 </body>
 
 </html>
