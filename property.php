@@ -324,6 +324,11 @@
 
         /*contact details*/
 
+        .contact {
+            margin: 4vh;
+            transition: 500ms;
+        }
+
         #revealButton {
             padding: 2vh;
             margin: 1vh;
@@ -331,19 +336,20 @@
             border-radius: 10vh;
             background-color: #8000ff;
             color: white;
-            font-size: 2.5vh;
+            font-size: 3vh;
             border: none;
             width: 11vw;
             transition: 500ms;
             font-family: 'Amaranth', sans-serif;
-            
+            box-shadow: 1vh 1vh 2vh #000000;
+
         }
 
         #revealButton:hover {
             background-color: #490092;
             width: 14vw;
             transition: 500ms;
-            font-size: 3.5vh;
+            font-size: 4vh;
         }
 
         #hiddenSection {
@@ -358,7 +364,7 @@
             border-radius: 10vh;
             background-color: #8000ff;
             color: white;
-            font-size: 2.5vh;
+            font-size: 2vh;
             border: none;
             width: 11vw;
             transition: 500ms
@@ -372,45 +378,50 @@
 
         /*wishlist*/
 
-        .addwish{
+
+
+        .addwish {
             padding: 2vh;
             margin: 1vh;
-            font-size: 2.5vh;
+            font-size: 3vh;
             background-color: rgb(255, 0, 0);
             color: rgb(255, 255, 255);
             border-radius: 20vh;
             transition: 500ms;
             text-decoration: none;
+            box-shadow: 1vh 1vh 2vh #000000;
         }
 
-        .addwish:hover{
+        .addwish:hover {
             background-color: rgb(144, 0, 24);
             color: white;
-            font-size: 3.5vh;
+            font-size: 4vh;
             padding-left: 3vw;
             padding-right: 3vw;
             transition: 500ms;
-            
+
         }
-        .removewish{
+
+        .removewish {
             padding: 2vh;
             margin: 1vh;
-            font-size: 2.5vh;
+            font-size: 3vh;
             background-color: rgb(83, 83, 83);
             color: rgb(255, 255, 255);
             border-radius: 20vh;
             transition: 500ms;
             text-decoration: none;
+            box-shadow: 1vh 1vh 2vh #000000;
         }
 
-        .removewish:hover{
+        .removewish:hover {
             background-color: rgb(0, 0, 0);
             color: white;
-            font-size: 3.5vh;
+            font-size: 4vh;
             padding-left: 3vw;
             padding-right: 3vw;
             transition: 500ms;
-            
+
         }
     </style>
 
@@ -475,9 +486,9 @@
     <h1 class="welcomeagent">Property details</h1>
     <?php
     // Establish connection to MySQL database
-    
-    $user_id = $_SESSION['user_id'];
-
+    if (isset($_SESSION['user_id'])) {
+        $user_id = $_SESSION['user_id'];
+    }
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -558,6 +569,7 @@
             echo '</div>';
             $street_name = ucwords(strtolower($row["street_name"]));
             $state = ucwords(strtolower($row["state"]));
+            $seller_id = $row['seller_id'];
         }
     } else {
         echo "0 results";
@@ -565,22 +577,19 @@
     ?>
 
     <div class="contact">
-        <?php if (isset($_SESSION['username'])): ?>
+        <?php if (isset($_SESSION['user_id'])): ?>
             <button id="revealButton" onclick="toggleHiddenSection()">Contact Seller</button>
             <?php
             $sql = "SELECT * FROM wishlist WHERE user_id='$user_id' AND property_id='$property_id'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                echo '<a class="removewish" href="removewish.php?user_id='.$user_id.'&property_id='.$property_id.'">Remove from wishlist</a>';
+                echo '<a class="removewish" href="removewish.php?user_id=' . $user_id . '&property_id=' . $property_id . '">Remove from wishlist</a>';
             } else {
-                echo '<a class="addwish" href="addwish.php?user_id='.$user_id.'&property_id='.$property_id.'">Add to wishlist</a>';
+                echo '<a class="addwish" href="addwish.php?user_id=' . $user_id . '&property_id=' . $property_id . '">Add to wishlist</a>';
             }
 
             ?>
-
-
-
 
             <div id="hiddenSection" style="display: none; height: 0; transition: 5000ms;">
                 <!-- Content of the hidden section -->
@@ -594,7 +603,6 @@
 
 
             </div>
-
 
             <script>
                 function toggleHiddenSection()
@@ -629,7 +637,14 @@
 
 
             </script>
-
+        <?php elseif (isset($_SESSION['seller_id'])): ?>
+            <?php if ($seller_id == $_SESSION['seller_id']) {
+                echo '<a class="removewish" href="deleteproperty.php?seller_id=' . $seller_id . '&property_id=' . $property_id . '">Remove listing</a>';
+            }
+            else{
+                echo "<h3 style='margin: 6vh;  color: #d50000;'>Hello Seller!<br>If you want the contact details of the owner of this property or wishlist this property then you'll have to <a href='user login.html'>Login</a> as User!.</h3>";
+            }
+            ?>
         <?php else: ?>
             <h3 style="margin: 6vh;  color: #d50000;"><a href="user login.html">Login</a> first to contact user or wishlist
                 this property.</h3>
