@@ -9,7 +9,11 @@ $_SESSION[$seller_id . 'bathrooms'] = $_POST['bathrooms'];
 $_SESSION[$seller_id . 'size'] = $_POST['size'];
 $_SESSION[$seller_id . 'year_built'] = $_POST['year_built'];
 $_SESSION[$seller_id . 'property_type'] = $_POST['property_type'];
-$_SESSION[$seller_id . 'garages'] = empty($_POST['garages']) ? 'Not Available' : $_POST['garages'];
+if (isset($_POST['garages'])) {
+    $_SESSION[$seller_id . 'garages'] = $_POST['garages'];
+} else {
+    $_SESSION[$seller_id . 'garages'] = 'Not Available';
+}
 //$_SESSION[$seller_id . 'description'] = $_POST['description'];
 $_SESSION[$seller_id . 'street'] = $_POST['street'];
 $_SESSION[$seller_id . 'pincode'] = $_POST['pincode'];

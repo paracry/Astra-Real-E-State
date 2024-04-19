@@ -247,10 +247,10 @@
         }
 
         .product:hover {
-            filter: brightness(95%);
-            background-color: #a200ff19;
+            background-color: #0dff000c;
             font-size: 0vh;
             transition: 500ms;
+            box-shadow: 2vh 2vh 2vh #09ff0093;
         }
 
         /*footer*/

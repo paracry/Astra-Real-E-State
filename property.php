@@ -189,15 +189,15 @@
 
         /* CSS code to style the image gallery layout */
         .container {
-            margin: 1vh auto;
+            margin: 2.5vh;
             width: 97vw;
-            border: solid 1vh #000000;
-            border-radius: 7vh;
+            box-shadow:0 0 3vh #8000ff;
+            border-radius: 6vh;
 
         }
 
         .side {
-            margin-left: 2vw;
+            
             margin-right: 0%;
             padding-right: 0%;
         }
@@ -205,21 +205,25 @@
         #mainImage {
             margin: 1vh;
             height: 92vh;
-            width: 50.5vw;
+            width: 74vw;
             object-fit: cover;
             border-radius: 5vh;
         }
 
         .smallImage {
-            height: 29vh;
-            width: 29vh;
+            height: 16.3vh;
+            width: 10vw;
             object-fit: cover;
             margin: 1vh;
-            border-radius: 5vh;
+            border-radius: 4vh;
+            
         }
 
         .smallImage:hover {
-            filter: brightness(50%);
+            
+            box-shadow: 0 0 2vh #8000ff;
+            transition: 300ms;
+
         }
 
         /*details*/
@@ -234,7 +238,7 @@
         .size {
             font-size: 4vh;
             display: inline-block;
-            width: 22vw;
+            width: 29vw;
             margin-left: 3.5vw;
             margin-top: 0%;
         }
@@ -402,19 +406,21 @@
 
     echo "<h2 class='number'>Posted by : " . ucwords($sellername) . "</h2>";
 
+
+    echo "<h1 class='welcomeagent'>Property image gallery</h1>";
     // Retrieve images from the database
     $sql = "SELECT * FROM property_images where property_id=$property_id";
     $result = $conn->query($sql);
 
     // Display the image gallery layout
-    echo '<div class="container" style="display: flex;">';
+    echo '<div class="container" style="display: flex;" >';
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        echo '<div class="main" style="flex: 1;">';
-        echo '<img src="' . $row['image1'] . '" id="mainImage" style=";">';
+        echo '<div class="main">';
+        echo '<img src="' . $row['image1'] . '" id="mainImage">';
         echo '</div>';
-        echo '<div class="side" style="flex: 1; display: flex; flex-wrap: wrap;">';
-        for ($i = 2; $i <= 10; $i++) {
+        echo '<div class="side" >';
+        for ($i = 1; $i <= 10; $i++) {
             echo '<img src="' . $row['image' . $i] . '" class="smallImage" style="cursor: pointer;" onclick="changeImage(\'' . $row['image' . $i] . '\')">';
         }
         echo '</div>';
@@ -438,7 +444,7 @@
 
             echo "<h3 class='bath'><img  class='logo' src='images/year_built.png'/> Year built : " . $row["year_built"] . " </h3>";
             echo "<h3 class='bath'><img  class='logo' src='images/property_type.png'/> Property type : " . $row["property_type"] . " </h3>";
-            echo "<h3 class='bath'><img  class='logo' src='images/garage.png'/> Garages :  " . $row["garages"] . " </h3><br>";
+            echo "<h3 class='bath'><img  class='logo' src='images/garage.png'/> Garage :  " . $row["garages"] . " </h3><br>";
 
             echo "<h3 class='bed'><img class='logo' src='images/bed.png'/> Bed : " . $row["bed"]
                 . " </h3>";
