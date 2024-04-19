@@ -39,7 +39,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
             background-image: url(images/home.jpeg);
-            background-size: cover;
+            background-size: 300vh;
             background-position: center;
             display: flex;
             flex-direction: column;
@@ -205,7 +205,7 @@
         /*footer*/
 
         footer {
-            background-color: #000000;
+            background-color: #000000c1;
             color: #ffffff;
             padding: 20px 0;
             font-size: 2.5vh;
@@ -215,7 +215,7 @@
             display: flex;
             justify-content: space-around;
             color: #ffffff;
-            background-color: #000000;
+            
         }
 
         .footer-section {

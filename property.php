@@ -129,10 +129,13 @@
             align-items: center;
             margin-top: 1vh;
             min-width: 11vw;
-            <?php if ($sellerloggedIn): ?> height: 11vh;
-            <?php else: ?> height: 8vh;
+            <?php if ($sellerloggedIn): ?>
+                height: 11vh;
+            <?php else: ?>
+                height: 8vh;
             <?php endif;
-            ?>box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            ?>
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
             border-radius: 20vh;
         }
@@ -191,13 +194,13 @@
         .container {
             margin: 2.5vh;
             width: 97vw;
-            box-shadow:0 0 3vh #8000ff;
+            box-shadow: 0 0 3vh #8000ff;
             border-radius: 6vh;
 
         }
 
         .side {
-            
+
             margin-right: 0%;
             padding-right: 0%;
         }
@@ -216,11 +219,11 @@
             object-fit: cover;
             margin: 1vh;
             border-radius: 4vh;
-            
+
         }
 
         .smallImage:hover {
-            
+
             box-shadow: 0 0 2vh #8000ff;
             transition: 300ms;
 
@@ -317,6 +320,98 @@
             font-size: 4vh;
             transition: 500ms;
         }
+
+
+        /*contact details*/
+
+        #revealButton {
+            padding: 2vh;
+            margin: 1vh;
+            margin-left: 3vw;
+            border-radius: 10vh;
+            background-color: #8000ff;
+            color: white;
+            font-size: 2.5vh;
+            border: none;
+            width: 11vw;
+            transition: 500ms;
+            font-family: 'Amaranth', sans-serif;
+            
+        }
+
+        #revealButton:hover {
+            background-color: #490092;
+            width: 14vw;
+            transition: 500ms;
+            font-size: 3.5vh;
+        }
+
+        #hiddenSection {
+            display: none;
+            margin-left: 3vw;
+            transition: 12000ms;
+        }
+
+        #openGmail {
+            padding: 2vh;
+            margin-bottom: 2vh;
+            border-radius: 10vh;
+            background-color: #8000ff;
+            color: white;
+            font-size: 2.5vh;
+            border: none;
+            width: 11vw;
+            transition: 500ms
+        }
+
+        #openGmail:hover {
+            background-color: #5100a1;
+            width: 12vw;
+            transition: 500ms;
+        }
+
+        /*wishlist*/
+
+        .addwish{
+            padding: 2vh;
+            margin: 1vh;
+            font-size: 2.5vh;
+            background-color: rgb(255, 0, 0);
+            color: rgb(255, 255, 255);
+            border-radius: 20vh;
+            transition: 500ms;
+            text-decoration: none;
+        }
+
+        .addwish:hover{
+            background-color: rgb(144, 0, 24);
+            color: white;
+            font-size: 3.5vh;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            transition: 500ms;
+            
+        }
+        .removewish{
+            padding: 2vh;
+            margin: 1vh;
+            font-size: 2.5vh;
+            background-color: rgb(83, 83, 83);
+            color: rgb(255, 255, 255);
+            border-radius: 20vh;
+            transition: 500ms;
+            text-decoration: none;
+        }
+
+        .removewish:hover{
+            background-color: rgb(0, 0, 0);
+            color: white;
+            font-size: 3.5vh;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            transition: 500ms;
+            
+        }
     </style>
 
 
@@ -327,7 +422,7 @@
 
     <section class="header">
         <nav>
-        <a href="home.php">Home</a>
+            <a href="home.php">Home</a>
             <a href="listing.php">Properties</a>
             <a href="agent listing.php">Agents</a>
             <a href="about.html">About Us</a>
@@ -341,7 +436,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="products.php">Wishlist</a>
+                        <a class="logout" href="wishlist.php">Wishlist</a>
                     </div>
                 </div>
             <?php elseif ($sellerloggedIn): ?>
@@ -380,6 +475,9 @@
     <h1 class="welcomeagent">Property details</h1>
     <?php
     // Establish connection to MySQL database
+    
+    $user_id = $_SESSION['user_id'];
+
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -393,13 +491,16 @@
     $property_id = $_GET['property_id'];
     echo "<h2 class='number'>Property no : " . $property_id . "</h2>";
 
-    $sql = "SELECT s.username FROM seller s, property p WHERE p.property_id = $property_id AND p.seller_id = s.seller_id";
+    $sql = "SELECT * FROM seller s, property p WHERE p.property_id = $property_id AND p.seller_id = s.seller_id";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         // Fetch the result
         $row = $result->fetch_assoc();
         $sellername = $row['username'];
+        $sellerphone = $row['phone_no'];
+        $selleremail = $row['email'];
+
     } else {
         $sellername = "No seller found for the given property_id";
     }
@@ -453,14 +554,88 @@
             echo "<h3 class='size'><img  class='logo' src='images/area.png'/> Size : " .
                 number_format($row["size"], 0, '.', ',') . " sqft</h3><br>";
             echo "<a href='" . $row["location_url"] . "'><img  class='addressimage' src='images/maps.png'/><h3 class='address'> "
-                . $row["pincode"] . "<br>" . ucwords(strtolower($row["street_name"])) . "<br> " . ucwords(strtolower($row["state"])) . "</h3></a>";
+                . $row["pincode"] . "<br>" . $street_name = ucwords(strtolower($row["street_name"])) . "<br> " . $state = ucwords(strtolower($row["state"])) . "</h3></a>";
             echo '</div>';
+            $street_name = ucwords(strtolower($row["street_name"]));
+            $state = ucwords(strtolower($row["state"]));
         }
     } else {
         echo "0 results";
     }
-    $conn->close();
     ?>
+
+    <div class="contact">
+        <?php if (isset($_SESSION['username'])): ?>
+            <button id="revealButton" onclick="toggleHiddenSection()">Contact Seller</button>
+            <?php
+            $sql = "SELECT * FROM wishlist WHERE user_id='$user_id' AND property_id='$property_id'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo '<a class="removewish" href="removewish.php?user_id='.$user_id.'&property_id='.$property_id.'">Remove from wishlist</a>';
+            } else {
+                echo '<a class="addwish" href="addwish.php?user_id='.$user_id.'&property_id='.$property_id.'">Add to wishlist</a>';
+            }
+
+            ?>
+
+
+
+
+            <div id="hiddenSection" style="display: none; height: 0; transition: 5000ms;">
+                <!-- Content of the hidden section -->
+                <h2>Phone number :
+                    <?php echo $sellerphone; ?>
+                    <br>Email address :
+                    <?php echo $selleremail; ?>
+                </h2>
+
+                <button id="openGmail">Compose Email</button>
+
+
+            </div>
+
+
+            <script>
+                function toggleHiddenSection()
+                {
+                    const hiddenSection = document.getElementById('hiddenSection');
+
+                    if (hiddenSection.style.display === 'none')
+                    {
+                        hiddenSection.style.display = 'block';
+                        hiddenSection.style.height = hiddenSection.scrollHeight + 'px';
+                        hiddenSection.style.transition = '1500ms';
+                    } else
+                    {
+                        hiddenSection.style.height = '0';
+                        hiddenSection.style.transition = 'height 1500ms'; // Adjusted transition property
+                        setTimeout(() =>
+                        {
+                            hiddenSection.style.display = 'none'; // Delayed hiding to allow transition effect
+                        }, 1500);
+                    }
+                }
+
+                document.getElementById('openGmail').onclick = function ()
+                {
+                    var email = '<?php echo $selleremail; ?>'; // Specify the email address here
+                    var subject = 'Inquiry Regarding Property ID = <?php echo $property_id; ?>.'; // Specify the email subject here
+                    var body = "Dear <?php echo $sellername; ?>,%0D%0AI hope this email finds you well. I am writing to express my genuine interest in the property having Property ID = <?php echo $property_id; ?>, situated in <?php echo $street_name . ', ' . $state; ?> . After thorough research and consideration, I believe that your property aligns perfectly with what I am looking for in a home/investment.%0D%0A%0D%0AI would appreciate the opportunity to further discuss the property with you. Could we arrange a viewing or a call to address any questions I may have? Additionally, I am open to discussing the terms of the sale and any additional information you deem necessary.%0D%0A%0D%0AThank you for considering my inquiry. I look forward to the possibility of exploring this opportunity further.%0D%0A%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
+                    var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+
+                    window.open(mailtoLink);
+                };
+
+
+            </script>
+
+        <?php else: ?>
+            <h3 style="margin: 6vh;  color: #d50000;"><a href="user login.html">Login</a> first to contact user or wishlist
+                this property.</h3>
+        <?php endif;
+        $conn->close(); ?>
+    </div>
 
     <footer id="footer">
         <div class="footer-container">

@@ -26,7 +26,11 @@ if ($result->num_rows > 0) {
     $_SESSION['username'] = $user['username'];
     $_SESSION['agent_id'] = $user['agent_id'];
     //echo $_SESSION['seller_id'] . $_SESSION['username'];
-    header("Location:  home.php");
+    echo "
+    <script>
+        window.history.go(-3);
+    </script>";
+    //header("Location:  home.php");
 } else {
     echo "User not found. Please check your credentials.";
 }

@@ -1,3 +1,4 @@
+
 <?php
 // Establish database connection
 $servername = "localhost";
@@ -26,7 +27,12 @@ if ($result->num_rows > 0) {
     $_SESSION['username'] = $user['username'];
     $_SESSION['user_id'] = $user['user_id'];
     echo $_SESSION['user_id'] . $_SESSION['username'];
-    header("Location:  home.php");
+    echo "
+    <script>
+        window.history.go(-2);
+    </script>";
+    //header("Location:  home.php");
+
 } else {
     echo "User not found. Please check your credentials.";
 }
