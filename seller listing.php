@@ -21,15 +21,24 @@
         $userloggedIn = true;
         $sellerloggedIn = false;
         $agentloggedIn = false;
+        $adminloggedIn = false;
 
     } elseif (isset($_SESSION['seller_id'])) {
         // User is logged in
         $sellerloggedIn = true;
         $userloggedIn = false;
         $agentloggedIn = false;
+        $adminloggedIn = false;
     } elseif (isset($_SESSION['agent_id'])) {
         // User is logged in
         $agentloggedIn = true;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+        $adminloggedIn = false;
+    } elseif (isset($_SESSION['admin_id'])) {
+        // User is logged in
+        $adminloggedIn = true;
+        $agentloggedIn = false;
         $userloggedIn = false;
         $sellerloggedIn = false;
     } else {
@@ -37,6 +46,7 @@
         $userloggedIn = false;
         $sellerloggedIn = false;
         $agentloggedIn = false;
+        $adminloggedIn = false;
     }
     ?>
 
@@ -319,7 +329,7 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="products.php">Wishlist</a>
+                        <a class="logout" href="wishlist.php">Wishlist</a>
                     </div>
                 </div>
             <?php elseif ($sellerloggedIn): ?>
@@ -329,7 +339,7 @@
                     <button class="username">
                         <?php echo ucwords($_SESSION['username']); ?>
                     </button>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
                         <a class="logout" href="logout.php">Logout</a>
                         <a class="logout" href="seller listing.php">Postings</a><br>
                         <a class="logout" href="property form.html">Add Property</a>
@@ -345,12 +355,45 @@
                     </button>
                     <div class="dropdown-content">
                         <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="products.php">Profile</a>
+                        <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
+                    </div>
+                </div>
+            <?php elseif ($adminloggedIn): ?>
+
+                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Admin : </a>
+                <div class="dropdown">
+
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 4vh;">
+                        <a class="logout" href="logout.php">Logout</a>
                     </div>
                 </div>
             <?php else: ?>
                 <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
+
+            <script>
+
+                document.addEventListener('DOMContentLoaded', function ()
+                {
+                    const button = document.querySelector('.username');
+                    const dropdownContent = document.querySelector('.dropdown-content');
+
+                    button.addEventListener('click', function ()
+                    {
+                        if (dropdownContent.style.display === 'block')
+                        {
+                            dropdownContent.style.display = 'none';
+                        } else
+                        {
+                            dropdownContent.style.display = 'block';
+                        }
+                    });
+                });
+
+            </script>
         </nav>
     </section>
 

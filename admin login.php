@@ -1,4 +1,3 @@
-
 <?php
 // Establish database connection
 $servername = "localhost";
@@ -17,7 +16,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 // Query to check user existence
-$sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+$sql = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -25,12 +24,11 @@ if ($result->num_rows > 0) {
     session_start();
     $user = mysqli_fetch_assoc($result);
     $_SESSION['username'] = $user['username'];
-    $_SESSION['user_id'] = $user['user_id'];
-    echo $_SESSION['user_id'] . $_SESSION['username'];
+    $_SESSION['admin_id'] = $user['admin_id'];
     header("Location:  home.php");
 
 } else {
-    echo "User not found. Please check your credentials.";
+    echo "Admin not found. Please check your credentials.";
 }
 
 $conn->close();

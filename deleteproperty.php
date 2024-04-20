@@ -1,5 +1,4 @@
 <?php
-$seller_id = $_GET['seller_id'];
 $property_id = $_GET['property_id'];
 
 $servername = "localhost";

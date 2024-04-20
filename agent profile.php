@@ -28,30 +28,40 @@
 
 
     <?php
-    session_start();
-    if (isset($_SESSION['user_id'])) {
-        // User is logged in
-        $userloggedIn = true;
-        $sellerloggedIn = false;
-        $agentloggedIn = false;
+session_start();
+if (isset($_SESSION['user_id'])) {
+    // User is logged in
+    $userloggedIn = true;
+    $sellerloggedIn = false;
+    $agentloggedIn = false;
+    $adminloggedIn = false;
 
-    } elseif (isset($_SESSION['seller_id'])) {
-        // User is logged in
-        $sellerloggedIn = true;
-        $userloggedIn = false;
-        $agentloggedIn = false;
-    } elseif (isset($_SESSION['agent_id'])) {
-        // User is logged in
-        $agentloggedIn = true;
-        $userloggedIn = false;
-        $sellerloggedIn = false;
-    } else {
-        // User is not logged in
-        $userloggedIn = false;
-        $sellerloggedIn = false;
-        $agentloggedIn = false;
-    }
-    ?>
+} elseif (isset($_SESSION['seller_id'])) {
+    // User is logged in
+    $sellerloggedIn = true;
+    $userloggedIn = false;
+    $agentloggedIn = false;
+    $adminloggedIn = false;
+} elseif (isset($_SESSION['agent_id'])) {
+    // User is logged in
+    $agentloggedIn = true;
+    $userloggedIn = false;
+    $sellerloggedIn = false;
+    $adminloggedIn = false;
+} elseif (isset($_SESSION['admin_id'])) {
+    // User is logged in
+    $adminloggedIn = true;
+    $agentloggedIn = false;
+    $userloggedIn = false;
+    $sellerloggedIn = false;
+} else {
+    // User is not logged in
+    $userloggedIn = false;
+    $sellerloggedIn = false;
+    $agentloggedIn = false;
+    $adminloggedIn = false;
+}
+?>
 
     <style>
         body {
@@ -130,17 +140,14 @@
             display: none;
             position: absolute;
             background-color: #000000;
-            padding: 1%;
+            padding: 1vh;
             text-align: left;
             align-items: center;
-            margin-top: 1vh;
-            min-width: 11vw;
-            <?php if ($sellerloggedIn): ?> height: 11vh;
-            <?php else: ?> height: 8vh;
-            <?php endif;
-            ?>box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            margin-top: .5vh;
+            min-width: 9vw;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
-            border-radius: 20vh;
+            border-radius: 5vh;
         }
 
         .dropdown:hover .dropdown-content {
@@ -197,43 +204,47 @@
 
         .circle {
             box-shadow: 0vh 0vh 5vh #8000ff;
-            height: 60vh;
-            width: 60vh;
+            height: 38vh;
+            width: 40vh;
             border-radius: 100vh;
             overflow: hidden;
-            display: block;
-            margin: auto;
+            float: left;
+            margin-left: 5vw;
+            align-items: center;
+            align-content: center;
 
         }
 
         .profile {
-            height: 80vh;
+            width: 40vh;
             object-fit: cover;
         }
 
         .product {
-            display: block;
-            margin: auto;
-            align-content: center;
-            text-align: center;
+            text-align: left;
+            margin-top: 12vh;
         }
 
-        .agentid {
-            margin-bottom: 7vh;
-        }
 
         .price {
-            font-size: 8vh;
-            text-align: center;
-            margin: auto;
-            margin-top: 6vh;
+            font-size: 6vh;
+            margin-left: 27vw;
+            text-align: left;
+            margin-top: 7vh;
         }
 
-        .bath,
-        .bed,
-        .size {
-            font-size: 4vh;
-            margin-top: 0%;
+        .topdetails {
+            font-size: 2vh;
+            margin-top: -8vh;
+            margin-left: 27vw;
+            margin-bottom: 15vh;
+        }
+
+        .lowerdetails {
+            margin: 6vw;
+            margin-right: 10vw;
+            margin-top: -2vh;
+            font-size: 3vh;
         }
 
 
@@ -312,7 +323,7 @@
                 </button>
                 <div class="dropdown-content">
                     <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="products.php">Wishlist</a>
+                    <a class="logout" href="wishlist.php">Wishlist</a>
                 </div>
             </div>
             <?php elseif ($sellerloggedIn): ?>
@@ -322,9 +333,9 @@
                 <button class="username">
                     <?php echo ucwords($_SESSION['username']); ?>
                 </button>
-                <div class="dropdown-content">
+                <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
                     <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="products.php">Postings</a><br>
+                    <a class="logout" href="seller listing.php">Postings</a><br>
                     <a class="logout" href="property form.html">Add Property</a>
                 </div>
             </div>
@@ -338,12 +349,45 @@
                 </button>
                 <div class="dropdown-content">
                     <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="products.php">Profile</a>
+                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id'];?>">Profile</a>
+                </div>
+            </div>
+            <?php elseif ($adminloggedIn): ?>
+
+            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Admin : </a>
+            <div class="dropdown">
+
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content" style="height: 4vh;">
+                    <a class="logout" href="logout.php">Logout</a>
                 </div>
             </div>
             <?php else: ?>
             <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
+
+            <script>
+
+                document.addEventListener('DOMContentLoaded', function ()
+                {
+                    const button = document.querySelector('.username');
+                    const dropdownContent = document.querySelector('.dropdown-content');
+
+                    button.addEventListener('click', function ()
+                    {
+                        if (dropdownContent.style.display === 'block')
+                        {
+                            dropdownContent.style.display = 'none';
+                        } else
+                        {
+                            dropdownContent.style.display = 'block';
+                        }
+                    });
+                });
+
+            </script>
         </nav>
     </section>
 
@@ -370,15 +414,34 @@
         while ($row = $result->fetch_assoc()) {
 
             echo '<div class="product">';
-            echo '<h2 class="agentid">Agent id : '.$row["agent_id"].'</h2>';
+            
             echo '<div class="circle">';
             echo '<img class="profile" src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '"/><br>';
             echo '</div>';
             echo "<h2 class='price'>".ucwords($row['username'])."</h2><br>";
+            echo "<div class='topdetails'>";
+            echo '<h2 class="astra_id">Astra id : '.$row["agent_id"].'</h2>';
 
-            echo "<h3 class='bath'>Experience : " . $row["experience"] . " years</h3>";
-            echo "<h3 class='bath'>Works in : " . ucwords($row["area"]) .", ". ucwords($row["state"]). "</h3>";
-            echo "<h3 class='bath'> website :  <a href='" . $row["website"] . "'>click here</a> </h3><br>";
+            echo "<h3 class='experience'>Experience : " . $row["experience"] . " years</h3>";
+            echo "<h3 class='area'>Works in : " . ucwords(strtolower($row["area"])) .", ". ucwords(strtolower($row["state"])). ".</h3>";
+            echo "</div>";
+            echo '</div>';
+            echo '<div class="lowerdetails">';
+                echo "<hr>";
+                echo "<h2>About ".ucwords(strtolower($row['username']))."</h2>";
+                echo "<p>".$row['about']."</p>";
+                echo "<hr>";
+                echo "<h3 class='website'> Website :  <a href='" . $row["website"] . "'>click here</a> </h3>";
+                echo "<hr>";
+
+                echo "<h3>Price: <span id='formattedPrice'></span></h3>";
+                echo "<script>document.getElementById('formattedPrice').innerText = formatIndianCurrency(" . $row['price'] . ");</script>";
+
+                echo "<h3>Negotiable : ".$row['negotiable'].".</h3>";
+                echo "<hr>";
+                echo "<h3 class='area'>Serves in : ".$row['pincode'].", " . ucwords(strtolower($row["area"])) .", ". ucwords(strtolower($row["state"])). ".</h3>";
+                echo "<h3>Location on <a href='".$row['address_url']."'>map.</a></h3>";
+                
             echo '</div>';
             $email=$row["email"];
         }
