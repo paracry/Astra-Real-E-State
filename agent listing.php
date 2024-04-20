@@ -428,7 +428,7 @@
                 echo '<div class="details">';
                 echo "<h2 class='price'>Name : " . ucwords($row['username']) . "</h2><br>";
                 echo "<h2 class='bed'>Experience : " . $row["experience"] . " years</h2><br>";
-                echo "<h2 class='bath'>Works in: " . ucwords($row["area"]) . ", " . ucwords($row["state"]) . "</h2>";
+                echo "<h2 class='area'>Serves in : ". ucwords(strtolower($row["area"])) . ", " . ucwords(strtolower($row["state"])) . ".</h2>";
                 echo '</div>';
                 echo '</div>';
                 echo "</a>";

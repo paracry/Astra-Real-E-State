@@ -204,7 +204,7 @@ if (isset($_SESSION['user_id'])) {
 
         .circle {
             box-shadow: 0vh 0vh 5vh #8000ff;
-            height: 38vh;
+            height: 39vh;
             width: 40vh;
             border-radius: 100vh;
             overflow: hidden;
@@ -298,6 +298,81 @@ if (isset($_SESSION['user_id'])) {
             color: #b554ff;
             font-size: 4vh;
             transition: 500ms;
+        }
+
+        /*contact details*/
+
+        .contact {
+            margin-left: 6vw;
+            margin-top: -13vh;
+            margin-bottom: 6vh;
+        
+            transition: 500ms;
+        }
+
+        #openGmail {
+            padding: 2vh;
+            margin-bottom: 2vh;
+            border-radius: 10vh;
+            background-color: #8000ff;
+            color: white;
+            font-size: 2vh;
+            border: none;
+            width: 11vw;
+            transition: 500ms
+        }
+
+        #openGmail:hover {
+            background-color: #5100a1;
+            width: 12vw;
+            transition: 500ms;
+        }
+
+        /*wishlist*/
+
+
+
+        .addwish {
+            padding: 2vh;
+            margin: 1vh;
+            font-size: 3vh;
+            background-color: rgb(255, 0, 0);
+            color: rgb(255, 255, 255);
+            border-radius: 20vh;
+            transition: 500ms;
+            text-decoration: none;
+            box-shadow: 1vh 1vh 2vh #000000;
+        }
+
+        .addwish:hover {
+            background-color: rgb(144, 0, 24);
+            color: white;
+            font-size: 4vh;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            transition: 500ms;
+
+        }
+
+        .removewish {
+            padding: 2vh;
+            font-size: 3vh;
+            background-color: rgb(83, 83, 83);
+            color: rgb(255, 255, 255);
+            border-radius: 20vh;
+            transition: 500ms;
+            text-decoration: none;
+            box-shadow: 1vh 1vh 2vh #000000;
+        }
+
+        .removewish:hover {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            font-size: 4vh;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            transition: 500ms;
+
         }
     </style>
 
@@ -441,32 +516,59 @@ if (isset($_SESSION['user_id'])) {
                 echo "<hr>";
                 echo "<h3 class='area'>Serves in : ".$row['pincode'].", " . ucwords(strtolower($row["area"])) .", ". ucwords(strtolower($row["state"])). ".</h3>";
                 echo "<h3>Location on <a href='".$row['address_url']."'>map.</a></h3>";
-                
+                echo "<hr>";
             echo '</div>';
-            $email=$row["email"];
+            $agentname=ucwords($row['username']);
+            $area=ucwords(strtolower($row["area"])) .", ". ucwords(strtolower($row["state"]));
+            $agent_id=$row['agent_id'];
+            $agentphone=$row['phone'];
+            $agentemail=$row['email'];
         }
     } else {
         echo "0 results";
     }
-    $conn->close();
     ?>
 
-    <button onclick="openEmailClient()">Open Email Client</button>
+    <div class="contact">
+        <?php if (isset($_SESSION['user_id'])): ?>
+        <h2>Phone number :
+            <?php echo $agentphone; ?>
+            <br>Email address :
+            <?php echo $agentemail; ?>
+        </h2>
+        <button id="openGmail">Compose Email</button>
 
-    <button id="openGmail">Compose Email</button>
+        <script>
+            document.getElementById('openGmail').onclick = function ()
+            {
+                var email = '<?php echo $agentemail; ?>'; // Specify the email address here
+                var subject = 'Inquiry Regarding Real Estate Services.'; // Specify the email subject here
+                var body = "Dear <?php echo $agentname;?>,%0D%0AI hope this email finds you well. My name is <?php echo ucwords($_SESSION['username']);?>, and I am currently in the market for a new home in <?php echo $area;?> , where I understand you have a wealth of experience and expertise.%0D%0A%0D%0AI believe that with your expertise and professionalism, we can find the perfect home that aligns with my needs and preferences. Your attention to detail and commitment to client satisfaction are qualities that I greatly admire and seek in a real estate partner.%0D%0A%0D%0AI look forward to the opportunity to work together and benefit from your knowledge and experience.Please let me know your availability so we can coordinate a meeting.%0D%0A%0D%0AThank you for considering my inquiry, and I am excited about the prospect of collaborating with you on this exciting journey of finding my dream home.%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']);?>"; // Specify the email body here
+                var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
 
-    <script>
-        document.getElementById('openGmail').onclick = function ()
-        {
-            var email = '<?php echo $email; ?>'; // Specify the email address here
-            var subject = 'I want an Agent'; // Specify the email subject here
-            var body = 'I want to buy a house where you work, and i was wondering if you would be available to help me with this search'; // Specify the email body here
-            var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+                window.open(mailtoLink);
+            };
 
-            window.open(mailtoLink);
-        };
 
-    </script>
+        </script>
+        <?php elseif (isset($_SESSION['agent_id'])): ?>
+        <?php if ($agent_id == $_SESSION['agent_id']) {
+                echo '<br><a class="removewish" href="deleteagent.php?agent_id=' . $agent_id . '">Delete profile</a>';
+            } else {
+                echo "<h3 style='color: #d50000;'>Hello Agent!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>";
+            }
+            ?>
+        <?php elseif (isset($_SESSION["admin_id"])): ?>
+        <?php echo '<br><a class="removewish" href="deleteagentadmin.php?agent_id=' . $agent_id . '">Remove listing</a>'; ?>
+        <?php elseif (isset($_SESSION["seller_id"])): ?>
+        <?php echo "<h3 style='color: #d50000;'>Hello Agent!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>";?>
+
+        <?php else: ?>
+        <h3 style="color: #d50000;"><a href="user login.html">Login</a> first to
+            contact this agent.</h3>
+        <?php endif;
+        $conn->close(); ?>
+    </div>
 
 
     <footer id="footer">

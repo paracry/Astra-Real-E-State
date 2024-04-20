@@ -13,12 +13,9 @@
     session_destroy();
 
 
-    //header("Location: home.php"); // Redirect to the homepage after logout
+    header("Location: home.php");
     ?>
-    <script>
-        // Go back two pages
-        window.history.back();
-    </script>
+    
 </body>
 
 </html>

@@ -127,20 +127,14 @@
             display: none;
             position: absolute;
             background-color: #000000;
-            padding: 1%;
+            padding: 1vh;
             text-align: left;
             align-items: center;
-            margin-top: 1vh;
-            min-width: 11vw;
-            <?php if ($sellerloggedIn): ?>
-                height: 11vh;
-            <?php else: ?>
-                height: 8vh;
-            <?php endif;
-            ?>
+            margin-top: .5vh;
+            min-width: 9vw;
             box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
             z-index: none;
-            border-radius: 20vh;
+            border-radius: 5vh;
         }
 
         .dropdown:hover .dropdown-content {
