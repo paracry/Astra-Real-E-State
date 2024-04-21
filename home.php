@@ -265,7 +265,7 @@
             <a href="about.html">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
             <div class="dropdown">
 
                 <button class="username">
@@ -277,7 +277,7 @@
                 </div>
             </div>
             <?php elseif ($sellerloggedIn): ?>
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Seller : </a>
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
             <div class="dropdown">
 
                 <button class="username">
@@ -291,7 +291,7 @@
             </div>
             <?php elseif ($agentloggedIn): ?>
 
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Agent : </a>
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
             <div class="dropdown">
 
                 <button class="username">
@@ -304,7 +304,7 @@
             </div>
             <?php elseif ($adminloggedIn): ?>
 
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Admin : </a>
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
             <div class="dropdown">
 
                 <button class="username">

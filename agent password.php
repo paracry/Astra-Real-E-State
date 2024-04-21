@@ -7,7 +7,6 @@ $dbname = "real_estate";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-$agent_id = $_SESSION['agent_id'];
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
 
@@ -15,21 +14,21 @@ if ($password !== $confirm_password) {
     echo "<p style='color: red;'>Error: Passwords do not match. Please <a href='javascript:history.go(-1)'>try again</a>.</p>";
     echo "";
 } else {
-    $full_name = $_SESSION[$agent_id . 'full_name'];
-    $email = $_SESSION[$agent_id . 'email'];
-    $phone_number = $_SESSION[$agent_id . 'phone_number'];
-    $password = $_POST[$agent_id . 'password'];
-    $state = $_SESSION[$agent_id . 'state'];
-    $area = $_SESSION[$agent_id . 'area'];
-    $website = $_SESSION[$agent_id . 'website'];
-    $experience = $_SESSION[$agent_id . 'experience'];
-    $image = $_SESSION[$agent_id . 'image'];
+    $full_name = $_SESSION['full_name'];
+    $email = $_SESSION['email'];
+    $phone_number = $_SESSION['phone_number'];
+    $password = $_POST['password'];
+    $state = $_SESSION['state'];
+    $area = $_SESSION['area'];
+    $website = $_SESSION['website'];
+    $experience = $_SESSION['experience'];
+    $image = $_SESSION['image'];
     $image = $conn->real_escape_string($image);
-    $about = $_SESSION[$agent_id . 'about'];
-    $address_url = $_SESSION[$agent_id . 'address_url'];
-    $price = $_SESSION[$agent_id . 'price'];
-    $negotiable = $_SESSION[$agent_id . 'negotiable'];
-    $pincode = $_SESSION[$agent_id . 'pincode'];
+    $about = $conn->real_escape_string($_SESSION['about']);
+    $address_url = $_SESSION['address_url'];
+    $price = $_SESSION['price'];
+    $negotiable = $_SESSION['negotiable'];
+    $pincode = $_SESSION['pincode'];
 
 
 
@@ -40,6 +39,8 @@ if ($password !== $confirm_password) {
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully form2";
         $agent_id = mysqli_insert_id($conn);
+        $_SESSION["agent_id"] = $agent_id;
+        $_SESSION['username']= $full_name;
         header("Location:  agent profile.php?agent_id=$agent_id");
 
     } else {

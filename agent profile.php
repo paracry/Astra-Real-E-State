@@ -28,40 +28,40 @@
 
 
     <?php
-session_start();
-if (isset($_SESSION['user_id'])) {
-    // User is logged in
-    $userloggedIn = true;
-    $sellerloggedIn = false;
-    $agentloggedIn = false;
-    $adminloggedIn = false;
+    session_start();
+    if (isset($_SESSION['user_id'])) {
+        // User is logged in
+        $userloggedIn = true;
+        $sellerloggedIn = false;
+        $agentloggedIn = false;
+        $adminloggedIn = false;
 
-} elseif (isset($_SESSION['seller_id'])) {
-    // User is logged in
-    $sellerloggedIn = true;
-    $userloggedIn = false;
-    $agentloggedIn = false;
-    $adminloggedIn = false;
-} elseif (isset($_SESSION['agent_id'])) {
-    // User is logged in
-    $agentloggedIn = true;
-    $userloggedIn = false;
-    $sellerloggedIn = false;
-    $adminloggedIn = false;
-} elseif (isset($_SESSION['admin_id'])) {
-    // User is logged in
-    $adminloggedIn = true;
-    $agentloggedIn = false;
-    $userloggedIn = false;
-    $sellerloggedIn = false;
-} else {
-    // User is not logged in
-    $userloggedIn = false;
-    $sellerloggedIn = false;
-    $agentloggedIn = false;
-    $adminloggedIn = false;
-}
-?>
+    } elseif (isset($_SESSION['seller_id'])) {
+        // User is logged in
+        $sellerloggedIn = true;
+        $userloggedIn = false;
+        $agentloggedIn = false;
+        $adminloggedIn = false;
+    } elseif (isset($_SESSION['agent_id'])) {
+        // User is logged in
+        $agentloggedIn = true;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+        $adminloggedIn = false;
+    } elseif (isset($_SESSION['admin_id'])) {
+        // User is logged in
+        $adminloggedIn = true;
+        $agentloggedIn = false;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+    } else {
+        // User is not logged in
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+        $agentloggedIn = false;
+        $adminloggedIn = false;
+    }
+    ?>
 
     <style>
         body {
@@ -217,6 +217,7 @@ if (isset($_SESSION['user_id'])) {
 
         .profile {
             width: 40vh;
+            height: 40vh;
             object-fit: cover;
         }
 
@@ -227,15 +228,15 @@ if (isset($_SESSION['user_id'])) {
 
 
         .price {
-            font-size: 6vh;
+            font-size: 8vh;
             margin-left: 27vw;
             text-align: left;
-            margin-top: 7vh;
+            margin-top: 5vh;
         }
 
         .topdetails {
-            font-size: 2vh;
-            margin-top: -8vh;
+            font-size: 2.5vh;
+            margin-top: -11vh;
             margin-left: 27vw;
             margin-bottom: 15vh;
         }
@@ -306,25 +307,27 @@ if (isset($_SESSION['user_id'])) {
             margin-left: 6vw;
             margin-top: -13vh;
             margin-bottom: 6vh;
-        
+
             transition: 500ms;
         }
 
         #openGmail {
             padding: 2vh;
-            margin-bottom: 2vh;
+            margin: auto;
             border-radius: 10vh;
-            background-color: #8000ff;
-            color: white;
-            font-size: 2vh;
+            background-color: #007bff;
+            color: rgb(255, 255, 255);
+            font-size: 3vh;
+            font-family: 'Amaranth', sans-serif;
             border: none;
-            width: 11vw;
-            transition: 500ms
+            width: 17vw;
+            transition: 500ms;
+            box-shadow: 1vh 1vh 2vh black;
         }
 
         #openGmail:hover {
-            background-color: #5100a1;
-            width: 12vw;
+            background-color: #00ac22;
+            width: 20vw;
             transition: 500ms;
         }
 
@@ -357,7 +360,7 @@ if (isset($_SESSION['user_id'])) {
         .removewish {
             padding: 2vh;
             font-size: 3vh;
-            background-color: rgb(83, 83, 83);
+            background-color: rgb(233, 0, 0);
             color: rgb(255, 255, 255);
             border-radius: 20vh;
             transition: 500ms;
@@ -366,13 +369,38 @@ if (isset($_SESSION['user_id'])) {
         }
 
         .removewish:hover {
-            background-color: rgb(0, 0, 0);
+            background-color: rgb(133, 0, 0);
             color: white;
-            font-size: 4vh;
             padding-left: 3vw;
             padding-right: 3vw;
             transition: 500ms;
 
+        }
+
+        /*end*/
+
+        .end{
+            margin-left: 4vw;
+            
+            margin-top: -2vh;
+            margin-bottom: 5vh;
+            font-size: 3vh;
+        }
+
+        .endbutton{
+            background-color: #8000ff;
+            color: white;
+            padding: 2vh;
+            border-radius: 10vh;
+            box-shadow: 1vh 1vh 1vh black;
+            text-decoration: none;
+            transition: 1000ms;
+        }
+
+        .endbutton:hover{
+            background-color: #47008f;
+            box-shadow: 2vh 2vh 2vh black;
+            transition: 500ms;
         }
     </style>
 
@@ -390,7 +418,7 @@ if (isset($_SESSION['user_id'])) {
             <a href="about.html">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
             <div class="dropdown">
 
                 <button class="username">
@@ -402,7 +430,7 @@ if (isset($_SESSION['user_id'])) {
                 </div>
             </div>
             <?php elseif ($sellerloggedIn): ?>
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Seller : </a>
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
             <div class="dropdown">
 
                 <button class="username">
@@ -416,7 +444,7 @@ if (isset($_SESSION['user_id'])) {
             </div>
             <?php elseif ($agentloggedIn): ?>
 
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Agent : </a>
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
             <div class="dropdown">
 
                 <button class="username">
@@ -424,12 +452,12 @@ if (isset($_SESSION['user_id'])) {
                 </button>
                 <div class="dropdown-content">
                     <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id'];?>">Profile</a>
+                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
                 </div>
             </div>
             <?php elseif ($adminloggedIn): ?>
 
-            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Admin : </a>
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
             <div class="dropdown">
 
                 <button class="username">
@@ -489,40 +517,45 @@ if (isset($_SESSION['user_id'])) {
         while ($row = $result->fetch_assoc()) {
 
             echo '<div class="product">';
-            
+
             echo '<div class="circle">';
             echo '<img class="profile" src="data:image/jpeg;base64,' . base64_encode($row["image"]) . '"/><br>';
             echo '</div>';
-            echo "<h2 class='price'>".ucwords($row['username'])."</h2><br>";
+            echo "<h2 class='price'>" . ucwords($row['username']) . "</h2><br>";
             echo "<div class='topdetails'>";
-            echo '<h2 class="astra_id">Astra id : '.$row["agent_id"].'</h2>';
+            echo '<h2 class="astra_id">Astra id : ' . $row["agent_id"] . '</h2>';
 
             echo "<h3 class='experience'>Experience : " . $row["experience"] . " years</h3>";
-            echo "<h3 class='area'>Works in : " . ucwords(strtolower($row["area"])) .", ". ucwords(strtolower($row["state"])). ".</h3>";
+            echo "<h3 class='area'>Works in : " . ucwords(strtolower($row["area"])) . ", " . ucwords(strtolower($row["state"])) . ".</h3>";
             echo "</div>";
             echo '</div>';
             echo '<div class="lowerdetails">';
-                echo "<hr>";
-                echo "<h2>About ".ucwords(strtolower($row['username']))."</h2>";
-                echo "<p>".$row['about']."</p>";
-                echo "<hr>";
-                echo "<h3 class='website'> Website :  <a href='" . $row["website"] . "'>click here</a> </h3>";
-                echo "<hr>";
+            echo "<hr>";
+            echo "<h2>About " . ucwords(strtolower($row['username'])) . "</h2>";
+            echo "<p>" . $row['about'] . "</p>";
+            echo "<hr>";
+            if ($row['website'] == NULL) {
+                echo "<h3 class='website'> Website : Not available </h3>";
+            } else {
+                echo "<h3 class='website'> Website :  <a href='" . $row["website"] . "'> Visit " . ucwords($row['username']) . "'s website</a> </h3>";
+            }
 
-                echo "<h3>Price: <span id='formattedPrice'></span></h3>";
-                echo "<script>document.getElementById('formattedPrice').innerText = formatIndianCurrency(" . $row['price'] . ");</script>";
+            echo "<hr>";
 
-                echo "<h3>Negotiable : ".$row['negotiable'].".</h3>";
-                echo "<hr>";
-                echo "<h3 class='area'>Serves in : ".$row['pincode'].", " . ucwords(strtolower($row["area"])) .", ". ucwords(strtolower($row["state"])). ".</h3>";
-                echo "<h3>Location on <a href='".$row['address_url']."'>map.</a></h3>";
-                echo "<hr>";
+            echo "<h3>Price: <span id='formattedPrice'></span></h3>";
+            echo "<script>document.getElementById('formattedPrice').innerText = formatIndianCurrency(" . $row['price'] . ");</script>";
+
+            echo "<h3>Negotiable : " . $row['negotiable'] . ".</h3>";
+            echo "<hr>";
+            echo "<h3 class='area'>Serves in : " . $row['pincode'] . ", " . ucwords(strtolower($row["area"])) . ", " . ucwords(strtolower($row["state"])) . ".</h3>";
+            echo "<h3>Location on <a href='" . $row['address_url'] . "'>map.</a></h3>";
+            echo "<hr>";
             echo '</div>';
-            $agentname=ucwords($row['username']);
-            $area=ucwords(strtolower($row["area"])) .", ". ucwords(strtolower($row["state"]));
-            $agent_id=$row['agent_id'];
-            $agentphone=$row['phone'];
-            $agentemail=$row['email'];
+            $agentname = ucwords($row['username']);
+            $area = ucwords(strtolower($row["area"])) . ", " . ucwords(strtolower($row["state"]));
+            $agent_id = $row['agent_id'];
+            $agentphone = $row['phone'];
+            $agentemail = $row['email'];
         }
     } else {
         echo "0 results";
@@ -536,14 +569,16 @@ if (isset($_SESSION['user_id'])) {
             <br>Email address :
             <?php echo $agentemail; ?>
         </h2>
-        <button id="openGmail">Compose Email</button>
+        <button id="openGmail">Email
+            <?php echo $agentname; ?>
+        </button>
 
         <script>
             document.getElementById('openGmail').onclick = function ()
             {
                 var email = '<?php echo $agentemail; ?>'; // Specify the email address here
                 var subject = 'Inquiry Regarding Real Estate Services.'; // Specify the email subject here
-                var body = "Dear <?php echo $agentname;?>,%0D%0AI hope this email finds you well. My name is <?php echo ucwords($_SESSION['username']);?>, and I am currently in the market for a new home in <?php echo $area;?> , where I understand you have a wealth of experience and expertise.%0D%0A%0D%0AI believe that with your expertise and professionalism, we can find the perfect home that aligns with my needs and preferences. Your attention to detail and commitment to client satisfaction are qualities that I greatly admire and seek in a real estate partner.%0D%0A%0D%0AI look forward to the opportunity to work together and benefit from your knowledge and experience.Please let me know your availability so we can coordinate a meeting.%0D%0A%0D%0AThank you for considering my inquiry, and I am excited about the prospect of collaborating with you on this exciting journey of finding my dream home.%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']);?>"; // Specify the email body here
+                var body = "Dear <?php echo $agentname; ?>,%0D%0AI hope this email finds you well. My name is <?php echo ucwords($_SESSION['username']); ?>, and I am currently in the market for a new home in <?php echo $area; ?> , where I understand you have a wealth of experience and expertise.%0D%0A%0D%0AI believe that with your expertise and professionalism, we can find the perfect home that aligns with my needs and preferences. Your attention to detail and commitment to client satisfaction are qualities that I greatly admire and seek in a real estate partner.%0D%0A%0D%0AI look forward to the opportunity to work together and benefit from your knowledge and experience.Please let me know your availability so we can coordinate a meeting.%0D%0A%0D%0AThank you for considering my inquiry, and I am excited about the prospect of collaborating with you on this exciting journey of finding my dream home.%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
                 var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
 
                 window.open(mailtoLink);
@@ -553,21 +588,47 @@ if (isset($_SESSION['user_id'])) {
         </script>
         <?php elseif (isset($_SESSION['agent_id'])): ?>
         <?php if ($agent_id == $_SESSION['agent_id']) {
-                echo '<br><a class="removewish" href="deleteagent.php?agent_id=' . $agent_id . '">Delete profile</a>';
+                echo '<br><a class="removewish" id="confirmationLink" href="deleteagent.php?agent_id=' . $agent_id . '">Delete profile</a>';
+                echo "<script> document.getElementById('confirmationLink').addEventListener('click', function (event)
+                    {
+                        event.preventDefault(); // Prevent the default link behavior
+                        if (confirm('Are you sure you want to delete your profile and account?'))
+                        {
+                            window.location.href = event.target.href; // Redirect to the link URL
+                        }
+                    });
+                </script>";
             } else {
                 echo "<h3 style='color: #d50000;'>Hello Agent!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>";
             }
             ?>
         <?php elseif (isset($_SESSION["admin_id"])): ?>
-        <?php echo '<br><a class="removewish" href="deleteagentadmin.php?agent_id=' . $agent_id . '">Remove listing</a>'; ?>
+        <?php echo '<br><a class="removewish" id="confirmationLink" href="deleteagentadmin.php?agent_id=' . $agent_id . '">Remove listing</a>';
+            echo "<script> document.getElementById('confirmationLink').addEventListener('click', function (event)
+                {
+                    event.preventDefault(); // Prevent the default link behavior
+                    if (confirm('Are you sure you remove this agent profile?'))
+                    {
+                        window.location.href = event.target.href; // Redirect to the link URL
+                    }
+                });
+            </script>"; ?>
         <?php elseif (isset($_SESSION["seller_id"])): ?>
-        <?php echo "<h3 style='color: #d50000;'>Hello Agent!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>";?>
+        <?php echo "<h3 style='color: #d50000;'>Hello Agent!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>"; ?>
 
         <?php else: ?>
         <h3 style="color: #d50000;"><a href="user login.html">Login</a> first to
             contact this agent.</h3>
         <?php endif;
         $conn->close(); ?>
+        
+    </div>
+
+    <div class="end">
+        <br>
+        <a class="endbutton" href="agent listing.php"><-Listings</a>
+        <a class="endbutton" href="home.php" style="margin-left: 73vw;">Homepage-></a>
+
     </div>
 
 
@@ -576,7 +637,7 @@ if (isset($_SESSION['user_id'])) {
             <div class="footer-section">
                 <h3>About Us</h3>
                 <p>Our mission is to provide top-notch real<br> estate services tailored to your needs.</p>
-                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>
+                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>    
             </div>
             <div class="footer-section">
                 <h3>Contact Us</h3>
