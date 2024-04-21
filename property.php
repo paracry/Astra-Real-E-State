@@ -333,7 +333,7 @@
             transition: 500ms;
         }
 
-        #revealButton {
+        .revealButton {
             padding: 2vh;
             margin: 1vh;
             margin-left: 3vw;
@@ -349,36 +349,79 @@
 
         }
 
-        #revealButton:hover {
+        .revealButton:hover {
             background-color: #490092;
             width: 14vw;
             transition: 500ms;
             font-size: 4vh;
         }
 
-        #hiddenSection {
-            display: none;
-            margin-left: 3vw;
-            transition: 12000ms;
-        }
-
         #openGmail {
             padding: 2vh;
-            margin-bottom: 2vh;
+            margin: auto;
             border-radius: 10vh;
-            background-color: #8000ff;
-            color: white;
-            font-size: 2vh;
+            background-color: #007bff;
+            color: rgb(255, 255, 255);
+            font-size: 3vh;
+            font-family: 'Amaranth', sans-serif;
             border: none;
-            width: 11vw;
-            transition: 500ms
+            width: 13vw;
+            transition: 500ms;
+            box-shadow: 1vh 1vh 2vh black;
         }
 
         #openGmail:hover {
-            background-color: #5100a1;
-            width: 12vw;
+            background-color: #00ac22;
+            width: 17vw;
             transition: 500ms;
         }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(255, 255, 255);
+            padding: 5vh;
+            font-size: 3vh;
+            box-shadow: 2vh 2vh 2vh #000000;
+            z-index: 1000;
+            transition: 500ms;
+            border-radius: 10vh;
+        }
+
+        .popup-content {
+            text-align: left;
+            transition: 500ms;
+        }
+
+        .close {
+            color: #ff0000;
+            float: right;
+            font-size: 6vh;
+            font-weight: bold;
+            margin-top: -6vh;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.41);
+            z-index: 999;
+        }
+
 
         /*wishlist*/
 
@@ -443,57 +486,57 @@
             <a href="about.html">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
-                <div class="dropdown">
+            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome User : </a>
+            <div class="dropdown">
 
-                    <button class="username">
-                        <?php echo ucwords($_SESSION['username']); ?>
-                    </button>
-                    <div class="dropdown-content">
-                        <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="wishlist.php">Wishlist</a>
-                    </div>
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content">
+                    <a class="logout" href="logout.php">Logout</a>
+                    <a class="logout" href="wishlist.php">Wishlist</a>
                 </div>
+            </div>
             <?php elseif ($sellerloggedIn): ?>
-                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Seller : </a>
-                <div class="dropdown">
+            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Seller : </a>
+            <div class="dropdown">
 
-                    <button class="username">
-                        <?php echo ucwords($_SESSION['username']); ?>
-                    </button>
-                    <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
-                        <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="seller listing.php">Postings</a><br>
-                        <a class="logout" href="property form.html">Add Property</a>
-                    </div>
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
+                    <a class="logout" href="logout.php">Logout</a>
+                    <a class="logout" href="seller listing.php">Postings</a><br>
+                    <a class="logout" href="property form.html">Add Property</a>
                 </div>
+            </div>
             <?php elseif ($agentloggedIn): ?>
 
-                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Agent : </a>
-                <div class="dropdown">
+            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Agent : </a>
+            <div class="dropdown">
 
-                    <button class="username">
-                        <?php echo ucwords($_SESSION['username']); ?>
-                    </button>
-                    <div class="dropdown-content">
-                        <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
-                    </div>
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content">
+                    <a class="logout" href="logout.php">Logout</a>
+                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
                 </div>
+            </div>
             <?php elseif ($adminloggedIn): ?>
 
-                <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Admin : </a>
-                <div class="dropdown">
+            <a class="logged" style="margin-left: 32vw; margin-right: 0%;">Welcome Admin : </a>
+            <div class="dropdown">
 
-                    <button class="username">
-                        <?php echo ucwords($_SESSION['username']); ?>
-                    </button>
-                    <div class="dropdown-content" style="height: 4vh;">
-                        <a class="logout" href="logout.php">Logout</a>
-                    </div>
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content" style="height: 4vh;">
+                    <a class="logout" href="logout.php">Logout</a>
                 </div>
+            </div>
             <?php else: ?>
-                <a class="login" href="user login.html">Login</a>
+            <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
 
             <script>
@@ -604,6 +647,7 @@
             echo "<a href='" . $row["location_url"] . "'><img  class='addressimage' src='images/maps.png'/><h3 class='address'> "
                 . $row["pincode"] . "<br>" . $street_name = ucwords(strtolower($row["street_name"])) . "<br> " . $state = ucwords(strtolower($row["state"])) . "</h3></a>";
             echo '</div>';
+            $price=$row['price'];
             $street_name = ucwords(strtolower($row["street_name"]));
             $state = ucwords(strtolower($row["state"]));
             $seller_id = $row['seller_id'];
@@ -615,77 +659,103 @@
 
     <div class="contact">
         <?php if (isset($_SESSION['user_id'])): ?>
-            <button id="revealButton" onclick="toggleHiddenSection()">Contact Seller</button>
-            <?php
+        <button id="openPopup" class="revealButton">Contact seller</button>
+        <?php
             $sql = "SELECT * FROM wishlist WHERE user_id='$user_id' AND property_id='$property_id'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-                echo '<a class="removewish" href="removewish.php?user_id=' . $user_id . '&property_id=' . $property_id . '">Remove from wishlist</a>';
+                echo '<a class="removewish" id="confirmationLink" href="removewish.php?user_id=' . $user_id . '&property_id=' . $property_id . '">Remove from wishlist</a>';
+                echo "<script> document.getElementById('confirmationLink').addEventListener('click', function (event)
+                    {
+                        event.preventDefault(); // Prevent the default link behavior
+                        if (confirm('Are you sure you remove this property from your wishlist?'))
+                        {
+                            window.location.href = event.target.href; // Redirect to the link URL
+                        }
+                    });
+                </script>";
             } else {
                 echo '<a class="addwish" href="addwish.php?user_id=' . $user_id . '&property_id=' . $property_id . '">Add to wishlist</a>';
             }
 
+            echo '<a class="removewish" href="mortgage calculator.php?price='. $price .'">Calculate Mortgage</a>';
+
+
             ?>
 
-            <div id="hiddenSection" style="display: none; height: 0; transition: 5000ms;">
-                <!-- Content of the hidden section -->
-                <h2>Phone number :
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="closePopup">&times;</span>
+                <h2>Seller contact details</h2>
+                <h3>Phone number :
                     <?php echo $sellerphone; ?>
                     <br>Email address :
                     <?php echo $selleremail; ?>
-                </h2>
-
-                <button id="openGmail">Compose Email</button>
-
-
+                </h3>
+                <center><button id="openGmail">Compose Email</button></center>
             </div>
+        </div>
+        <div id="overlay" class="overlay"></div>
 
-            <script>
-                function toggleHiddenSection()
-                {
-                    const hiddenSection = document.getElementById('hiddenSection');
+        <script>
+            const openPopupBtn = document.getElementById('openPopup');
+            const closePopupBtn = document.getElementById('closePopup');
+            const popup = document.getElementById('popup');
 
-                    if (hiddenSection.style.display === 'none')
-                    {
-                        hiddenSection.style.display = 'block';
-                        hiddenSection.style.height = hiddenSection.scrollHeight + 'px';
-                        hiddenSection.style.transition = '1500ms';
-                    } else
-                    {
-                        hiddenSection.style.height = '0';
-                        hiddenSection.style.transition = 'height 1500ms'; // Adjusted transition property
-                        setTimeout(() =>
-                        {
-                            hiddenSection.style.display = 'none'; // Delayed hiding to allow transition effect
-                        }, 1500);
-                    }
-                }
+            openPopupBtn.addEventListener('click', function ()
+            {
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+            });
 
-                document.getElementById('openGmail').onclick = function ()
-                {
-                    var email = '<?php echo $selleremail; ?>'; // Specify the email address here
-                    var subject = 'Inquiry Regarding Property ID = <?php echo $property_id; ?>.'; // Specify the email subject here
-                    var body = "Dear <?php echo $sellername; ?>,%0D%0AI hope this email finds you well. I am writing to express my genuine interest in the property having Property ID = <?php echo $property_id; ?>, situated in <?php echo $street_name . ', ' . $state; ?> . After thorough research and consideration, I believe that your property aligns perfectly with what I am looking for in a home/investment.%0D%0A%0D%0AI would appreciate the opportunity to further discuss the property with you. Could we arrange a viewing or a call to address any questions I may have? Additionally, I am open to discussing the terms of the sale and any additional information you deem necessary.%0D%0A%0D%0AThank you for considering my inquiry. I look forward to the possibility of exploring this opportunity further.%0D%0A%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
-                    var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+            closePopupBtn.addEventListener('click', function ()
+            {
+                popup.style.display = 'none';
+                overlay.style.display = 'none'
+            });
 
-                    window.open(mailtoLink);
-                };
+            document.getElementById('openGmail').onclick = function ()
+            {
+                var email = '<?php echo $selleremail; ?>'; // Specify the email address here
+                var subject = 'Inquiry Regarding Property ID = <?php echo $property_id; ?>.'; // Specify the email subject here
+                var body = "Dear <?php echo $sellername; ?>,%0D%0AI hope this email finds you well. I am writing to express my genuine interest in the property having Property ID = <?php echo $property_id; ?>, situated in <?php echo $street_name . ', ' . $state; ?> . After thorough research and consideration, I believe that your property aligns perfectly with what I am looking for in a home/investment.%0D%0A%0D%0AI would appreciate the opportunity to further discuss the property with you. Could we arrange a viewing or a call to address any questions I may have? Additionally, I am open to discussing the terms of the sale and any additional information you deem necessary.%0D%0A%0D%0AThank you for considering my inquiry. I look forward to the possibility of exploring this opportunity further.%0D%0A%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
+                var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
 
+                window.open(mailtoLink);
+            };
+        </script>
 
-            </script>
         <?php elseif (isset($_SESSION['seller_id'])): ?>
-            <?php if ($seller_id == $_SESSION['seller_id']) {
-                echo '<a class="removewish" href="deleteproperty.php?property_id=' . $property_id . '">Remove listing</a>';
+        <?php if ($seller_id == $_SESSION['seller_id']) {
+                echo '<a class="removewish" id="confirmationLink" href="deleteproperty.php?property_id=' . $property_id . '">Remove listing</a>';
+                echo "<script> document.getElementById('confirmationLink').addEventListener('click', function (event)
+                    {
+                        event.preventDefault(); // Prevent the default link behavior
+                        if (confirm('Are you sure you want to take down this posting?'))
+                        {
+                            window.location.href = event.target.href; // Redirect to the link URL
+                        }
+                    });
+                </script>";
             } else {
                 echo "<h3 style='margin: 6vh;  color: #d50000;'>Hello Seller!<br>If you want the contact details of the owner of this property or wishlist this property then you'll have to <a href='user login.html'>Login</a> as User!.</h3>";
             }
             ?>
         <?php elseif (isset($_SESSION["admin_id"])): ?>
-            <?php echo '<a class="removewish" href="deleteproperty.php?property_id=' . $property_id . '">Remove listing</a>'; ?>
+        <?php echo '<a class="removewish" id="confirmationLink" href="deleteproperty.php?property_id=' . $property_id . '">Remove listing</a>';
+            echo "<script> document.getElementById('confirmationLink').addEventListener('click', function (event)
+                {
+                    event.preventDefault(); // Prevent the default link behavior
+                    if (confirm('Are you sure you want to take down this posting?'))
+                    {
+                        window.location.href = event.target.href; // Redirect to the link URL
+                    }
+                });
+            </script>"; ?>
         <?php else: ?>
-            <h3 style="margin: 6vh;  color: #d50000;"><a href="user login.html">Login</a> first to contact user or wishlist
-                this property.</h3>
+        <h3 style="margin: 6vh;  color: #d50000;"><a href="user login.html">Login</a> first to contact user or wishlist
+            this property.</h3>
         <?php endif;
         $conn->close(); ?>
     </div>
