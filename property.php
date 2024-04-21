@@ -519,7 +519,6 @@
 
         .end {
             margin-left: 2vw;
-            margin-top: -2vh;
             margin-bottom: 5vh;
             font-size: 3vh;
         }
@@ -828,9 +827,8 @@
         <?php endif;
         $conn->close(); ?>
     </div>
-
+    <h6><hr></h6>
     <div class="end">
-        <br>
         <a class="endbutton" href="listing.php"><-Listings</a>
         <a class="endbutton" href="home.php" style="margin-left: 77vw;">Homepage-></a>
     </div>

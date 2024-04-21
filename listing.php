@@ -15,40 +15,40 @@
     </script>
 
     <?php
-session_start();
-if (isset($_SESSION['user_id'])) {
-    // User is logged in
-    $userloggedIn = true;
-    $sellerloggedIn = false;
-    $agentloggedIn = false;
-    $adminloggedIn = false;
+    session_start();
+    if (isset($_SESSION['user_id'])) {
+        // User is logged in
+        $userloggedIn = true;
+        $sellerloggedIn = false;
+        $agentloggedIn = false;
+        $adminloggedIn = false;
 
-} elseif (isset($_SESSION['seller_id'])) {
-    // User is logged in
-    $sellerloggedIn = true;
-    $userloggedIn = false;
-    $agentloggedIn = false;
-    $adminloggedIn = false;
-} elseif (isset($_SESSION['agent_id'])) {
-    // User is logged in
-    $agentloggedIn = true;
-    $userloggedIn = false;
-    $sellerloggedIn = false;
-    $adminloggedIn = false;
-} elseif (isset($_SESSION['admin_id'])) {
-    // User is logged in
-    $adminloggedIn = true;
-    $agentloggedIn = false;
-    $userloggedIn = false;
-    $sellerloggedIn = false;
-} else {
-    // User is not logged in
-    $userloggedIn = false;
-    $sellerloggedIn = false;
-    $agentloggedIn = false;
-    $adminloggedIn = false;
-}
-?>
+    } elseif (isset($_SESSION['seller_id'])) {
+        // User is logged in
+        $sellerloggedIn = true;
+        $userloggedIn = false;
+        $agentloggedIn = false;
+        $adminloggedIn = false;
+    } elseif (isset($_SESSION['agent_id'])) {
+        // User is logged in
+        $agentloggedIn = true;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+        $adminloggedIn = false;
+    } elseif (isset($_SESSION['admin_id'])) {
+        // User is logged in
+        $adminloggedIn = true;
+        $agentloggedIn = false;
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+    } else {
+        // User is not logged in
+        $userloggedIn = false;
+        $sellerloggedIn = false;
+        $agentloggedIn = false;
+        $adminloggedIn = false;
+    }
+    ?>
 
     <style>
         body {
@@ -304,6 +304,30 @@ if (isset($_SESSION['user_id'])) {
             font-size: 4vh;
             transition: 500ms;
         }
+
+        /*end*/
+
+        .end {
+            margin-left: 2vw;
+            margin-bottom: 5vh;
+            font-size: 3vh;
+        }
+
+        .endbutton {
+            background-color: #8000ff;
+            color: white;
+            padding: 2vh;
+            border-radius: 10vh;
+            box-shadow: 1vh 1vh 1vh black;
+            text-decoration: none;
+            transition: 1000ms;
+        }
+
+        .endbutton:hover {
+            background-color: #6200c3;
+            box-shadow: 2vh 2vh 2vh black;
+            transition: 500ms;
+        }
     </style>
 </head>
 
@@ -316,57 +340,57 @@ if (isset($_SESSION['user_id'])) {
             <a href="about.html">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="wishlist.php">Wishlist</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="wishlist.php">Wishlist</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($sellerloggedIn): ?>
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="seller listing.php">Postings</a><br>
-                    <a class="logout" href="property form.html">Add Property</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="seller listing.php">Postings</a><br>
+                        <a class="logout" href="property form.html">Add Property</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($agentloggedIn): ?>
 
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id'];?>">Profile</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($adminloggedIn): ?>
 
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content" style="height: 4vh;">
-                    <a class="logout" href="logout.php">Logout</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 4vh;">
+                        <a class="logout" href="logout.php">Logout</a>
+                    </div>
                 </div>
-            </div>
             <?php else: ?>
-            <a class="login" href="user login.html">Login</a>
+                <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
 
             <script>
@@ -434,8 +458,8 @@ if (isset($_SESSION['user_id'])) {
                 echo "<h2 class='bath'>" . $row["bath"] . " Bath</h2>";
                 echo "<h2 class='size'>" .
                     number_format($row["size"], 0, '.', ',') . " sqft</h2><br>";
-                    echo "<h2 class='bath'>" . ucwords(strtolower($row["street_name"])) ."<br> ".ucwords(strtolower($row["state"])) . "</h2>";
-                    echo '</div>';
+                echo "<h2 class='bath'>" . ucwords(strtolower($row["street_name"])) . "<br> " . ucwords(strtolower($row["state"])) . "</h2>";
+                echo '</div>';
                 echo '</div>';
                 echo "</a>";
             }
@@ -447,6 +471,14 @@ if (isset($_SESSION['user_id'])) {
         ?>
 
     </div>
+    <br><center><h3 style="margin: 0 10vw;"><hr>Thank you for browsing through our list of available Properties. We hope you found the perfect property!<br>Feel free to explore other services on our website or contact us for more information.</h3></center><br><br>
+
+
+    <div class="end">
+        <br>
+        <a class="endbutton" href="home.php"><-Homepage</a>
+    </div>
+
     <footer id="footer">
         <div class="footer-container">
             <div class="footer-section">

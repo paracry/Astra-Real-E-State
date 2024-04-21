@@ -14,21 +14,21 @@ if ($password !== $confirm_password) {
     echo "<p style='color: red;'>Error: Passwords do not match. Please <a href='javascript:history.go(-1)'>try again</a>.</p>";
     echo "";
 } else {
-    $full_name = $_SESSION['full_name'];
-    $email = $_SESSION['email'];
-    $phone_number = $_SESSION['phone_number'];
-    $password = $_POST['password'];
-    $state = $_SESSION['state'];
-    $area = $_SESSION['area'];
-    $website = $_SESSION['website'];
-    $experience = $_SESSION['experience'];
-    $image = $_SESSION['image'];
+    $full_name = $conn->real_escape_string($_SESSION['full_name']);
+    $email = $conn->real_escape_string($_SESSION['email']);
+    $phone_number = $conn->real_escape_string($_SESSION['phone_number']);
+    $password = $conn->real_escape_string($_POST['password']);
+    $state = $conn->real_escape_string($_SESSION['state']);
+    $area = $conn->real_escape_string($_SESSION['area']);
+    $website = $conn->real_escape_string($_SESSION['website']);
+    $experience = $conn->real_escape_string($_SESSION['experience']);
+    $image = $conn->real_escape_string($_SESSION['image']);
     $image = $conn->real_escape_string($image);
     $about = $conn->real_escape_string($_SESSION['about']);
-    $address_url = $_SESSION['address_url'];
-    $price = $_SESSION['price'];
-    $negotiable = $_SESSION['negotiable'];
-    $pincode = $_SESSION['pincode'];
+    $address_url = $conn->real_escape_string($_SESSION['address_url']);
+    $price = $conn->real_escape_string($_SESSION['price']);
+    $negotiable = $conn->real_escape_string($_SESSION['negotiable']);
+    $pincode = $conn->real_escape_string($_SESSION['pincode']);
 
 
 
@@ -40,7 +40,7 @@ if ($password !== $confirm_password) {
         echo "New record created successfully form2";
         $agent_id = mysqli_insert_id($conn);
         $_SESSION["agent_id"] = $agent_id;
-        $_SESSION['username']= $full_name;
+        $_SESSION['username'] = $full_name;
         header("Location:  agent profile.php?agent_id=$agent_id");
 
     } else {

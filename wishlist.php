@@ -304,6 +304,30 @@
             font-size: 4vh;
             transition: 500ms;
         }
+
+        /*end*/
+
+        .end {
+            margin-left: 2vw;
+            margin-bottom: 5vh;
+            font-size: 3vh;
+        }
+
+        .endbutton {
+            background-color: #8000ff;
+            color: white;
+            padding: 2vh;
+            border-radius: 10vh;
+            box-shadow: 1vh 1vh 1vh black;
+            text-decoration: none;
+            transition: 1000ms;
+        }
+
+        .endbutton:hover {
+            background-color: #6200c3;
+            box-shadow: 2vh 2vh 2vh black;
+            transition: 500ms;
+        }
     </style>
 </head>
 

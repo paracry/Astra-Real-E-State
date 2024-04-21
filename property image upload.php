@@ -11,18 +11,18 @@ $conn->begin_transaction();
 
 $seller_id = $_SESSION['seller_id'];
 
-$price = $_SESSION[$seller_id . 'price'];
-$bedrooms = $_SESSION[$seller_id . 'bedrooms'];
-$bathrooms = $_SESSION[$seller_id . 'bathrooms'];
-$size = $_SESSION[$seller_id . 'size'];
-$year_built = $_SESSION[$seller_id . 'year_built'];
-$property_type = $_SESSION[$seller_id . 'property_type'];
-$garages = $_SESSION[$seller_id . 'garages'];
-$street = $_SESSION[$seller_id . 'street'];
-$pincode = $_SESSION[$seller_id . 'pincode'];
-$state = $_SESSION[$seller_id . 'state'];
-$location = $_SESSION[$seller_id . 'location'];
-$seller_id = $_SESSION['seller_id']; // Assuming user is logged in and user_id is stored in session
+$price = $conn->real_escape_string($_SESSION[$seller_id . 'price']);
+$bedrooms = $conn->real_escape_string($_SESSION[$seller_id . 'bedrooms']);
+$bathrooms = $conn->real_escape_string($_SESSION[$seller_id . 'bathrooms']);
+$size = $conn->real_escape_string($_SESSION[$seller_id . 'size']);
+$year_built = $conn->real_escape_string($_SESSION[$seller_id . 'year_built']);
+$property_type = $conn->real_escape_string($_SESSION[$seller_id . 'property_type']);
+$garages = $conn->real_escape_string($_SESSION[$seller_id . 'garages']);
+$street = $conn->real_escape_string($_SESSION[$seller_id . 'street']);
+$pincode = $conn->real_escape_string($_SESSION[$seller_id . 'pincode']);
+$state = $conn->real_escape_string($_SESSION[$seller_id . 'state']);
+$location = $conn->real_escape_string($_SESSION[$seller_id . 'location']);
+$seller_id = $conn->real_escape_string($_SESSION['seller_id']); // Assuming user is logged in and user_id is stored in session
 $image = $_SESSION[$seller_id . 'image'];
 $image = $conn->real_escape_string($image);
 

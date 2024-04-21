@@ -8,16 +8,16 @@ $dbname = "real_estate";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 
-$password = $_POST['password'];
+$password = $conn->real_escape_string($_POST['password']);
 $confirm_password = $_POST['confirm_password'];
 
 if ($password !== $confirm_password) {
     echo "<p style='color: red;'>Error: Passwords do not match. Please <a href='javascript:history.go(-1)'>try again</a>.</p>";
     echo "";
 } else {
-    $name = $_SESSION['user_name'];
-    $email = $_SESSION['user_email'];
-    $phone = $_SESSION['user_phone'];
+    $name = $conn->real_escape_string($_SESSION['user_name']);
+    $email = $conn->real_escape_string($_SESSION['user_email']);
+    $phone = $conn->real_escape_string($_SESSION['user_phone']);
 
 
     $sql = "INSERT INTO `user` (`username`, `email`, `phone`, `password`) VALUES ('$name', '$email', '$phone', '$password')";
@@ -27,7 +27,7 @@ if ($password !== $confirm_password) {
         session_start();
         $_SESSION['user_id'] = mysqli_insert_id($conn);
         $_SESSION['username'] = $name;
-        header ("Location: user login.html");
+        header("Location: user login.html");
 
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;

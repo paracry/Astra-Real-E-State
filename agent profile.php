@@ -623,7 +623,7 @@
         $conn->close(); ?>
         
     </div>
-
+    <h6><hr></h6>
     <div class="end">
         <br>
         <a class="endbutton" href="agent listing.php"><-Listings</a>

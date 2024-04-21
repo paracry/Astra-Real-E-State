@@ -303,6 +303,30 @@
             font-size: 4vh;
             transition: 500ms;
         }
+
+        /*end*/
+
+        .end {
+            margin-left: 2vw;
+            margin-bottom: 5vh;
+            font-size: 3vh;
+        }
+
+        .endbutton {
+            background-color: #8000ff;
+            color: white;
+            padding: 2vh;
+            border-radius: 10vh;
+            box-shadow: 1vh 1vh 1vh black;
+            text-decoration: none;
+            transition: 1000ms;
+        }
+
+        .endbutton:hover {
+            background-color: #6200c3;
+            box-shadow: 2vh 2vh 2vh black;
+            transition: 500ms;
+        }
     </style>
 </head>
 
@@ -428,7 +452,7 @@
                 echo '<div class="details">';
                 echo "<h2 class='price'>Name : " . ucwords($row['username']) . "</h2><br>";
                 echo "<h2 class='bed'>Experience : " . $row["experience"] . " years</h2><br>";
-                echo "<h2 class='area'>Serves in : ". ucwords(strtolower($row["area"])) . ", " . ucwords(strtolower($row["state"])) . ".</h2>";
+                echo "<h2 class='area'>Serves in : " . ucwords(strtolower($row["area"])) . ", " . ucwords(strtolower($row["state"])) . ".</h2>";
                 echo '</div>';
                 echo '</div>';
                 echo "</a>";
@@ -441,6 +465,14 @@
         ?>
 
     </div>
+
+    <br><center><h3 style="margin: 0 10vw;"><hr>Thank you for browsing through our list of available agents. We hope you found the perfect agent!<br>Feel free to explore other services on our website or contact us for more information.</h3></center><br><br>
+
+
+    <div class="end">
+        <br>
+        <a class="endbutton" href="home.php"><-Homepage</a>    </div>
+
     <footer id="footer">
         <div class="footer-container">
             <div class="footer-section">
