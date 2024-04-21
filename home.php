@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
     <title>Astra Real Estate</title>
 
     <?php
@@ -47,17 +48,18 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Amaranth', sans-serif;
             background-image: url(images/home.jpeg);
-            background-size: 300vh;
-            background-position: center;
+            object-fit: cover;
+            background-size: 320vh;
+            background-position: top;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         .header {
-
+            font-family: Arial, sans-serif;
             padding: 3vh 2vw;
             display: flex;
             justify-content: space-between;
@@ -188,7 +190,7 @@
             border: none;
             border-radius: 20vh;
             cursor: pointer;
-            margin-bottom: 25vh;
+            margin-bottom: 30vh;
         }
 
         .search:hover {
@@ -202,7 +204,7 @@
             background-color: #27004f70;
             color: rgb(235, 199, 255);
             text-align: center;
-            margin-top: 15vh;
+            margin-top: 10vh;
 
         }
 
@@ -265,57 +267,57 @@
             <a href="about.html">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="wishlist.php">Wishlist</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="wishlist.php">Wishlist</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($sellerloggedIn): ?>
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="seller listing.php">Postings</a><br>
-                    <a class="logout" href="property form.html">Add Property</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="seller listing.php">Postings</a><br>
+                        <a class="logout" href="property form.html">Add Property</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($agentloggedIn): ?>
 
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id'];?>">Profile</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($adminloggedIn): ?>
 
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content" style="height: 4vh;">
-                    <a class="logout" href="logout.php">Logout</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 4vh;">
+                        <a class="logout" href="logout.php">Logout</a>
+                    </div>
                 </div>
-            </div>
             <?php else: ?>
-            <a class="login" href="user login.html">Login</a>
+                <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
 
             <script>

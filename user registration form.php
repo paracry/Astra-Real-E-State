@@ -10,15 +10,15 @@
         body {
             background-image: url(images/home.jpeg);
             object-fit: cover;
-            background-size: 216vh;
+            background-size: 320vh;
+            background-position: top;
 
         }
 
         .welcome {
             display: block;
             font-size: 9vh;
-            color: #c080ff;
-            background-color: rgba(0, 0, 0, 0.755);
+            color: #000000;
             border-radius: 7vh;
             text-align: center;
             margin: auto;
@@ -69,6 +69,17 @@
         p {
             color: red;
         }
+
+        a{
+            color: lightblue;
+            text-align: center;
+            margin-left: 3.7vw;
+            font-size: 3vh;
+        }
+
+        a:hover{
+            color: rgb(127, 127, 255);
+        }
     </style>
 
 </head>
@@ -95,7 +106,9 @@
             <?php if(isset($_SESSION['phone_error'])) { echo $_SESSION['phone_error']; } ?>
         </p>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit"><br><br>
+
+        <a href="home.php">go back to homepage</a>
     </form>
 
 </body>

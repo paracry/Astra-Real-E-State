@@ -7,14 +7,34 @@
     <title>Document</title>
 
     <style>
+        body {
+            background-image: url(images/home.jpeg);
+            object-fit: cover;
+            background-size: 260vh;
+            background-position: 50% 14%;
+
+        }
+
+        .welcome {
+            display: block;
+            font-size: 9vh;
+            color: #000000;
+            border-radius: 7vh;
+            text-align: center;
+            margin: auto;
+            margin-top: 4vh;
+            margin-bottom: 4vh;
+            width: 25vw;
+        }
+
         form {
-            max-width: 400px;
-            margin: 0 auto;
+
+            width: 30%;
+            margin: auto;
             padding: 5vh;
-            border: 1px solid #ccc;
             border-radius: 5vh;
-            background-color: #f9f9f9;
-            font-size: 1em;
+            color: white;
+            background-color: #000000ce;
         }
 
         input[type="text"],
@@ -46,18 +66,28 @@
 </head>
 
 <body>
-    <h1>hello</h1>
+    <h1 class="welcome">Property Form</h1>
     <form action="property image upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="image1" required />
-        <input type="file" name="image2" required />
-        <input type="file" name="image3" required />
-        <input type="file" name="image4" required />
-        <input type="file" name="image5" required />
-        <input type="file" name="image6" required />
-        <input type="file" name="image7" required />
-        <input type="file" name="image8" required />
-        <input type="file" name="image9" required />
-        <input type="file" name="image10" required s />
+        <label>Image 1 Front side :</label>
+        <input type="file" name="image1" required /><br><br>
+        <label>Image 2 :</label>
+        <input type="file" name="image2" required /><br><br>
+        <label>Image 3 :</label>
+        <input type="file" name="image3" required /><br><br>
+        <label>Image 4 :</label>
+        <input type="file" name="image4" required /><br><br>
+        <label>Image 5 :</label>
+        <input type="file" name="image5" required /><br><br>
+        <label>Image 6 :</label>
+        <input type="file" name="image6" required /><br><br>
+        <label>Image 7 :</label>
+        <input type="file" name="image7" required /><br><br>
+        <label>Image 8 :</label>
+        <input type="file" name="image8" required /><br><br>
+        <label>Image 9 :</label>
+        <input type="file" name="image9" required /><br><br>
+        <label>Image 10 :</label>
+        <input type="file" name="image10" required /><br><br>
         <!-- Add more input fields for image3 to image10 -->
         <input type="submit" value="Upload Image" name="submit" />
     </form>
