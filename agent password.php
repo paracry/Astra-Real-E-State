@@ -11,9 +11,10 @@ $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
 
 if ($password !== $confirm_password) {
-    echo "<p style='color: red;'>Error: Passwords do not match. Please <a href='javascript:history.go(-1)'>try again</a>.</p>";
-    echo "";
+    $_SESSION['agent_error_password']= "<p style='color: red;'>Error: Passwords do not match. Please try again.</p>";
+    header("Location: agent password form.php");
 } else {
+    unset($_SESSION['agent_error_password']);
     $full_name = $conn->real_escape_string($_SESSION['full_name']);
     $email = $conn->real_escape_string($_SESSION['email']);
     $phone_number = $conn->real_escape_string($_SESSION['phone_number']);

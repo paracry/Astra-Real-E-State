@@ -7,19 +7,22 @@
     <title>Document</title>
 
     <style>
-        body {
+
+        body{
             background-image: url(images/home.jpeg);
             object-fit: cover;
             background-size: 320vh;
             background-position: top;
-
+            
         }
-
+        
         .welcome {
             display: block;
             font-size: 9vh;
-            color: #000000;
-            border-radius: 7vh;
+            border-radius: 20vh;
+            background-color: #27004f70;
+            color: rgb(235, 199, 255);
+            padding: 2vh;
             text-align: center;
             margin: auto;
             margin-top: 4vh;
@@ -28,24 +31,21 @@
         }
 
         form {
-
             width: 20%;
             margin: auto;
             padding: 5vh;
             border-radius: 5vh;
-            color: white;
-            background-color: #000000ce;
+            background-color: #000000b9;
         }
 
         label {
             display: block;
+            color: white;
             margin-bottom: 5px;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"] {
-            width: 95%;
+        input[type="password"] {
+            width: 94%;
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
@@ -53,39 +53,39 @@
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
             color: white;
-            padding: 10px 15px;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
     </style>
 
 </head>
 
 <body>
-    <h1 class="welcome">Seller Registration</h1>
-    <form action="seller registration.php" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <?php session_start(); ?>
+    <h1 class="welcome">User Registration</h1>
+    <form action="user password.php" method="post">
+        <form>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
 
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" required><br><br>
+            <?php if(isset($_SESSION['password_error'])) { echo $_SESSION['password_error']; } ?>
 
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required><br><br>
+            <input type="submit" value="Submit">
+        </form>
 
-        <input type="submit" value="Submit">
     </form>
-
 </body>
 
 </html>

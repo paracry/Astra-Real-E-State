@@ -1,5 +1,10 @@
 <?php
+
+
 session_start();
+session_destroy();
+
+
 
 $namepattern = "/^[a-zA-Z]+(?:\s[a-zA-Z]+)+$/";
 
@@ -38,7 +43,7 @@ if (isset($_SESSION['name_error']) || isset($_SESSION['email_error']) || isset($
     header("Location: user registration form.php");
     exit();
 } else {
-    header("Location: user password.html");
+    header("Location: user password form.php");
     exit();
 }
 

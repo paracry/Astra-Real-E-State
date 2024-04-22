@@ -198,7 +198,7 @@
         }
 
         .welcome {
-            padding: 7vh;
+            padding: 7vh 6vw;
             font-size: 9vh;
             border-radius: 20vh;
             background-color: #27004f70;

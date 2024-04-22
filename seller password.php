@@ -12,9 +12,10 @@ $password = $conn->real_escape_string($_POST['password']);
 $confirm_password = $_POST['confirm_password'];
 
 if ($password !== $confirm_password) {
-    echo "<p style='color: red;'>Error: Passwords do not match. Please <a href='javascript:history.go(-1)'>try again</a>.</p>";
-    echo "";
+    $_SESSION['seller_password_error']= "<p style='color: red;'>Error: Passwords do not match. Please try again.</p>";
+    header("Location: seller password form.php");
 } else {
+    unset($_SESSION['seller_password_error']);
     $name = $conn->real_escape_string($_SESSION['seller_name']);
     $email = $conn->real_escape_string($_SESSION['seller_email']);
     $phone = $conn->real_escape_string($_SESSION['seller_phone']);

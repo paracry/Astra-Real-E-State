@@ -18,8 +18,10 @@
         .welcome {
             display: block;
             font-size: 9vh;
-            color: #000000;
-            border-radius: 7vh;
+            border-radius: 20vh;
+            background-color: #27004f70;
+            color: rgb(235, 199, 255);
+            padding: 2vh;
             text-align: center;
             margin: auto;
             margin-top: 4vh;

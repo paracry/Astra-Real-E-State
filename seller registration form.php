@@ -42,8 +42,10 @@
             margin-bottom: 5px;
         }
 
-        input[type="password"] {
-            width: 94%;
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 95%;
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
@@ -51,36 +53,44 @@
         }
 
         input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            background-color: #4CAF50;
             color: white;
+            padding: 10px 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
         }
 
         input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #45a049;
         }
     </style>
 
 </head>
 
 <body>
+    <?php session_start(); ?>
     <h1 class="welcome">Seller Registration</h1>
-    <form action="seller password.php" method="post">
-        <form>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
+    <form action="seller registration.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <?php if(isset($_SESSION['seller_error_name'])) { echo $_SESSION['seller_error_name']; } ?>
 
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <?php if(isset($_SESSION['seller_error_email'])) { echo $_SESSION['seller_error_email']; } ?>
 
-            <input type="submit" value="Submit">
-        </form>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <?php if(isset($_SESSION['seller_error_phone'])) { echo $_SESSION['seller_error_phone']; } ?>
 
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        <?php if(isset($_SESSION['seller_error_address'])) { echo $_SESSION['seller_error_address']; } ?>
+
+        <input type="submit" value="Submit">
     </form>
+
 </body>
 
 </html>

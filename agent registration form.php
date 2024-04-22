@@ -76,40 +76,48 @@
 </head>
 
 <body>
+    <?php session_start(); ?>
     <h1 class="welcome">Agent Registration</h1>
     <form action="agent registration.php" method="post" enctype="multipart/form-data">
         <label for="full_name">Full Name:</label>
-        <input type="text" id="full_name" name="full_name" required /><br /><br />
+        <input type="text" id="full_name" name="full_name" required />
+        <?php if(isset($_SESSION['agent_error_name'])) { echo $_SESSION['agent_error_name']; } ?><br /><br />
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required /><br /><br />
+        <input type="email" id="email" name="email" required />
+        <?php if(isset($_SESSION['agent_error_email'])) { echo $_SESSION['agent_error_email']; } ?><br /><br />
 
         <label for="about">About yourself:</label>
-        <textarea id="about" name="about" rows="4" cols="50"></textarea>
+        <textarea id="about" name="about" rows="4" cols="50">
+        </textarea>
 
         <label for="phone_number">Phone Number:</label>
-        <input type="tel" id="phone_number" name="phone_number" required /><br /><br />
+        <input type="tel" id="phone_number" name="phone_number" required />
+        <?php if(isset($_SESSION['agent_error_phone'])) { echo $_SESSION['agent_error_phone']; } ?><br /><br />
 
         <label for="state">State:</label>
-        <input type="text" id="state" name="state" required /><br /><br />
+        <input type="text" id="state" name="state" required />
+        <?php if(isset($_SESSION['agent_error_state'])) { echo $_SESSION['agent_error_state']; } ?><br /><br />
 
         <label for="area">Area:</label>
-        <input type="text" id="area" name="area" required /><br /><br />
+        <input type="text" id="area" name="area" required />
+        <?php if(isset($_SESSION['seller_error_area'])) { echo $_SESSION['seller_error_area']; } ?><br /><br />
 
         <label for="pincode">Pincode:</label>
-        <input type="text" id="pincode" name="pincode" required><br><br>
+        <input type="text" id="pincode" name="pincode" required>
+        <?php if(isset($_SESSION['seller_error_pincode'])) { echo $_SESSION['seller_error_pincode']; } ?><br><br>
 
         <label for="address_url">Address URL:</label>
-        <input type="url" id="address_url" name="address_url" required /><br /><br />
+        <input type="url" id="address_url" name="address_url" required />
 
         <label for="website">Website:</label>
-        <input type="url" id="website" name="website" /><br /><br />
+        <input type="url" id="website" name="website" />
 
         <label for="experience">Experience:</label>
-        <input type="text" id="experience" name="experience" required /><br /><br />
+        <input type="text" id="experience" name="experience" required />
 
         <label for="price">Price:</label>
-        <input type="text" id="price" name="price" required><br><br>
+        <input type="text" id="price" name="price" required>
 
         <label>Price negotiable?</label>
         <input type="radio" id="yes" name="negotiable" value="yes">

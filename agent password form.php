@@ -7,19 +7,19 @@
     <title>Document</title>
 
     <style>
-
-        body{
+        body {
             background-image: url(images/home.jpeg);
             object-fit: cover;
             background-size: 320vh;
             background-position: top;
-            
+
         }
-        
+
         .welcome {
             display: block;
             font-size: 9vh;
             color: #000000;
+            border-radius: 7vh;
             text-align: center;
             margin: auto;
             margin-top: 4vh;
@@ -28,16 +28,17 @@
         }
 
         form {
+
             width: 20%;
             margin: auto;
             padding: 5vh;
             border-radius: 5vh;
-            background-color: #000000b9;
+            color: white;
+            background-color: #000000ce;
         }
 
         label {
             display: block;
-            color: white;
             margin-bottom: 5px;
         }
 
@@ -67,15 +68,15 @@
 </head>
 
 <body>
-    <h1 class="welcome">User Registration</h1>
-    <form action="user password.php" method="post">
+    <h1 class="welcome">Agent Registration</h1>
+    <form action="agent password.php" method="post">
         <form>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required><br><br>
 
             <label for="confirm_password">Confirm Password:</label>
             <input type="password" id="confirm_password" name="confirm_password" required><br><br>
-
+            <?php if(isset($_SESSION['agent_error_password'])) { echo $_SESSION['agent_error_password']; } ?><br /><br />
             <input type="submit" value="Submit">
         </form>
 
