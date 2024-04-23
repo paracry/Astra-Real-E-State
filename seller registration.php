@@ -13,7 +13,7 @@ if (preg_match($pattern_name, $_POST['name'])) {
     $_SESSION['seller_name'] = $_POST['name'];
     unset($_SESSION['seller_error_name']);
 } else {
-    $_SESSION['seller_error_name'] = "<p style='color:red;'>Invalid name format. Please enter a valid name.</p>";
+    $_SESSION['seller_error_name'] = "<p style='color:red;'>Invalid name format. Please enter a valid name (for eg : Aditya Kumar).</p>";
 }
 
 if (preg_match($pattern_email, $_POST['email'])) {
@@ -34,7 +34,7 @@ if (preg_match($pattern_address, $_POST['address'])) {
     $_SESSION['seller_address'] = $_POST['address'];
     unset($_SESSION['seller_error_address']);
 } else {
-    $_SESSION['seller_error_address'] = "<p style='color:red;'>Invalid address format. Please enter a valid address.</p>";
+    $_SESSION['seller_error_address'] = "<p style='color:red;'>Invalid address format(pincode, city, state). Please enter a valid address.</p>";
 }
 
 if (isset($_SESSION['seller_error_name']) || isset($_SESSION['seller_error_email']) || isset($_SESSION['seller_error_phone']) || isset($_SESSION['seller_error_address'])) {

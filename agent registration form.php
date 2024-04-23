@@ -81,11 +81,11 @@
     <form action="agent registration.php" method="post" enctype="multipart/form-data">
         <label for="full_name">Full Name:</label>
         <input type="text" id="full_name" name="full_name" required />
-        <?php if(isset($_SESSION['agent_error_name'])) { echo $_SESSION['agent_error_name']; } ?><br /><br />
+        <?php if(isset($_SESSION['agent_error_name'])) { echo $_SESSION['agent_error_name']; } ?>
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required />
-        <?php if(isset($_SESSION['agent_error_email'])) { echo $_SESSION['agent_error_email']; } ?><br /><br />
+        <?php if(isset($_SESSION['agent_error_email'])) { echo $_SESSION['agent_error_email']; } ?>
 
         <label for="about">About yourself:</label>
         <textarea id="about" name="about" rows="4" cols="50">
@@ -93,19 +93,19 @@
 
         <label for="phone_number">Phone Number:</label>
         <input type="tel" id="phone_number" name="phone_number" required />
-        <?php if(isset($_SESSION['agent_error_phone'])) { echo $_SESSION['agent_error_phone']; } ?><br /><br />
+        <?php if(isset($_SESSION['agent_error_phone'])) { echo $_SESSION['agent_error_phone']; } ?>
 
         <label for="state">State:</label>
         <input type="text" id="state" name="state" required />
-        <?php if(isset($_SESSION['agent_error_state'])) { echo $_SESSION['agent_error_state']; } ?><br /><br />
+        <?php if(isset($_SESSION['agent_error_state'])) { echo $_SESSION['agent_error_state']; } ?>
 
-        <label for="area">Area:</label>
+        <label for="area">City:</label>
         <input type="text" id="area" name="area" required />
-        <?php if(isset($_SESSION['seller_error_area'])) { echo $_SESSION['seller_error_area']; } ?><br /><br />
+        <?php if(isset($_SESSION['seller_error_area'])) { echo $_SESSION['seller_error_area']; } ?>
 
         <label for="pincode">Pincode:</label>
         <input type="text" id="pincode" name="pincode" required>
-        <?php if(isset($_SESSION['seller_error_pincode'])) { echo $_SESSION['seller_error_pincode']; } ?><br><br>
+        <?php if(isset($_SESSION['seller_error_pincode'])) { echo $_SESSION['seller_error_pincode']; } ?>
 
         <label for="address_url">Address URL:</label>
         <input type="url" id="address_url" name="address_url" required />

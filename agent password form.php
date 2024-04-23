@@ -68,15 +68,16 @@
 </head>
 
 <body>
+    <?php session_start(); ?>
     <h1 class="welcome">Agent Registration</h1>
     <form action="agent password.php" method="post">
         <form>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br><br>
+            <input type="password" id="password" name="password" required>
 
             <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required><br><br>
-            <?php if(isset($_SESSION['agent_error_password'])) { echo $_SESSION['agent_error_password']; } ?><br /><br />
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <?php if(isset($_SESSION['agent_error_password'])) { echo $_SESSION['agent_error_password']; } ?>
             <input type="submit" value="Submit">
         </form>
 

@@ -23,7 +23,7 @@ if ($password !== $confirm_password) {
     $area = $conn->real_escape_string($_SESSION['area']);
     $website = $conn->real_escape_string($_SESSION['website']);
     $experience = $conn->real_escape_string($_SESSION['experience']);
-    $image = $conn->real_escape_string($_SESSION['image']);
+    $image = $_SESSION['image'];
     $image = $conn->real_escape_string($image);
     $about = $conn->real_escape_string($_SESSION['about']);
     $address_url = $conn->real_escape_string($_SESSION['address_url']);

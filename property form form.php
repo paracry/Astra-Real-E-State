@@ -66,6 +66,8 @@
 </head>
 
 <body>
+<?php session_start(); ?>
+
     <h1 class="welcome">Property Form</h1>
     <form action="property form.php" method="post" enctype="multipart/form-data">
         <label for="price">Price:</label>
@@ -81,7 +83,9 @@
         <input type="text" id="size" name="size" required><br><br>
 
         <label for="year_built">Year Built:</label>
-        <input type="text" id="year_built" name="year_built" required><br><br>
+        <input type="text" id="year_built" name="year_built" required>
+        <?php if(isset($_SESSION['property_error_year'])) { echo $_SESSION['property_error_year']; } ?>
+
 
         <label for="property_type">Property Type:</label>
         <select id="property_type" name="property_type" required>
@@ -97,13 +101,19 @@
         <input type="number" id="no_of_garages" name="garages"><br><br>
 
         <label for="street">Street Name:</label>
-        <input type="text" id="street" name="street" required><br><br>
+        <input type="text" id="street" name="street" required>
+        <?php if(isset($_SESSION['property_error_area'])) { echo $_SESSION['property_error_area']; } ?>
+
 
         <label for="pincode">Pincode:</label>
-        <input type="text" id="pincode" name="pincode" required><br><br>
+        <input type="text" id="pincode" name="pincode" required>
+        <?php if(isset($_SESSION['property_error_pincode'])) { echo $_SESSION['property_error_pincode']; } ?>
+
 
         <label for="state">State:</label>
-        <input type="text" id="state" name="state" required><br><br>
+        <input type="text" id="state" name="state" required>
+        <?php if(isset($_SESSION['property_error_state'])) { echo $_SESSION['property_error_state']; } ?>
+
 
         <label for="location">Location URL:</label>
         <input type="text" id="location" name="location" required><br><br>

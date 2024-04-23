@@ -436,13 +436,7 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-
-        $sql = "SELECT COUNT(*) as total FROM wishlist where user_id=$user_id";
-        $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
-        $total_entries = $row['total'];
-
-        echo '<h2 class="available">' . $total_entries . ' Properties in the wishlist</h2><br>';
+        echo '<h2 class="available"> Properties in Wishlist</h2><br>';
 
         $sql = "SELECT * FROM property p ,wishlist w  where w.user_id=$user_id and p.property_id=w.property_id";
         $result = $conn->query($sql);
@@ -466,7 +460,7 @@
                 echo "</a>";
             }
         } else {
-            echo "0 results";
+            echo "<h2 class='available'>Wishlist is empty :(<h2>";
         }
         $conn->close();
 

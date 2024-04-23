@@ -20,7 +20,7 @@ $_SESSION['about'] = $_POST['about'];
 
 if ($_SESSION['phone_number'] = preg_match('/^\d{10}$/', $_POST['phone_number'])) {
     $_SESSION['phone_number'] = $_POST['phone_number'];
-    unset($_SESSION['agent_error_about']);
+    unset($_SESSION['agent_error_phone']);
 } else {
     $_SESSION['agent_error_phone'] = "<p style='color:red;'>Invalid phone format. Please enter a valid Phone number.</p>";
 }
