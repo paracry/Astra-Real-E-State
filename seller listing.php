@@ -416,7 +416,7 @@
     </section>
 
     <h1 class="welcome">Astra Real Estate</h1>
-    <h1 class="welcomeagent">Your Postings</h1>
+    
 
     <div class="row">
         <?php
@@ -432,8 +432,17 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-
-        $seller_id = $_SESSION['seller_id'];
+        if(isset($_SESSION['seller_id'])){
+            echo '<center><h1 class="welcomeagent">Your Postings</h1></center>';
+            $seller_id = $_SESSION['seller_id'];
+        }elseif(isset($_GET['seller_id'])){
+            $seller_id = $_GET['seller_id'];
+            echo '<center><h1 class="welcomeagent">Seller Postings</h1></center>';
+            echo '<center><h3 style="color:red;">Delete all the properties posted by this seller to delete this seller account</h3></center>';
+        }
+        else{
+            echo "seller id not fount";
+        }
         $sql = "SELECT COUNT(*) as total FROM property where seller_id=$seller_id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();

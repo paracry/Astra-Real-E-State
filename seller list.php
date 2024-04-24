@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
-    <title>Astra Real Estate</title>
 
     <?php
     session_start();
@@ -49,10 +48,10 @@
             margin: 0;
             padding: 0;
             font-family: 'Amaranth', sans-serif;
-            background-image: url(images/home.jpeg);
-            object-fit: cover;
-            background-size: 320vh;
-            background-position: top;
+
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -60,7 +59,9 @@
 
         .header {
             font-family: Arial, sans-serif;
-            padding: 3vh 2vw;
+            box-shadow: 0vh 2vh 3vh rgb(90, 0, 169);
+            margin-bottom: 4vh;
+            padding: 1vh 2vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -135,10 +136,11 @@
 
 
         .logout {
-            color: #ff0099;
+            color: #ff0000;
         }
 
         .logout:hover {
+            color: white;
             background-color: #00000000;
             text-decoration: underline;
 
@@ -150,92 +152,95 @@
             color: black;
         }
 
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-
-        input[type="text"] {
-            padding: 2vh;
-            width: 30vw;
-            border: none;
-            border-radius: 50vh;
-            margin-right: 10px;
-            background-color: #f4e4ffeb;
-            font-size: 2.5vh;
-        }
-
-        input:hover {
-            outline: solid 0.4vh #8000ff;
-        }
-
-        input:focus {
-            outline: solid 0.4vh #8000ff;
-            background-color: white;
-
-
-        }
-
-        .search {
-            margin-top: 2vh;
-            padding: 1.5vh;
-            font-size: 2.5vh;
-            width: 9vw;
-            background-color: #8000ff;
-            color: #fff;
-            border: none;
-            border-radius: 20vh;
-            cursor: pointer;
-
-        }
-
-        .search:hover {
-            background-color: #ff0099;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: #303030;
-            max-height: 25vh;
-            overflow-y: auto;
-            border-radius: 5vh;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 1vh;
-            text-decoration: none;
-            color: #ffffff;
-        }
-
-        .dropdown-menu   a:hover {
-            background-color: #eaeaea;
-            color: black;
-            border-radius: 5vh;
-        }
-
-
         .welcome {
-            padding: 7vh 6vw;
+            display: inline-block;
             font-size: 9vh;
-            border-radius: 20vh;
-            background-color: #27004f70;
-            color: rgb(235, 199, 255);
+            color: #8000ff;
             text-align: center;
-            margin-top: 10vh;
+
+            margin: auto;
+            margin-top: 4vh;
+            margin-bottom: 4vh;
+            width: 25vw;
+        }
+
+        .welcomeagent {
+            display: inline-block;
+            font-size: 5vh;
+            color: #8000ff;
+            text-align: center;
+
+            margin: auto;
+            margin-bottom: 3vh;
+            width: 25vw;
+        }
+
+        .number {
+            font-weight: 100;
+            margin-left: 2vw;
+        }
+
+        /*table*/
+
+        table {
+            width: 80%;
+            margin: 8vh auto;
+            font-size: 3vh;
+            padding: 2vh;
+
+            border-radius: 4vh;
+            box-shadow: 1vh 1vh 2vh #000000;
+        }
+
+        th,
+        td {
+            transition: 700ms;
+            border-radius: 3vh;
+            text-align: center;
+        }
+
+        th {
+            background-color: #8000ff;
+            color: whitesmoke;
+
+            transition: 700ms;
+        }
+
+        tr {
+            height: 10vh;
+            transition: 700ms;
+            width: 80%;
+            background-color: #0084ff3d;
+        }
+
+        .row:hover {
+            background-color: #d5acff;
+            height: 14vh;
+            transition: 500ms;
+        }
+
+        .delete {
+            filter: brightness(100%);
+            background-color: red;
+            color: white;
+            padding: 2vh;
+            border-radius: 20vh;
+            text-decoration: none;
+            transition: 500ms;
+
+        }
+
+        .delete:hover {
+            background-color: rgb(170, 0, 0);
+            padding: 3vh 2vh;
+            transition: 500ms;
 
         }
 
         /*footer*/
 
         footer {
-            margin-top: 30vh;
-            background-color: #000000c1;
+            background-color: #000000;
             color: #ffffff;
             padding: 20px 0;
             font-size: 2.5vh;
@@ -245,7 +250,7 @@
             display: flex;
             justify-content: space-around;
             color: #ffffff;
-
+            background-color: #000000;
         }
 
         .footer-section {
@@ -282,7 +287,6 @@
 </head>
 
 <body>
-
     <section class="header">
         <nav>
             <a href="home.php">Home</a>
@@ -312,7 +316,7 @@
                 <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
                     <a class="logout" href="logout.php">Logout</a>
                     <a class="logout" href="seller listing.php">Postings</a><br>
-                    <a class="logout" href="property form form.php">Add Property</a>
+                    <a class="logout" href="property form.html">Add Property</a>
                 </div>
             </div>
             <?php elseif ($agentloggedIn): ?>
@@ -366,49 +370,38 @@
             </script>
         </nav>
     </section>
-    <main>
-        <h1 class="welcome">Welcome to<br>Astra Real Estate</h1>
-        <form action="search result.php" method="post">
 
-            <input type="text" id="stateInput" oninput="filterStates()" placeholder="Type to search..." name="place">
-            <div id="stateDropdown" class="dropdown-menu"></div>
+    <h1 class="welcome">Astra Real Estate</h1>
+    <h1 class="welcomeagent">Sellers List</h1>
+    <?php
 
-            <button class="search" value="search">🔍Search🔍</button>
-            <script>
-                const states = ['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'];
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "real_estate";
 
-                const inputField = document.getElementById('stateInput');
-                const dropdown = document.getElementById('stateDropdown');
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-                function filterStates()
-                {
-                    const filterValue = inputField.value.toLowerCase();
-                    const filteredStates = states.filter(state => state.toLowerCase().includes(filterValue));
-
-                    dropdown.innerHTML = '';
-                    filteredStates.forEach(state =>
-                    {
-                        const option = document.createElement('a');
-                        option.textContent = state;
-                        option.href = '#';
-                        option.addEventListener('click', () =>
-                        {
-                            inputField.value = state;
-                            dropdown.style.display = 'none';
-                        });
-                        dropdown.appendChild(option);
-                    });
-
-                    dropdown.style.display = filteredStates.length > 0 ? 'block' : 'none';
-                }
-
-                inputField.addEventListener('focus', filterStates);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
 
+    $sql = "SELECT seller_id,username, email, phone_no FROM seller";
+    $result = $conn->query($sql);
 
-            </script>
-        </form>
-    </main>
+    if ($result->num_rows > 0) {
+        echo "<table><tr><th>Seller_id</th><th>Seller name</th><th>Email</th><th>Phone Number</th><th>Delete Seller</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr class='row'><td>" . $row["seller_id"] . "</td><td>" . $row["username"] . "</td><td>" . $row["email"] . "</td><td>" . $row["phone_no"] . "</td><td>" . '<a class="delete" href="seller delete.php?seller_id=' . $row["seller_id"] . '">Delete Seller</a>' . "</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+    $conn->close();
+    ?>
+
     <footer id="footer">
         <div class="footer-container">
             <div class="footer-section">
@@ -434,6 +427,7 @@
         </div>
 
     </footer>
+
 </body>
 
 </html>
