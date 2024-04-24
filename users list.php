@@ -22,21 +22,33 @@
 
         th,
         td {
-            border: 1px solid #ddd;
+            border: 1px solid #000000;
             padding: 8px;
             text-align: left;
+            transition: 700ms;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #dfdfdf;
+            transition: 700ms;
+        }
+
+        tr {
+            height: 6vh;
+            transition: 700ms;
+            width: 80%;
         }
 
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #f9deff;
         }
 
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #a646ff;
+            color: white;
+            height: 12vh;
+            transition: 700ms;
+            width: 80%;
         }
     </style>
 </head>
@@ -60,9 +72,9 @@
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        echo "<table><tr><th>User_id</th><th>Username</th><th>Email</th><th>Phone Number</th></tr>";
+        echo "<table><tr><th>User_id</th><th>Username</th><th>Email</th><th>Phone Number</th><th>Delete User</th></tr>";
         while ($row = $result->fetch_assoc()) {
-            echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["username"] . "</td><td>" . $row["email"] . "</td><td>" . $row["phone"] . "</td></tr>";
+            echo "<tr><td>" . $row["user_id"] . "</td><td>" . $row["username"] . "</td><td>" . $row["email"] . "</td><td>" . $row["phone"] . "</td><td>" . '<a href="user delete.php?user_id=' . $row["user_id"] . '">Delete</a>' . "</td></tr>";
         }
         echo "</table>";
     } else {
