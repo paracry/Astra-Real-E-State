@@ -384,8 +384,12 @@
                     <button class="username">
                         <?php echo ucwords($_SESSION['username']); ?>
                     </button>
-                    <div class="dropdown-content" style="height: 4vh;">
+                    <div class="dropdown-content" style="height: 18vh;">
                         <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="users list.php">Users</a>
+                        <a class="logout" href="seller list.php">Sellers</a>
+                        <a class="logout" href="agent listing.php">Agents</a>
+                        <a class="logout" href="listing.php">Properties</a>
                     </div>
                 </div>
             <?php else: ?>
@@ -416,7 +420,7 @@
     </section>
 
     <h1 class="welcome">Astra Real Estate</h1>
-    
+
 
     <div class="row">
         <?php
@@ -432,15 +436,14 @@
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-        if(isset($_SESSION['seller_id'])){
+        if (isset($_SESSION['seller_id'])) {
             echo '<center><h1 class="welcomeagent">Your Postings</h1></center>';
             $seller_id = $_SESSION['seller_id'];
-        }elseif(isset($_GET['seller_id'])){
+        } elseif (isset($_GET['seller_id'])) {
             $seller_id = $_GET['seller_id'];
             echo '<center><h1 class="welcomeagent">Seller Postings</h1></center>';
             echo '<center><h3 style="color:red;">Delete all the properties posted by this seller to delete this seller account</h3></center>';
-        }
-        else{
+        } else {
             echo "seller id not fount";
         }
         $sql = "SELECT COUNT(*) as total FROM property where seller_id=$seller_id";
@@ -466,7 +469,7 @@
                     . " Bed</h2>";
                 echo "<h2 class='bath'>" . $row["bath"] . " Bath</h2>";
                 echo "<h2 class='size'>" .
-                    number_format($row["size"], 0, '.', ',') . " sqft</h2><br>";
+                number_format($row["size"], 0, '.', ',') . " sqft</h2><br>";
                 echo "<h2 class='bath'>" . ucwords(strtolower($row["street_name"])) . "<br> " . ucwords(strtolower($row["state"])) . "</h2>";
                 echo '</div>';
                 echo '</div>';
@@ -482,11 +485,18 @@
     </div>
     </div>
 
-    <br><center><h3 style="margin: 0 10vw;"><hr>That's all the Properties posted by you.<br>Feel free to explore other services on our website or contact us for more information.</h3></center><br><br>
+    <br>
+    <center>
+        <h3 style="margin: 0 10vw;">
+            <hr>That's all the Properties posted by you.<br>Feel free to explore other services on our website or
+            contact us for more information.
+        </h3>
+    </center><br><br>
 
     <div class="end">
         <br>
-        <a class="endbutton" href="home.php"><-Homepage</a>    </div>
+        <a class="endbutton" href="home.php"><-Homepage</a>
+    </div>
 
     <footer id="footer">
         <div class="footer-container">

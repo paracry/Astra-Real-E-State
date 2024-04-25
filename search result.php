@@ -384,8 +384,12 @@
                     <button class="username">
                         <?php echo ucwords($_SESSION['username']); ?>
                     </button>
-                    <div class="dropdown-content" style="height: 4vh;">
+                    <div class="dropdown-content" style="height: 18vh;">
                         <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="users list.php">Users</a>
+                        <a class="logout" href="seller list.php">Sellers</a>
+                        <a class="logout" href="agent listing.php">Agents</a>
+                        <a class="logout" href="listing.php">Properties</a>
                     </div>
                 </div>
             <?php else: ?>
@@ -468,7 +472,14 @@
     </div>
     </div>
 
-    <br><center><h3 style="margin: 0 10vw;"><hr>Thank you for browsing through our list of available Properties in <?php echo ucwords($place);?>. We hope you found the perfect property!<br>Feel free to explore other services on our website or contact us for more information.</h3></center><br><br>
+    <br>
+    <center>
+        <h3 style="margin: 0 10vw;">
+            <hr>Thank you for browsing through our list of available Properties in <?php echo ucwords($place); ?>. We
+            hope you found the perfect property!<br>Feel free to explore other services on our website or contact us for
+            more information.
+        </h3>
+    </center><br><br>
 
     <div class="end">
         <br>

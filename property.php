@@ -599,8 +599,12 @@
                     <button class="username">
                         <?php echo ucwords($_SESSION['username']); ?>
                     </button>
-                    <div class="dropdown-content" style="height: 4vh;">
+                    <div class="dropdown-content" style="height: 18vh;">
                         <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="users list.php">Users</a>
+                        <a class="logout" href="seller list.php">Sellers</a>
+                        <a class="logout" href="agent listing.php">Agents</a>
+                        <a class="logout" href="listing.php">Properties</a>
                     </div>
                 </div>
             <?php else: ?>
@@ -827,10 +831,12 @@
         <?php endif;
         $conn->close(); ?>
     </div>
-    <h6><hr></h6>
+    <h6>
+        <hr>
+    </h6>
     <div class="end">
         <a class="endbutton" href="listing.php"><-Listings</a>
-        <a class="endbutton" href="home.php" style="margin-left: 77vw;">Homepage-></a>
+                <a class="endbutton" href="home.php" style="margin-left: 77vw;">Homepage-></a>
     </div>
 
     <footer id="footer">

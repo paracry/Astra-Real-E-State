@@ -62,11 +62,16 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+
+        .state{
+            padding: 1vh;
+            width:100%;
+        }
     </style>
 </head>
 
 <body>
-<?php session_start(); ?>
+    <?php session_start(); ?>
 
     <h1 class="welcome">Property Form</h1>
     <form action="property form.php" method="post" enctype="multipart/form-data">
@@ -84,7 +89,9 @@
 
         <label for="year_built">Year Built:</label>
         <input type="text" id="year_built" name="year_built" required>
-        <?php if(isset($_SESSION['property_error_year'])) { echo $_SESSION['property_error_year']; } ?>
+        <?php if (isset($_SESSION['property_error_year'])) {
+            echo $_SESSION['property_error_year'];
+        } ?>
 
 
         <label for="property_type">Property Type:</label>
@@ -100,19 +107,55 @@
         <label for="no_of_garages">Number of Garages:</label>
         <input type="number" id="no_of_garages" name="garages"><br><br>
 
-        <label for="street">Street Name:</label>
+        <label for="street">Address:</label>
         <input type="text" id="street" name="street" required>
-        <?php if(isset($_SESSION['property_error_area'])) { echo $_SESSION['property_error_area']; } ?>
+        <?php if (isset($_SESSION['property_error_area'])) {
+            echo $_SESSION['property_error_area'];
+        } ?>
 
 
         <label for="pincode">Pincode:</label>
-        <input type="text" id="pincode" name="pincode" required>
-        <?php if(isset($_SESSION['property_error_pincode'])) { echo $_SESSION['property_error_pincode']; } ?>
+        <input type="text" id="pincode" name="pincode" required><br>
+        <?php if (isset($_SESSION['property_error_pincode'])) {
+            echo $_SESSION['property_error_pincode'];
+        } ?>
 
 
-        <label for="state">State:</label>
-        <input type="text" id="state" name="state" required>
-        <?php if(isset($_SESSION['property_error_state'])) { echo $_SESSION['property_error_state']; } ?>
+        <br><label for="state">State:</label><br>
+        <select id="indian_states" name="state" class="state" required>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+        </select><br><br>
+
+        <?php if (isset($_SESSION['property_error_state'])) {
+            echo $_SESSION['property_error_state'];
+        } ?>
 
 
         <label for="location">Location URL:</label>

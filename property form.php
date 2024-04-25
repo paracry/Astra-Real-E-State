@@ -8,10 +8,10 @@ $_SESSION[$seller_id . 'bedrooms'] = $_POST['bedrooms'];
 $_SESSION[$seller_id . 'bathrooms'] = $_POST['bathrooms'];
 $_SESSION[$seller_id . 'size'] = $_POST['size'];
 
-if (preg_match("/^(19\d{2}|20\d{2}|$currentYear)$/",$_POST['year_built'])) {
+if (preg_match("/^(19\d{2}|20\d{2}|$currentYear)$/", $_POST['year_built'])) {
     $_SESSION[$seller_id . 'year_built'] = $_POST['year_built'];
     unset($_SESSION['property_error_year']);
-}else{
+} else {
     $_SESSION['property_error_year'] = "<p style='color:red;'>Invalid Year format. Please enter a valid Year.</p>";
 
 
@@ -39,12 +39,8 @@ if ($_SESSION['pincode'] = preg_match('/^\d{6}$/', $_POST['pincode'])) {
     $_SESSION['property_error_pincode'] = "<p style='color:red;'>Invalid pincode format. Please enter a valid Pincode.</p>";
 }
 
-if ($_SESSION['state'] = preg_match('/^[a-zA-Z ]+$/', $_POST['state'])) {
-    $_SESSION[$seller_id . 'state'] = $_POST['state'];
-    unset($_SESSION['property_error_state']);
-} else {
-    $_SESSION['property_error_state'] = "<p style='color:red;'>Invalid State format. Please enter a valid State.</p>";
-}
+
+$_SESSION[$seller_id . 'state'] = $_POST['state'];
 
 $_SESSION[$seller_id . 'location'] = $_POST['location'];
 $_SESSION[$seller_id . 'image'] = file_get_contents($_FILES['image']['tmp_name']);
