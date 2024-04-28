@@ -301,6 +301,55 @@
             transition: 500ms;
         }
 
+
+        /*overlay*/
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(255, 255, 255);
+            padding: 5vh;
+            font-size: 3vh;
+            box-shadow: 2vh 2vh 2vh #000000;
+            z-index: 1000;
+            transition: 500ms;
+            border-radius: 10vh;
+        }
+
+        .popup-content {
+            text-align: left;
+            transition: 500ms;
+        }
+
+        .close {
+            color: #ff0000;
+            float: right;
+            font-size: 6vh;
+            font-weight: bold;
+            margin-top: -6vh;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.41);
+            z-index: 999;
+        }
+
         /*contact details*/
 
         .contact {
@@ -377,17 +426,45 @@
 
         }
 
+
+        /*form*/
+        input {
+            height: 4vh;
+        }
+
+        .editbutton {
+            padding: 2vh;
+            margin: 2vh;
+            font-size: 3vh;
+            background-color: rgb(0, 173, 90);
+            color: rgb(255, 255, 255);
+            border-radius: 20vh;
+            transition: 500ms;
+            text-decoration: none;
+            box-shadow: 1vh 1vh 2vh #000000;
+        }
+
+        .editbutton:hover {
+            background-color: rgb(0, 102, 78);
+            color: white;
+            font-size: 3vh;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            transition: 500ms;
+
+        }
+
         /*end*/
 
-        .end{
+        .end {
             margin-left: 4vw;
-            
+
             margin-top: -2vh;
             margin-bottom: 5vh;
             font-size: 3vh;
         }
 
-        .endbutton{
+        .endbutton {
             background-color: #8000ff;
             color: white;
             padding: 2vh;
@@ -397,7 +474,7 @@
             transition: 1000ms;
         }
 
-        .endbutton:hover{
+        .endbutton:hover {
             background-color: #47008f;
             box-shadow: 2vh 2vh 2vh black;
             transition: 500ms;
@@ -415,64 +492,64 @@
             <a href="home.php">Home</a>
             <a href="listing.php">Properties</a>
             <a href="agent listing.php">Agents</a>
-            <a href="about.html">About Us</a>
+            <a href="about.php">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="wishlist.php">Wishlist</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="wishlist.php">Wishlist</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($sellerloggedIn): ?>
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="seller listing.php">Postings</a><br>
-                    <a class="logout" href="property form.html">Add Property</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="seller listing.php">Postings</a><br>
+                        <a class="logout" href="property form.html">Add Property</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($agentloggedIn): ?>
 
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($adminloggedIn): ?>
 
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content" style="height: 18vh;">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="users list.php">Users</a>
-                    <a class="logout" href="seller list.php">Sellers</a>
-                    <a class="logout" href="agent listing.php">Agents</a>
-                    <a class="logout" href="listing.php">Properties</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 18vh;">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="users list.php">Users</a>
+                        <a class="logout" href="seller list.php">Sellers</a>
+                        <a class="logout" href="agent listing.php">Agents</a>
+                        <a class="logout" href="listing.php">Properties</a>
+                    </div>
                 </div>
-            </div>
             <?php else: ?>
-            <a class="login" href="user login.html">Login</a>
+                <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
 
             <script>
@@ -560,6 +637,11 @@
             $agent_id = $row['agent_id'];
             $agentphone = $row['phone'];
             $agentemail = $row['email'];
+            $agentabout = $row['about'];
+            $agentwebsite = $row['website'];
+            $agentexperience = $row['experience'];
+            $agentprice = $row['price'];
+
         }
     } else {
         echo "0 results";
@@ -568,30 +650,30 @@
 
     <div class="contact">
         <?php if (isset($_SESSION['user_id'])): ?>
-        <h2>Phone number :
-            <?php echo $agentphone; ?>
-            <br>Email address :
-            <?php echo $agentemail; ?>
-        </h2>
-        <button id="openGmail">Email
-            <?php echo $agentname; ?>
-        </button>
+            <h2>Phone number :
+                <?php echo $agentphone; ?>
+                <br>Email address :
+                <?php echo $agentemail; ?>
+            </h2>
+            <button id="openGmail">Email
+                <?php echo $agentname; ?>
+            </button>
 
-        <script>
-            document.getElementById('openGmail').onclick = function ()
-            {
-                var email = '<?php echo $agentemail; ?>'; // Specify the email address here
-                var subject = 'Inquiry Regarding Real Estate Services.'; // Specify the email subject here
-                var body = "Dear <?php echo $agentname; ?>,%0D%0AI hope this email finds you well. My name is <?php echo ucwords($_SESSION['username']); ?>, and I am currently in the market for a new home in <?php echo $area; ?> , where I understand you have a wealth of experience and expertise.%0D%0A%0D%0AI believe that with your expertise and professionalism, we can find the perfect home that aligns with my needs and preferences. Your attention to detail and commitment to client satisfaction are qualities that I greatly admire and seek in a real estate partner.%0D%0A%0D%0AI look forward to the opportunity to work together and benefit from your knowledge and experience.Please let me know your availability so we can coordinate a meeting.%0D%0A%0D%0AThank you for considering my inquiry, and I am excited about the prospect of collaborating with you on this exciting journey of finding my dream home.%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
-                var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+            <script>
+                document.getElementById('openGmail').onclick = function ()
+                {
+                    var email = '<?php echo $agentemail; ?>'; // Specify the email address here
+                    var subject = 'Inquiry Regarding Real Estate Services.'; // Specify the email subject here
+                    var body = "Dear <?php echo $agentname; ?>,%0D%0AI hope this email finds you well. My name is <?php echo ucwords($_SESSION['username']); ?>, and I am currently in the market for a new home in <?php echo $area; ?> , where I understand you have a wealth of experience and expertise.%0D%0A%0D%0AI believe that with your expertise and professionalism, we can find the perfect home that aligns with my needs and preferences. Your attention to detail and commitment to client satisfaction are qualities that I greatly admire and seek in a real estate partner.%0D%0A%0D%0AI look forward to the opportunity to work together and benefit from your knowledge and experience.Please let me know your availability so we can coordinate a meeting.%0D%0A%0D%0AThank you for considering my inquiry, and I am excited about the prospect of collaborating with you on this exciting journey of finding my dream home.%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
+                    var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
 
-                window.open(mailtoLink);
-            };
+                    window.open(mailtoLink);
+                };
 
 
-        </script>
+            </script>
         <?php elseif (isset($_SESSION['agent_id'])): ?>
-        <?php if ($agent_id == $_SESSION['agent_id']) {
+            <?php if ($agent_id == $_SESSION['agent_id']) {
                 echo '<br><a class="removewish" id="confirmationLink" href="deleteagent.php?agent_id=' . $agent_id . '">Delete profile</a>';
                 echo "<script> document.getElementById('confirmationLink').addEventListener('click', function (event)
                     {
@@ -602,12 +684,63 @@
                         }
                     });
                 </script>";
+                echo '<a class="editbutton" id="openPopup">Edit listing</a>';
+                echo '<div id="popup" class="popup">
+                        <div class="popup-content">
+                            <span class="close" id="closePopup">&times;</span>
+                            <h5 style="color:red;">*Leave the field(s) empty(as is) which you don\'t want to change*</h5>
+                            <form action="agent edit.php" method="POST">
+                                    <label for="full_name">Full Name:</label>
+                                    <input type="text" id="full_name" name="name" placeholder="'.$agentname.'"/><br><br>
+
+                                    <label for="email">Email:</label>
+                                    <input type="email" id="email" name="email" placeholder="'.$agentemail.'"/><br><br>
+
+
+                                    <label for="phone_number">Phone Number:</label>
+                                    <input type="tel" id="phone_number" name="phone" placeholder="'.$agentphone.'"/><br><br>
+
+
+                                    <label for="website">Website:</label>
+                                    <input type="url" id="website" name="website" placeholder="'.$agentwebsite.'"/><br><br>
+
+                                    <label for="experience">Experience:</label>
+                                    <input type="text" id="experience" name="experience" placeholder="'.$agentexperience.'"/><br><br>
+
+                                    <label for="price">Price:</label>
+                                    <input type="text" id="price" name="price" placeholder="'.$agentprice.'"><br><br>
+                                    
+                                    <input type="hidden" name="agent_id" value='.$agent_id.'>
+
+                                    <center><input type="submit" value="Submit" class="editbutton" style="border:none; height:7vh;">
+                                    </center>
+                            </form> 
+                        </div>
+                    </div>
+                    <div id="overlay" class="overlay"></div>';
+                echo "<script>                    
+                const openPopupBtn = document.getElementById('openPopup');
+                const closePopupBtn = document.getElementById('closePopup');
+                const popup = document.getElementById('popup');
+
+                openPopupBtn.addEventListener('click', function ()
+                {
+                    popup.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+
+                closePopupBtn.addEventListener('click', function ()
+                {
+                    popup.style.display = 'none';
+                    overlay.style.display = 'none'
+                });
+                </script>";
             } else {
                 echo "<h3 style='color: #d50000;'>Hello Agent!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>";
             }
             ?>
         <?php elseif (isset($_SESSION["admin_id"])): ?>
-        <?php echo '<br><a class="removewish" id="confirmationLink" href="deleteagentadmin.php?agent_id=' . $agent_id . '">Remove listing</a>';
+            <?php echo '<br><a class="removewish" id="confirmationLink" href="deleteagentadmin.php?agent_id=' . $agent_id . '">Remove listing</a>';
             echo "<script> document.getElementById('confirmationLink').addEventListener('click', function (event)
                 {
                     event.preventDefault(); // Prevent the default link behavior
@@ -618,20 +751,22 @@
                 });
             </script>"; ?>
         <?php elseif (isset($_SESSION["seller_id"])): ?>
-        <?php echo "<h3 style='color: #d50000;'>Hello Agent!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>"; ?>
+            <?php echo "<h3 style='color: #d50000;'>Hello Seller!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>"; ?>
 
         <?php else: ?>
-        <h3 style="color: #d50000;"><a href="user login.html">Login</a> first to
-            contact this agent.</h3>
+            <h3 style="color: #d50000;"><a href="user login.html">Login</a> first to
+                contact this agent.</h3>
         <?php endif;
         $conn->close(); ?>
-        
+
     </div>
-    <h6><hr></h6>
+    <h6>
+        <hr>
+    </h6>
     <div class="end">
         <br>
-        <a class="endbutton" href="agent listing.php"><-Listings</a>
-        <a class="endbutton" href="home.php" style="margin-left: 73vw;">Homepage-></a>
+        <a class="endbutton" href="agent listing.php"><-Listings </a>
+                <a class="endbutton" href="home.php" style="margin-left: 73vw;">Homepage-></a>
 
     </div>
 
@@ -641,7 +776,7 @@
             <div class="footer-section">
                 <h3>About Us</h3>
                 <p>Our mission is to provide top-notch real<br> estate services tailored to your needs.</p>
-                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>    
+                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>
             </div>
             <div class="footer-section">
                 <h3>Contact Us</h3>

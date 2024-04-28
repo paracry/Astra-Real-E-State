@@ -293,7 +293,7 @@
             <a href="home.php">Home</a>
             <a href="listing.php">Properties</a>
             <a href="agent listing.php">Agents</a>
-            <a href="about.html">About Us</a>
+            <a href="about.php">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
             <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>

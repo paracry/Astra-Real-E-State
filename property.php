@@ -515,6 +515,27 @@
 
         }
 
+        .editbutton{
+            padding: 2vh;
+            margin: 2vh;
+            font-size: 3vh;
+            background-color: rgb(0, 173, 90);
+            color: rgb(255, 255, 255);
+            border-radius: 20vh;
+            transition: 500ms;
+            text-decoration: none;
+            box-shadow: 1vh 1vh 2vh #000000;
+        }
+
+        .editbutton:hover {
+            background-color: rgb(0, 102, 78);
+            color: white;
+            font-size: 3vh;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            transition: 500ms;
+
+        }
         /*end*/
 
         .end {
@@ -551,7 +572,7 @@
             <a href="home.php">Home</a>
             <a href="listing.php">Properties</a>
             <a href="agent listing.php">Agents</a>
-            <a href="about.html">About Us</a>
+            <a href="about.php">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
                 <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
@@ -641,16 +662,16 @@
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
     }
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "real_estate";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "real_estate";
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
     $property_id = $_GET['property_id'];
     echo "<h2 class='number'>Property no : " . $property_id . "</h2>";
 
@@ -719,6 +740,14 @@
             echo "<a href='" . $row["location_url"] . "'><img  class='addressimage' src='images/maps.png'/><h3 class='address'> "
                 . $row["pincode"] . "<br>" . $street_name = ucwords(strtolower($row["street_name"])) . "<br> " . $state = ucwords(strtolower($row["state"])) . "</h3></a>";
             echo '</div>';
+            $bed = $row['bed'];
+            $bath = $row['bath'];
+            $pincode = $row['pincode'];
+            $size = $row['size'];
+            $property_type = $row['property_type'];
+            $location_url = $row['location_url'];
+            $year_built = $row['year_built'];
+            $garages = $row['garages'];
             $price = $row['price'];
             $street_name = ucwords(strtolower($row["street_name"]));
             $state = ucwords(strtolower($row["state"]));
@@ -810,9 +839,72 @@
                         }
                     });
                 </script>";
+
+                echo '<a class="editbutton" id="openPopup">Edit listing</a>';
+                echo '<div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <h5 style="color:red;">*Leave the field(s) empty(as is) which you don\'t want to change*</h5>
+                    <form action="edit property.php" method="POST">
+                    <label for="price">Price:</label>
+        <input type="text" id="price" name="price" placeholder=' . $price . '><br><br>
+
+        <label for="bedrooms">Number of Bedrooms:</label>
+        <input type="number" id="bedrooms" name="bedrooms" placeholder=' . $bed . ' ><br><br>
+
+        <label for="bathrooms">Number of Bathrooms:</label>
+        <input type="number" id="bathrooms" name="bathrooms" placeholder=' . $bath . '><br><br>
+
+        <label for="size">Size of the Property:</label>
+        <input type="number" id="size" name="size" placeholder=' . $size . '><br><br>
+
+        <label for="year_built">Year Built:</label>
+        <input type="number" id="year_built" name="year_built" placeholder=' . $year_built . '>
+
+
+        <label for="property_type">Property Type:</label>
+        <select id="property_type" name="property_type" placeholder=' . $property_type . '>
+        <option value="" disabled selected>'.$property_type.'</option>    
+        <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Multiple">Multiple</option>
+            <option value="Single family">Single Family</option>
+            <option value="Double family">Double Family</option>
+            <option value="Multiple family">Multiple Family</option>
+        </select><br><br>
+
+        <label for="no_of_garages">Number of Garages:</label>
+        <input type="number" id="no_of_garages" name="garages" placeholder=' . $garages . '><br><br>
+        <input type="hidden" name="property_id" value='.$property_id.'>
+
+                    <center><input type="submit" value="Submit" class="editbutton" style="border:none;">
+                    </center>
+                    </form>
+                </div>
+            </div>
+            <div id="overlay" class="overlay"></div>';
+                echo "<script>
+                const openPopupBtn = document.getElementById('openPopup');
+                const closePopupBtn = document.getElementById('closePopup');
+                const popup = document.getElementById('popup');
+
+                openPopupBtn.addEventListener('click', function ()
+                {
+                    popup.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+
+                closePopupBtn.addEventListener('click', function ()
+                {
+                    popup.style.display = 'none';
+                    overlay.style.display = 'none'
+                });
+                </script>";
             } else {
                 echo "<h3 style='margin: 6vh;  color: #d50000;'>Hello Seller!<br>If you want the contact details of the owner of this property or wishlist this property then you'll have to <a href='user login.html'>Login</a> as User!.</h3>";
+
             }
+
             ?>
         <?php elseif (isset($_SESSION["admin_id"])): ?>
             <?php echo '<a class="deletebutton" id="confirmationLink" href="deleteproperty.php?property_id=' . $property_id . '">Remove listing</a>';
@@ -835,7 +927,7 @@
         <hr>
     </h6>
     <div class="end">
-        <a class="endbutton" href="listing.php"><-Listings</a>
+        <a class="endbutton" href="listing.php"><-Listings </a>
                 <a class="endbutton" href="home.php" style="margin-left: 77vw;">Homepage-></a>
     </div>
 
