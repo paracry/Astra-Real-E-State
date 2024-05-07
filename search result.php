@@ -184,6 +184,90 @@
 
         /*top bar ends here*/
 
+        /*filter*/
+
+        .editbutton {
+            padding: 2vh;
+            margin: 5vh;
+
+            font-size: 3vh;
+            width: 10vw;
+            text-align: center;
+            background-color: rgb(0, 173, 90);
+            color: rgb(255, 255, 255);
+            border-radius: 20vh;
+            transition: 500ms;
+            text-decoration: none;
+            box-shadow: 1vh 1vh 2vh #000000;
+        }
+
+        .editbutton:hover {
+            background-color: rgb(0, 102, 78);
+            color: white;
+            cursor: pointer;
+            font-size: 3vh;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            transition: 500ms;
+
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(255, 255, 255);
+            padding: 5vh;
+            font-size: 3vh;
+            box-shadow: 2vh 2vh 2vh #000000;
+            z-index: 1000;
+            transition: 500ms;
+            border-radius: 10vh;
+        }
+
+        .popup-content {
+            text-align: left;
+            transition: 500ms;
+        }
+
+        .close {
+            color: #ff0000;
+            float: right;
+            font-size: 6vh;
+            font-weight: bold;
+            margin-top: -6vh;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.41);
+            z-index: 999;
+        }
+
+        .field{
+            height: 5vh;
+            border-radius: 2vh;
+            border-color: #8000ff;
+        }
+
+
+
+        /*product details*/
+
         .available,
         .total {
             margin-left: 6vw;
@@ -360,7 +444,7 @@
                     <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
                         <a class="logout" href="logout.php">Logout</a>
                         <a class="logout" href="seller listing.php">Postings</a><br>
-                        <a class="logout" href="property form.html">Add Property</a>
+                        <a class="logout" href="property form form.php">Add Property</a>
                     </div>
                 </div>
             <?php elseif ($agentloggedIn): ?>
@@ -437,6 +521,94 @@
     echo '<h1 class="welcomeagent">Properties available in ' . ucwords($place) . '.</h1>';
     ?>
 
+    <a class="editbutton" id="openPopup">Filter Properties</a>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h5 style="color:red;">*Leave the field(s) empty(as is) which you don't want to filter*</h5>
+            <form action="edit property.php" method="POST">
+                <label for="price">Price:</label>
+                <select class="field" name="price_range">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="0-100000"> - 1,00,000</option>
+                    <option value="100000-200000">1,00,000 - 2,00,000</option>
+                    <option value="200000-300000">2,00,000 - 3,00,000</option>
+                    <option value="300000-400000">3,00,000 - 4,00,000</option>
+                    <option value="400000-500000">4,00,000 - 5,00,000</option>
+                    <option value="500000-600000">5,00,000 - 6,00,000</option>
+                    <option value="600000-700000">6,00,000 - 7,00,000</option>
+                    <option value="700000-800000">7,00,000 - 8,00,000</option>
+                    <option value="800000-900000">8,00,000 - 9,00,000</option>
+                    <option value="900000-1000000">9,00,000 - 10,00,000</option>
+                    <option value="1000000 - "> 10,00,000 - </option>
+                </select><br><br>
+                <label for="bedrooms">Number of Bedrooms:</label>
+                <select class="field" name="bed">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br><br>
+                <label for="bathrooms">Number of Bathrooms:</label>
+                <select class="field" name="bath">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br><br>
+                <label for="no_of_garages">Number of Garages:</label>
+                <select class="field" name="garages">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br><br>
+                <input type="hidden" name="state" value='<?php echo $place; ?>'>
+
+                <center><input type="submit" value="Submit" class="editbutton" style="border:none;">
+                </center>
+            </form>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    <script>
+        const openPopupBtn = document.getElementById('openPopup');
+        const closePopupBtn = document.getElementById('closePopup');
+        const popup = document.getElementById('popup');
+
+        openPopupBtn.addEventListener('click', function ()
+        {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        closePopupBtn.addEventListener('click', function ()
+        {
+            popup.style.display = 'none';
+            overlay.style.display = 'none'
+        });
+    </script>
 
     <div class="row">
         <?php
@@ -462,7 +634,7 @@
                 echo "</a>";
             }
         } else {
-            echo "0 results";
+            echo "<h2 class='available'> 0 properties available in ".$place." :(<h2>";
         }
 
         $conn->close();
@@ -483,7 +655,8 @@
 
     <div class="end">
         <br>
-        <a class="endbutton" href="home.php"><-Homepage</a>
+        <a class="endbutton" href="home.php"><-Homepage
+    </a>
     </div>
     <footer id="footer">
         <div class="footer-container">

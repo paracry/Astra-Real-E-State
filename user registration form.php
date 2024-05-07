@@ -19,8 +19,6 @@
             display: block;
             font-size: 9vh;
             border-radius: 20vh;
-            background-color: #27004f70;
-            color: rgb(235, 199, 255);
             padding: 2vh;
             text-align: center;
             margin: auto;
@@ -72,15 +70,13 @@
             color: red;
         }
 
-        a{
-            color: lightblue;
-            text-align: center;
-            margin-left: 3.7vw;
+        a {
+            color: rgb(173, 230, 186);
             font-size: 3vh;
         }
 
-        a:hover{
-            color: rgb(127, 127, 255);
+        a:hover {
+            color: rgb(194, 207, 255);
         }
     </style>
 
@@ -110,7 +106,7 @@
 
         <input type="submit" value="Submit"><br><br>
 
-        <a href="home.php">go back to homepage</a>
+        <center><a href="home.php">go back to homepage</a></center>
     </form>
 
 </body>

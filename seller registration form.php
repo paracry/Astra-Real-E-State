@@ -57,12 +57,22 @@
             color: white;
             padding: 10px 15px;
             border: none;
+            width: 100%;
             border-radius: 3px;
             cursor: pointer;
         }
 
         input[type="submit"]:hover {
             background-color: #45a049;
+        }
+
+        a {
+            color: rgb(173, 230, 186);
+            font-size: 3vh;
+        }
+
+        a:hover {
+            color: rgb(194, 207, 255);
         }
     </style>
 
@@ -88,7 +98,9 @@
         <input type="text" id="address" name="address" required>
         <?php if(isset($_SESSION['seller_error_address'])) { echo $_SESSION['seller_error_address']; } ?>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit"><br><br>
+
+        <center><a href="home.php">go back to homepage</a></center>
     </form>
 
 </body>

@@ -63,14 +63,24 @@
         input[type="submit"] {
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
-            border-radius: 4px;
+            width: 100%;
+            border-radius: 3px;
             cursor: pointer;
         }
 
         input[type="submit"]:hover {
             background-color: #45a049;
+        }
+
+        a {
+            color: rgb(173, 230, 186);
+            font-size: 3vh;
+        }
+
+        a:hover {
+            color: rgb(194, 207, 255);
         }
     </style>
 </head>
@@ -81,11 +91,15 @@
     <form action="agent registration.php" method="post" enctype="multipart/form-data">
         <label for="full_name">Full Name:</label>
         <input type="text" id="full_name" name="full_name" required />
-        <?php if(isset($_SESSION['agent_error_name'])) { echo $_SESSION['agent_error_name']; } ?>
+        <?php if (isset($_SESSION['agent_error_name'])) {
+            echo $_SESSION['agent_error_name'];
+        } ?>
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required />
-        <?php if(isset($_SESSION['agent_error_email'])) { echo $_SESSION['agent_error_email']; } ?>
+        <?php if (isset($_SESSION['agent_error_email'])) {
+            echo $_SESSION['agent_error_email'];
+        } ?>
 
         <label for="about">About yourself:</label>
         <textarea id="about" name="about" rows="4" cols="50">
@@ -93,19 +107,27 @@
 
         <label for="phone_number">Phone Number:</label>
         <input type="tel" id="phone_number" name="phone_number" required />
-        <?php if(isset($_SESSION['agent_error_phone'])) { echo $_SESSION['agent_error_phone']; } ?>
+        <?php if (isset($_SESSION['agent_error_phone'])) {
+            echo $_SESSION['agent_error_phone'];
+        } ?>
 
         <label for="state">State:</label>
         <input type="text" id="state" name="state" required />
-        <?php if(isset($_SESSION['agent_error_state'])) { echo $_SESSION['agent_error_state']; } ?>
+        <?php if (isset($_SESSION['agent_error_state'])) {
+            echo $_SESSION['agent_error_state'];
+        } ?>
 
         <label for="area">City:</label>
         <input type="text" id="area" name="area" required />
-        <?php if(isset($_SESSION['seller_error_area'])) { echo $_SESSION['seller_error_area']; } ?>
+        <?php if (isset($_SESSION['seller_error_area'])) {
+            echo $_SESSION['seller_error_area'];
+        } ?>
 
         <label for="pincode">Pincode:</label>
         <input type="text" id="pincode" name="pincode" required>
-        <?php if(isset($_SESSION['seller_error_pincode'])) { echo $_SESSION['seller_error_pincode']; } ?>
+        <?php if (isset($_SESSION['seller_error_pincode'])) {
+            echo $_SESSION['seller_error_pincode'];
+        } ?>
 
         <label for="address_url">Address URL:</label>
         <input type="url" id="address_url" name="address_url" required />
@@ -128,7 +150,9 @@
         <label for="photo">Photo:</label>
         <input type="file" id="image" name="image" accept="image/*" required /><br /><br />
 
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" /><br><br>
+        <center><a href="home.php">go back to homepage</a></center>
+
     </form>
 </body>
 

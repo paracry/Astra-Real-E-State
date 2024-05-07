@@ -158,6 +158,7 @@
             justify-content: center;
         }
 
+        /*form*/
 
         input[type="text"] {
             padding: 2vh;
@@ -213,10 +214,15 @@
             color: #ffffff;
         }
 
-        .dropdown-menu   a:hover {
+        .dropdown-menu a:hover {
             background-color: #eaeaea;
             color: black;
             border-radius: 5vh;
+        }
+
+        .bed{
+            width: 2vw;
+            height: 2vh;
         }
 
 
@@ -291,61 +297,61 @@
             <a href="about.php">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="wishlist.php">Wishlist</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="wishlist.php">Wishlist</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($sellerloggedIn): ?>
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="seller listing.php">Postings</a><br>
-                    <a class="logout" href="property form form.php">Add Property</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="seller listing.php">Postings</a><br>
+                        <a class="logout" href="property form form.php">Add Property</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($agentloggedIn): ?>
 
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
+                    </div>
                 </div>
-            </div>
             <?php elseif ($adminloggedIn): ?>
 
-            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
-            <div class="dropdown">
+                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
+                <div class="dropdown">
 
-                <button class="username">
-                    <?php echo ucwords($_SESSION['username']); ?>
-                </button>
-                <div class="dropdown-content" style="height: 18vh;">
-                    <a class="logout" href="logout.php">Logout</a>
-                    <a class="logout" href="users list.php">Users</a>
-                    <a class="logout" href="seller list.php">Sellers</a>
-                    <a class="logout" href="agent listing.php">Agents</a>
-                    <a class="logout" href="listing.php">Properties</a>
+                    <button class="username">
+                        <?php echo ucwords($_SESSION['username']); ?>
+                    </button>
+                    <div class="dropdown-content" style="height: 18vh;">
+                        <a class="logout" href="logout.php">Logout</a>
+                        <a class="logout" href="users list.php">Users</a>
+                        <a class="logout" href="seller list.php">Sellers</a>
+                        <a class="logout" href="agent listing.php">Agents</a>
+                        <a class="logout" href="listing.php">Properties</a>
+                    </div>
                 </div>
-            </div>
             <?php else: ?>
-            <a class="login" href="user login.html">Login</a>
+                <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
 
             <script>
@@ -374,10 +380,10 @@
         <h1 class="welcome">Welcome to<br>Astra Real Estate</h1>
         <form action="search result.php" method="post">
 
-            <input type="text" id="stateInput" oninput="filterStates()" placeholder="Type to search..." name="place">
+            <input type="text" id="stateInput" oninput="filterStates()" placeholder="Type to search..." name="place" required>
             <div id="stateDropdown" class="dropdown-menu"></div>
 
-            <button class="search" value="search">🔍Search🔍</button>
+
             <script>
                 const states = ['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'];
 
@@ -411,6 +417,7 @@
 
 
             </script>
+            <button class="search" value="search">🔍Search🔍</button>
         </form>
     </main>
     <footer id="footer">

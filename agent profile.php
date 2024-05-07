@@ -516,7 +516,7 @@
                     <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
                         <a class="logout" href="logout.php">Logout</a>
                         <a class="logout" href="seller listing.php">Postings</a><br>
-                        <a class="logout" href="property form.html">Add Property</a>
+                        <a class="logout" href="property form form.php">Add Property</a>
                     </div>
                 </div>
             <?php elseif ($agentloggedIn): ?>
