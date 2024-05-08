@@ -258,7 +258,7 @@
             z-index: 999;
         }
 
-        .field{
+        .field {
             height: 5vh;
             border-radius: 2vh;
             border-color: #8000ff;
@@ -517,8 +517,41 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $place = $_POST['place'];
-    echo '<h1 class="welcomeagent">Properties available in ' . ucwords($place) . '.</h1>';
+
+
+    $filter = [];
+
+    if (isset($_POST['price_range'])) {
+        $price_range = $_POST['price_range'];
+        $prices = explode('-', $price_range);
+
+        $min_price = $prices[0];
+        $max_price = $prices[1];
+        $filter[] = "price >= $min_price AND price <= $max_price";
+    }
+
+    if (isset($_POST['bed'])) {
+        $filter[] = "bed = {$_POST['bed']}";
+    }
+
+    if (isset($_POST['bath'])) {
+        $filter[] = "bath = {$_POST['bath']}";
+    }
+
+    if (isset($_POST['garages'])) {
+        $filter[] = "garages = {$_POST['garages']}";
+    }
+
+    if (isset($_POST['state'])) {
+        $filter[] = "state = '" . $_POST['state'] . "'";
+    }
+
+
+    if (isset($_POST['place']))
+        $place = $_POST['place'];
+    elseif (isset($_POST['state']))
+        $place = $_POST['state'];
+    echo '<h1 class="welcomeagent">Properties available in ' . (isset($place) ? ucwords($place) : "India") . '.</h1>';
     ?>
 
     <a class="editbutton" id="openPopup">Filter Properties</a>
@@ -526,7 +559,7 @@
         <div class="popup-content">
             <span class="close" id="closePopup">&times;</span>
             <h5 style="color:red;">*Leave the field(s) empty(as is) which you don't want to filter*</h5>
-            <form action="edit property.php" method="POST">
+            <form action="search result.php" method="POST">
                 <label for="price">Price:</label>
                 <select class="field" name="price_range">
                     <option value="" disabled selected>Select an option</option>
@@ -584,7 +617,42 @@
                     <option value="9">9</option>
                     <option value="10">10</option>
                 </select><br><br>
-                <input type="hidden" name="state" value='<?php echo $place; ?>'>
+                <?php if (isset($place)): ?>
+                    <input type="hidden" name="state" value='<?php echo $place; ?>'>
+                <?php else: ?>
+                    <label>State: </label>
+                    <select class="field" name="state">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                    </select><br><br>
+                <?php endif; ?>
 
                 <center><input type="submit" value="Submit" class="editbutton" style="border:none;">
                 </center>
@@ -612,7 +680,18 @@
 
     <div class="row">
         <?php
-        $sql = "SELECT * FROM property WHERE state = '$place'";
+
+
+
+
+        if (empty($filter)) {
+            if (isset($place))
+                $sql = "SELECT * FROM property WHERE state= '$place'";
+            else
+                $sql = "SELECT * FROM property";
+        } else
+            $sql = "SELECT * FROM property WHERE " . implode(" AND ", $filter);
+
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -634,7 +713,7 @@
                 echo "</a>";
             }
         } else {
-            echo "<h2 class='available'> 0 properties available in ".$place." :(<h2>";
+            echo "<h2 class='available'> 0 properties available in " . (isset($place) ? ucwords($place) : "India") . " :(<h2>";
         }
 
         $conn->close();
@@ -647,7 +726,8 @@
     <br>
     <center>
         <h3 style="margin: 0 10vw;">
-            <hr>Thank you for browsing through our list of available Properties in <?php echo ucwords($place); ?>. We
+            <hr>Thank you for browsing through our list of available Properties in
+            <?php echo (isset($place) ? ucwords($place) : "India"); ?>. We
             hope you found the perfect property!<br>Feel free to explore other services on our website or contact us for
             more information.
         </h3>
@@ -655,8 +735,7 @@
 
     <div class="end">
         <br>
-        <a class="endbutton" href="home.php"><-Homepage
-    </a>
+        <a class="endbutton" href="home.php"><-Homepage </a>
     </div>
     <footer id="footer">
         <div class="footer-container">

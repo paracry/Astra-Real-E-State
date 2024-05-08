@@ -184,6 +184,88 @@
 
         /*top bar ends here*/
 
+        /*filter*/
+
+        .editbutton {
+            padding: 2vh;
+            margin: 5vh;
+
+            font-size: 3vh;
+            width: 10vw;
+            text-align: center;
+            background-color: rgb(0, 173, 90);
+            color: rgb(255, 255, 255);
+            border-radius: 20vh;
+            transition: 500ms;
+            text-decoration: none;
+            box-shadow: 1vh 1vh 2vh #000000;
+        }
+
+        .editbutton:hover {
+            background-color: rgb(0, 102, 78);
+            color: white;
+            cursor: pointer;
+            font-size: 3vh;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            transition: 500ms;
+
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(255, 255, 255);
+            padding: 5vh;
+            font-size: 3vh;
+            box-shadow: 2vh 2vh 2vh #000000;
+            z-index: 1000;
+            transition: 500ms;
+            border-radius: 10vh;
+        }
+
+        .popup-content {
+            text-align: left;
+            transition: 500ms;
+        }
+
+        .close {
+            color: #ff0000;
+            float: right;
+            font-size: 6vh;
+            font-weight: bold;
+            margin-top: -6vh;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.41);
+            z-index: 999;
+        }
+
+        .field {
+            height: 5vh;
+            border-radius: 2vh;
+            border-color: #8000ff;
+        }
+
+        /*property details*/
+
         .available,
         .total {
             margin-left: 6vw;
@@ -423,6 +505,127 @@
     <h1 class="welcome">Astra Real Estate</h1>
     <h1 class="welcomeagent">Property listing</h1>
 
+    <a class="editbutton" id="openPopup">Filter Properties</a>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h5 style="color:red;">*Leave the field(s) empty(as is) which you don't want to filter*</h5>
+            <form action="search result.php" method="POST">
+                <label for="price">Price:</label>
+                <select class="field" name="price_range">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="0-100000"> - 1,00,000</option>
+                    <option value="100000-200000">1,00,000 - 2,00,000</option>
+                    <option value="200000-300000">2,00,000 - 3,00,000</option>
+                    <option value="300000-400000">3,00,000 - 4,00,000</option>
+                    <option value="400000-500000">4,00,000 - 5,00,000</option>
+                    <option value="500000-600000">5,00,000 - 6,00,000</option>
+                    <option value="600000-700000">6,00,000 - 7,00,000</option>
+                    <option value="700000-800000">7,00,000 - 8,00,000</option>
+                    <option value="800000-900000">8,00,000 - 9,00,000</option>
+                    <option value="900000-1000000">9,00,000 - 10,00,000</option>
+                    <option value="1000000 - "> 10,00,000 - </option>
+                </select><br><br>
+                <label for="bedrooms">Number of Bedrooms:</label>
+                <select class="field" name="bed">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br><br>
+                <label for="bathrooms">Number of Bathrooms:</label>
+                <select class="field" name="bath">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br><br>
+                <label for="no_of_garages">Number of Garages:</label>
+                <select class="field" name="garages">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br><br>
+
+                <select class="field" name="state">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select><br><br>
+
+
+                <center><input type="submit" value="Submit" class="editbutton" style="border:none;">
+                </center>
+            </form>
+        </div>
+    </div>
+    <div id="overlay" class="overlay"></div>
+    <script>
+        const openPopupBtn = document.getElementById('openPopup');
+        const closePopupBtn = document.getElementById('closePopup');
+        const popup = document.getElementById('popup');
+
+        openPopupBtn.addEventListener('click', function ()
+        {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        closePopupBtn.addEventListener('click', function ()
+        {
+            popup.style.display = 'none';
+            overlay.style.display = 'none'
+        });
+    </script>
+
     <div class="row">
         <?php
         $servername = "localhost";
@@ -486,7 +689,7 @@
 
     <div class="end">
         <br>
-        <a class="endbutton" href="home.php"><-Homepage</a>
+        <a class="endbutton" href="home.php"><-Homepage< /a>
     </div>
 
     <footer id="footer">
