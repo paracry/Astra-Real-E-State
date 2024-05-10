@@ -1,6 +1,16 @@
 <?php
 
 session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "real_estate";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 // Regular expressions for validation
 $pattern_name = "/^[a-zA-Z]+(?:\s[a-zA-Z]+)+$/";
@@ -17,8 +27,17 @@ if (preg_match($pattern_name, $_POST['name'])) {
 }
 
 if (preg_match($pattern_email, $_POST['email'])) {
-    $_SESSION['seller_email'] = $_POST['email'];
-    unset($_SESSION['seller_error_email']);
+    $email=$_POST['email'];
+    $sql = "SELECT * FROM seller WHERE email = '$email'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+
+        $_SESSION['seller_error_email'] = "<p style='color:red;'>Email already exists in the database.</p>";
+    } else {
+        $_SESSION['seller_email'] = $email;
+        unset($_SESSION['seller_error_email']);
+    }
 } else {
     $_SESSION['seller_error_email'] = "<p style='color:red;'>Invalid email format. Please enter a valid email.</p>";
 }
