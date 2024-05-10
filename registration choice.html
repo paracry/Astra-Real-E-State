@@ -5,14 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circular Images</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+
     <style>
+        body {
+            background-image: url(images/home.jpeg);
+            object-fit: cover;
+            background-size: 320vh;
+            background-position: top;
+            font-family: 'Amaranth', sans-serif;
+            margin: 0;
+
+
+        }
+
+        .welcome {
+            display: inline-block;
+            font-size: 12vh;
+            color: #000000;
+            text-align: center;
+            margin: auto;
+            margin-top: 4vh;
+        }
+
+
         .circle {
             width: 64.2vh;
             height: 64.2vh;
             border-radius: 50%;
             overflow: hidden;
             position: relative;
-            margin: 20px;
+            margin-top: 10vh;
+            margin-left: 2.2vw;
             display: inline-block;
         }
 
@@ -42,13 +66,63 @@
         .circle:hover img {
             filter: brightness(70%);
         }
+
+        /*footer*/
+
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            margin-top: 7vh;
+            font-size: 2.5vh;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            color: #ffffff;
+            background-color: #000000;
+        }
+
+        .footer-section {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            color: #c387ff;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 3vh;
+        }
+
+        .footer-section a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: 500ms;
+            margin-bottom: 2vh;
+        }
+
+        .footer-section a:hover {
+            color: #b554ff;
+            font-size: 4vh;
+            transition: 500ms;
+        }
     </style>
 </head>
 
 <body>
-    <center><h1>Registor as</h1></center>
+    <center>
+        <h1 class="welcome">Registor as</h1>
+    </center>
     <a href="user registration form.php" class="circle">
-        <img src="images/user.png" alt="Image 1">
+        <img src="images/users.png" alt="Image 1">
         <p>User</p>
     </a>
     <a href="seller registration form.php" class="circle">
@@ -56,9 +130,35 @@
         <p>Seller</p>
     </a>
     <a href="agent registration form.php" class="circle">
-        <img src="images/agent.jpg" alt="Image 3">
+        <img src="images/agent.png" alt="Image 3">
         <p>Agent</p>
     </a>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Our mission is to provide top-notch real<br> estate services tailored to your needs.</p>
+                <p>Learn more about Astra Real Estate <a href="about.php" style="color: #c387ff;">here.</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>793001, Jowai road, Astra Building<br>Email: info@astrarealestate.com<br>Phone: 940-256-0551</p>
+                <p>Feel free to reach out to us<br>for any inquiries or assistance.</p><br><br>
+                <p>&copy; 2024 Astra Real Estate. All rights reserved.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Explore</h3>
+                <ul>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="listing.php">Properties</a></li>
+                    <li><a href="agent listing.php">Agents</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </footer>
 </body>
 
 </html>
