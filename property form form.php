@@ -63,9 +63,9 @@
             background-color: #45a049;
         }
 
-        .state{
+        .state {
             padding: 1vh;
-            width:100%;
+            width: 100%;
         }
     </style>
 </head>
@@ -123,6 +123,7 @@
 
         <br><label for="state">State:</label><br>
         <select id="indian_states" name="state" class="state" required>
+            <option value="" disabled selected>Select state</option>
             <option value="Andhra Pradesh">Andhra Pradesh</option>
             <option value="Arunachal Pradesh">Arunachal Pradesh</option>
             <option value="Assam">Assam</option>
@@ -151,6 +152,15 @@
             <option value="Uttar Pradesh">Uttar Pradesh</option>
             <option value="Uttarakhand">Uttarakhand</option>
             <option value="West Bengal">West Bengal</option>
+            <option value="" disabled>-----------Union Territories--------------</option>
+            <option value="DNHDD">Dadra and Nagar Haveli and Daman & Diu</option>
+            <option value="JK">Jammu & Kashmir</option>
+            <option value="Ladakh">Ladakh</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Delhi">Delhi</option>
+            <option value="Puducherry">Puducherry</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="AN">Andaman and Nicobar Islands</option>
         </select><br><br>
 
         <?php if (isset($_SESSION['property_error_state'])) {

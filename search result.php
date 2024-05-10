@@ -742,7 +742,7 @@
             <div class="footer-section">
                 <h3>About Us</h3>
                 <p>Our mission is to provide top-notch real<br> estate services tailored to your needs.</p>
-                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>
+                <p>Learn more about Astra Real Estate <a href="about.php" style="color: #c387ff;">here.</a></p>
             </div>
             <div class="footer-section">
                 <h3>Contact Us</h3>
@@ -754,7 +754,7 @@
                 <h3>Explore</h3>
                 <ul>
                     <li><a href="home.php">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="about.php">About</a></li>
                     <li><a href="listing.php">Properties</a></li>
                     <li><a href="agent listing.php">Agents</a></li>
                 </ul>

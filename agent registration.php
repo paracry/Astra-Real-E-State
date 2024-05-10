@@ -26,14 +26,6 @@ if ($_SESSION['phone_number'] = preg_match('/^\d{10}$/', $_POST['phone_number'])
 }
 
 
-if ($_SESSION['state'] = preg_match('/^[a-zA-Z ]+$/', $_POST['state'])) {
-    $_SESSION['state'] = $_POST['state'];
-    unset($_SESSION['agent_error_state']);
-} else {
-    $_SESSION['agent_error_state'] = "<p style='color:red;'>Invalid State format. Please enter a valid State.</p>";
-}
-
-
 if ($_SESSION['area'] = preg_match('/^[a-zA-Z ]+$/', $_POST['area'])) {
     $_SESSION['area'] = $_POST['area'];
     unset($_SESSION['agent_error_area']);
@@ -49,6 +41,8 @@ if ($_SESSION['pincode'] = preg_match('/^\d{6}$/', $_POST['pincode'])) {
     $_SESSION['agent_error_pincode'] = "<p style='color:red;'>Invalid pincode format. Please enter a valid Pincode.</p>";
 }
 
+$_SESSION['state'] = $_POST['state'];
+
 $_SESSION['address_url'] = $_POST['address_url'];
 
 $_SESSION['website'] = $username = isset($_POST['website']) ? $_POST['website'] : 'Not Available';
@@ -62,7 +56,7 @@ $_SESSION['negotiable'] = $_POST['negotiable'];
 $_SESSION['image'] = file_get_contents($_FILES['image']['tmp_name']);
 
 
-if (isset($_SESSION['agent_error_name']) || isset($_SESSION['agent_error_email']) || isset($_SESSION['agent_error_phone']) || isset($_SESSION['agent_error_state']) || isset($_SESSION['agent_error_area']) || isset($_SESSION['agent_error_pincode'])) {
+if (isset($_SESSION['agent_error_name']) || isset($_SESSION['agent_error_email']) || isset($_SESSION['agent_error_phone']) || isset($_SESSION['agent_error_area']) || isset($_SESSION['agent_error_pincode'])) {
     header("Location: agent registration form.php");
     exit();
 } else {

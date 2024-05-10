@@ -160,37 +160,46 @@
 
         /*form*/
 
-        input[type="text"] {
+        .states {
             padding: 2vh;
             width: 30vw;
             border: none;
             border-radius: 50vh;
-            margin-right: 10px;
             background-color: #f4e4ffeb;
-            font-size: 2.5vh;
+            font-size: 3vh;
+            color: #000000a9;
+            
+
         }
 
-        input:hover {
+        .states option {
+            font-size: 2vh;
+            color: #000000;
+        }
+
+        .states:hover {
             outline: solid 0.4vh #8000ff;
+            color: #000000;
         }
 
-        input:focus {
+        .states:focus {
             outline: solid 0.4vh #8000ff;
             background-color: white;
+            color: #000000;
 
 
         }
 
         .search {
-            margin-top: 2vh;
             padding: 1.5vh;
-            font-size: 2.5vh;
-            width: 9vw;
+            font-size: 3vh;
+            margin-left: 1vw;
             background-color: #8000ff;
             color: #fff;
             border: none;
             border-radius: 20vh;
             cursor: pointer;
+
 
         }
 
@@ -198,49 +207,36 @@
             background-color: #ff0099;
         }
 
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: #303030;
-            max-height: 25vh;
-            overflow-y: auto;
-            border-radius: 5vh;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 1vh;
-            text-decoration: none;
-            color: #ffffff;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: #eaeaea;
-            color: black;
-            border-radius: 5vh;
-        }
-
-        .bed{
-            width: 2vw;
-            height: 2vh;
-        }
 
 
         .welcome {
             padding: 7vh 6vw;
-            font-size: 9vh;
+            font-size: 10vh;
             border-radius: 20vh;
             background-color: #27004f70;
             color: rgb(235, 199, 255);
             text-align: center;
             margin-top: 10vh;
+            margin-bottom: 3vh;
 
+        }
+
+        .welcome2{
+            font-size: 3vh;
+            background-color: #004765b4;
+            color: rgb(255, 255, 255);
+            margin-top: 6vh;
+            margin-bottom: 2vh;
+            text-align: center;
+            padding: 1.5vh 2vw;
+            border-radius: 20vh;
+            
         }
 
         /*footer*/
 
         footer {
-            margin-top: 30vh;
+            margin-top: 13.3vh;
             background-color: #000000c1;
             color: #ffffff;
             padding: 20px 0;
@@ -297,61 +293,61 @@
             <a href="about.php">About Us</a>
             <a href="#footer">Contact</a>
             <?php if ($userloggedIn): ?>
-                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
-                <div class="dropdown">
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome User : </a>
+            <div class="dropdown">
 
-                    <button class="username">
-                        <?php echo ucwords($_SESSION['username']); ?>
-                    </button>
-                    <div class="dropdown-content">
-                        <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="wishlist.php">Wishlist</a>
-                    </div>
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content">
+                    <a class="logout" href="logout.php">Logout</a>
+                    <a class="logout" href="wishlist.php">Wishlist</a>
                 </div>
+            </div>
             <?php elseif ($sellerloggedIn): ?>
-                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
-                <div class="dropdown">
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Seller : </a>
+            <div class="dropdown">
 
-                    <button class="username">
-                        <?php echo ucwords($_SESSION['username']); ?>
-                    </button>
-                    <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
-                        <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="seller listing.php">Postings</a><br>
-                        <a class="logout" href="property form form.php">Add Property</a>
-                    </div>
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content" style="height: 11vh; min-width: 11vw;">
+                    <a class="logout" href="logout.php">Logout</a>
+                    <a class="logout" href="seller listing.php">Postings</a><br>
+                    <a class="logout" href="property form form.php">Add Property</a>
                 </div>
+            </div>
             <?php elseif ($agentloggedIn): ?>
 
-                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
-                <div class="dropdown">
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Agent : </a>
+            <div class="dropdown">
 
-                    <button class="username">
-                        <?php echo ucwords($_SESSION['username']); ?>
-                    </button>
-                    <div class="dropdown-content">
-                        <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
-                    </div>
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content">
+                    <a class="logout" href="logout.php">Logout</a>
+                    <a class="logout" href="agent profile.php?agent_id=<?php echo $_SESSION['agent_id']; ?>">Profile</a>
                 </div>
+            </div>
             <?php elseif ($adminloggedIn): ?>
 
-                <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
-                <div class="dropdown">
+            <a class="logged" style="margin-left: 30vw; margin-right: 0%;">Welcome Admin : </a>
+            <div class="dropdown">
 
-                    <button class="username">
-                        <?php echo ucwords($_SESSION['username']); ?>
-                    </button>
-                    <div class="dropdown-content" style="height: 18vh;">
-                        <a class="logout" href="logout.php">Logout</a>
-                        <a class="logout" href="users list.php">Users</a>
-                        <a class="logout" href="seller list.php">Sellers</a>
-                        <a class="logout" href="agent listing.php">Agents</a>
-                        <a class="logout" href="listing.php">Properties</a>
-                    </div>
+                <button class="username">
+                    <?php echo ucwords($_SESSION['username']); ?>
+                </button>
+                <div class="dropdown-content" style="height: 18vh;">
+                    <a class="logout" href="logout.php">Logout</a>
+                    <a class="logout" href="users list.php">Users</a>
+                    <a class="logout" href="seller list.php">Sellers</a>
+                    <a class="logout" href="agent listing.php">Agents</a>
+                    <a class="logout" href="listing.php">Properties</a>
                 </div>
+            </div>
             <?php else: ?>
-                <a class="login" href="user login.html">Login</a>
+            <a class="login" href="user login.html">Login</a>
             <?php endif; ?>
 
             <script>
@@ -378,54 +374,59 @@
     </section>
     <main>
         <h1 class="welcome">Welcome to<br>Astra Real Estate</h1>
+        
         <form action="search result.php" method="post">
 
-            <input type="text" id="stateInput" oninput="filterStates()" placeholder="Type to search..." name="place" required>
-            <div id="stateDropdown" class="dropdown-menu"></div>
-
-
-            <script>
-                const states = ['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'];
-
-                const inputField = document.getElementById('stateInput');
-                const dropdown = document.getElementById('stateDropdown');
-
-                function filterStates()
-                {
-                    const filterValue = inputField.value.toLowerCase();
-                    const filteredStates = states.filter(state => state.toLowerCase().includes(filterValue));
-
-                    dropdown.innerHTML = '';
-                    filteredStates.forEach(state =>
-                    {
-                        const option = document.createElement('a');
-                        option.textContent = state;
-                        option.href = '#';
-                        option.addEventListener('click', () =>
-                        {
-                            inputField.value = state;
-                            dropdown.style.display = 'none';
-                        });
-                        dropdown.appendChild(option);
-                    });
-
-                    dropdown.style.display = filteredStates.length > 0 ? 'block' : 'none';
-                }
-
-                inputField.addEventListener('focus', filterStates);
-
-
-
-            </script>
+            <select class="states" name="state" class="state">
+                <option value="" disabled selected>Select state to search</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="" disabled>-----------Union Territories--------------</option>
+                <option value="DNHDD">Dadra and Nagar Haveli and Daman & Diu</option>
+                <option value="JK">Jammu & Kashmir</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="AN">Andaman and Nicobar Islands</option>
+            </select>
             <button class="search" value="search">🔍Search🔍</button>
         </form>
+        <h3 class="welcome2">Your one-stop destination for finding your dream house</h3>
     </main>
     <footer id="footer">
         <div class="footer-container">
             <div class="footer-section">
                 <h3>About Us</h3>
                 <p>Our mission is to provide top-notch real<br> estate services tailored to your needs.</p>
-                <p>Learn more about Astra Real Estate <a href="about.html" style="color: #c387ff;">here.</a></p>
+                <p>Learn more about Astra Real Estate <a href="about.php" style="color: #c387ff;">here.</a></p>
             </div>
             <div class="footer-section">
                 <h3>Contact Us</h3>
@@ -437,7 +438,7 @@
                 <h3>Explore</h3>
                 <ul>
                     <li><a href="home.php">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="about.php">About</a></li>
                     <li><a href="listing.php">Properties</a></li>
                     <li><a href="agent listing.php">Agents</a></li>
                 </ul>
