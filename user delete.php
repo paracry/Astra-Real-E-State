@@ -11,6 +11,18 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+
+$sql = "SELECT * FROM wishlist WHERE user_id=$user_id";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $sql = "DELETE FROM wishlist WHERE user_id=$user_id";
+    if ($conn->query($sql) === TRUE) {
+        echo "wishlist deleted";
+    }
+}
 $sql = "DELETE FROM user WHERE user_id=$user_id";
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully form2";

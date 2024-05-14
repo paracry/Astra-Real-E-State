@@ -398,7 +398,7 @@
     if ($result->num_rows > 0) {
         echo "<table><tr><th>User_id</th><th>Username</th><th>Email</th><th>Phone Number</th><th>Delete User</th></tr>";
         while ($row = $result->fetch_assoc()) {
-            echo "<tr class='row'><td>" . $row["user_id"] . "</td><td>" . $row["username"] . "</td><td>" . $row["email"] . "</td><td>" . $row["phone"] . "</td><td>" . '<a class="delete" href="user delete.php?user_id=' . $row["user_id"] . '">Delete User</a>' . "</td></tr>";
+            echo "<tr class='row'><td>" . $row["user_id"] . "</td><td>" . ucwords($row["username"]) . "</td><td>" . $row["email"] . "</td><td>" . $row["phone"] . "</td><td>" . '<a class="delete" href="user delete.php?user_id=' . $row["user_id"] . '">Delete User</a>' . "</td></tr>";
         }
         echo "</table>";
     } else {

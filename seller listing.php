@@ -476,7 +476,7 @@
                 echo "</a>";
             }
         } else {
-            echo "0 results";
+            echo  '<h3 class="total">No postings yet :(</h3>';
         }
         $conn->close();
 
