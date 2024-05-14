@@ -26,7 +26,7 @@ if (isset($_POST['bedrooms']) && !empty($_POST['bedrooms'])) {
 
 if (isset($_POST['bathrooms']) && !empty($_POST['bathrooms'])) {
     $bath=$conn->real_escape_string($_POST['bathrooms']);
-    $fieldsToUpdate[] = "bath = $bathrooms";
+    $fieldsToUpdate[] = "bath = $bath";
 }
 if (isset($_POST['size']) && !empty($_POST['size'])) {
     $size=$conn->real_escape_string($_POST['size']);
@@ -38,7 +38,7 @@ if (isset($_POST['year_built']) && !empty($_POST['year_built'])) {
 }
 if (isset($_POST['property_type']) && !empty($_POST['property_type'])) {
     $property_type=$conn->real_escape_string($_POST['property_type']);
-    $fieldsToUpdate[] = "property_type = $property_type";
+    $fieldsToUpdate[] = "property_type = '$property_type'";
 }
 if (isset($_POST['garages']) && !empty($_POST['garages'])) {
     $garages=$conn->real_escape_string($_POST['garages']);
