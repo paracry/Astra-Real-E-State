@@ -515,7 +515,7 @@
 
         }
 
-        .editbutton{
+        .editbutton {
             padding: 2vh;
             margin: 2vh;
             font-size: 3vh;
@@ -536,6 +536,7 @@
             transition: 500ms;
 
         }
+
         /*end*/
 
         .end {
@@ -662,16 +663,16 @@
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
     }
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "real_estate";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "real_estate";
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
     $property_id = $_GET['property_id'];
     echo "<h2 class='number'>Property no : " . $property_id . "</h2>";
 
@@ -826,6 +827,49 @@
                     window.open(mailtoLink);
                 };
             </script>
+        <?php elseif (isset($_SESSION['agent_id'])): ?>
+            <a id="openPopup" class="contactbutton">Contact Seller</a>
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <h2>Seller contact details</h2>
+                    <h3>Phone number :
+                        <?php echo $sellerphone; ?>
+                        <br>Email address :
+                        <?php echo $selleremail; ?>
+                    </h3>
+                    <center><button id="openGmail">Compose Email</button></center>
+                </div>
+            </div>
+            <div id="overlay" class="overlay"></div>
+
+            <script>
+                const openPopupBtn = document.getElementById('openPopup');
+                const closePopupBtn = document.getElementById('closePopup');
+                const popup = document.getElementById('popup');
+
+                openPopupBtn.addEventListener('click', function ()
+                {
+                    popup.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+
+                closePopupBtn.addEventListener('click', function ()
+                {
+                    popup.style.display = 'none';
+                    overlay.style.display = 'none'
+                });
+
+                document.getElementById('openGmail').onclick = function ()
+                {
+                    var email = '<?php echo $selleremail; ?>'; // Specify the email address here
+                    var subject = 'Inquiry Regarding Property ID = <?php echo $property_id; ?>.'; // Specify the email subject here
+                    var body = "Dear <?php echo ucwords($sellername); ?>,%0D%0AI hope this email finds you well. I am writing to express my genuine interest in the property having Property ID = <?php echo $property_id; ?>, situated in <?php echo $street_name . ', ' . $state; ?> . After thorough research and consideration, I believe that your property aligns perfectly with what I am looking for in a home/investment.%0D%0A%0D%0AI would appreciate the opportunity to further discuss the property with you. Could we arrange a viewing or a call to address any questions I may have? Additionally, I am open to discussing the terms of the sale and any additional information you deem necessary.%0D%0A%0D%0AThank you for considering my inquiry. I look forward to the possibility of exploring this opportunity further.%0D%0A%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
+                    var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+
+                    window.open(mailtoLink);
+                };
+            </script>
 
         <?php elseif (isset($_SESSION['seller_id'])): ?>
             <?php if ($seller_id == $_SESSION['seller_id']) {
@@ -864,7 +908,7 @@
 
         <label for="property_type">Property Type:</label>
         <select id="property_type" name="property_type" placeholder=' . $property_type . '>
-        <option value="" disabled selected>'.$property_type.'</option>    
+        <option value="" disabled selected>' . $property_type . '</option>    
         <option value="Single">Single</option>
             <option value="Double">Double</option>
             <option value="Multiple">Multiple</option>
@@ -875,7 +919,7 @@
 
         <label for="no_of_garages">Number of Garages:</label>
         <input type="number" id="no_of_garages" name="garages" placeholder=' . $garages . '><br><br>
-        <input type="hidden" name="property_id" value='.$property_id.'>
+        <input type="hidden" name="property_id" value=' . $property_id . '>
 
                     <center><input type="submit" value="Submit" class="editbutton" style="border:none;">
                     </center>
@@ -917,8 +961,51 @@
                     }
                 });
             </script>"; ?>
+            <a id="openPopup" class="contactbutton">Contact Seller</a>
+            <div id="popup" class="popup">
+                <div class="popup-content">
+                    <span class="close" id="closePopup">&times;</span>
+                    <h2>Seller contact details</h2>
+                    <h3>Phone number :
+                        <?php echo $sellerphone; ?>
+                        <br>Email address :
+                        <?php echo $selleremail; ?>
+                    </h3>
+                    <center><button id="openGmail">Compose Email</button></center>
+                </div>
+            </div>
+            <div id="overlay" class="overlay"></div>
+
+            <script>
+                const openPopupBtn = document.getElementById('openPopup');
+                const closePopupBtn = document.getElementById('closePopup');
+                const popup = document.getElementById('popup');
+
+                openPopupBtn.addEventListener('click', function ()
+                {
+                    popup.style.display = 'block';
+                    overlay.style.display = 'block';
+                });
+
+                closePopupBtn.addEventListener('click', function ()
+                {
+                    popup.style.display = 'none';
+                    overlay.style.display = 'none'
+                });
+
+                document.getElementById('openGmail').onclick = function ()
+                {
+                    var email = '<?php echo $selleremail; ?>'; // Specify the email address here
+                    var subject = 'Inquiry Regarding Property ID = <?php echo $property_id; ?>.'; // Specify the email subject here
+                    var body = "Dear <?php echo ucwords($sellername); ?>,%0D%0AI hope this email finds you well. I am writing to express my genuine interest in the property having Property ID = <?php echo $property_id; ?>, situated in <?php echo $street_name . ', ' . $state; ?> . After thorough research and consideration, I believe that your property aligns perfectly with what I am looking for in a home/investment.%0D%0A%0D%0AI would appreciate the opportunity to further discuss the property with you. Could we arrange a viewing or a call to address any questions I may have? Additionally, I am open to discussing the terms of the sale and any additional information you deem necessary.%0D%0A%0D%0AThank you for considering my inquiry. I look forward to the possibility of exploring this opportunity further.%0D%0A%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
+                    var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+
+                    window.open(mailtoLink);
+                };
+            </script>
         <?php else: ?>
-            <h3 style="margin: 6vh;  color: #d50000;"><a href="user login.html">Login</a> first to contact Seller or wishlist
+            <h3 style="margin: 6vh;  color: #d50000;"><a href="user login.html">Login</a> first to contact Seller or
+                wishlist
                 this property.</h3>
         <?php endif;
         $conn->close(); ?>

@@ -649,7 +649,7 @@
     ?>
 
     <div class="contact">
-        <?php if (isset($_SESSION['user_id'])): ?>
+        <?php if (isset($_SESSION['user_id'])|| isset($_SESSION['seller_id'])): ?>
             <h2>Phone number :
                 <?php echo $agentphone; ?>
                 <br>Email address :
@@ -684,7 +684,7 @@
                         }
                     });
                 </script>";
-                echo '<a class="editbutton" id="openPopup">Edit listing</a>';
+                echo '<a class="editbutton" id="openPopup">Edit Profile</a>';
                 echo '<div id="popup" class="popup">
                         <div class="popup-content">
                             <span class="close" id="closePopup">&times;</span>
@@ -750,9 +750,6 @@
                     }
                 });
             </script>"; ?>
-        <?php elseif (isset($_SESSION["seller_id"])): ?>
-            <?php echo "<h3 style='color: #d50000;'>Hello Seller!<br>If you want the contact details of this agent then you'll have to <a href='user login.html'>Login</a> as User!.</h3>"; ?>
-
         <?php else: ?>
             <h3 style="color: #d50000;"><a href="user login.html">Login</a> first to
                 contact this agent.</h3>
