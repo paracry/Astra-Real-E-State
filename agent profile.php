@@ -740,16 +740,40 @@
             }
             ?>
         <?php elseif (isset($_SESSION["admin_id"])): ?>
+            <h2>Phone number :
+                <?php echo $agentphone; ?>
+                <br>Email address :
+                <?php echo $agentemail; ?>
+            </h2>
+            <button id="openGmail">Email
+                <?php echo $agentname; ?>
+            </button>
+
+            <script>
+                document.getElementById('openGmail').onclick = function ()
+                {
+                    var email = '<?php echo $agentemail; ?>'; // Specify the email address here
+                    var subject = 'Inquiry Regarding Real Estate Services.'; // Specify the email subject here
+                    var body = "Dear <?php echo $agentname; ?>,%0D%0AI hope this email finds you well. My name is <?php echo ucwords($_SESSION['username']); ?>, and I am currently in the market for a new home in <?php echo $area; ?> , where I understand you have a wealth of experience and expertise.%0D%0A%0D%0AI believe that with your expertise and professionalism, we can find the perfect home that aligns with my needs and preferences. Your attention to detail and commitment to client satisfaction are qualities that I greatly admire and seek in a real estate partner.%0D%0A%0D%0AI look forward to the opportunity to work together and benefit from your knowledge and experience.Please let me know your availability so we can coordinate a meeting.%0D%0A%0D%0AThank you for considering my inquiry, and I am excited about the prospect of collaborating with you on this exciting journey of finding my dream home.%0D%0AWarm regards,%0D%0A<?php echo ucwords($_SESSION['username']); ?>"; // Specify the email body here
+                    var mailtoLink = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+
+                    window.open(mailtoLink);
+                };
+
+
+            </script>
+            <br><br>
             <?php echo '<br><a class="removewish" id="confirmationLink" href="deleteagentadmin.php?agent_id=' . $agent_id . '">Remove listing</a>';
             echo "<script> document.getElementById('confirmationLink').addEventListener('click', function (event)
                 {
                     event.preventDefault(); // Prevent the default link behavior
-                    if (confirm('Are you sure you remove this agent profile?'))
+                    if (confirm('Are you sure you want to remove this agent profile?'))
                     {
                         window.location.href = event.target.href; // Redirect to the link URL
                     }
                 });
             </script>"; ?>
+            
         <?php else: ?>
             <h3 style="color: #d50000;"><a href="user login.html">Login</a> first to
                 contact this agent.</h3>
